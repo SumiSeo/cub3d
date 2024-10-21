@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 14:51:38 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/21 15:19:43 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int	main(int argc, char **argv)
 			return (print_err_msg(ERROR_PARSING_MSG));
 	}
 	else
-		return (ERROR_PARSING);
+		return (printf("%s", ERROR_ARGUMENT_NB_MSG), (ERROR_PARSING));
 }
