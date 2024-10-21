@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   bg_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 15:15:09 by sumseo           ###   ########.fr       */
+/*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
+/*   Updated: 2024/10/21 16:11:05 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __MACROS__H
-# define __MACROS__H
+#include "cub3d.h"
 
-# define ERROR_PARSING 0
-# define ERROR_PARSING_MSG "Parsing"
-# define ERROR_ARGUMENT_NB_MSG "Check arument number of the program."
-# define SUCCESS 1;
-#endif //__MACROS__H
+int	bg_parsing(char *argv)
+{
+	int fd;
+	char *line;
+	fd = open(argv, O_RDONLY);
+	if (fd > 0)
+	{
+		printf("This is arugment %s\n", argv);
+		get_next_line(fd, 0);
+		return (0);
+	}
+	else
+	{
+		return (1);
+	}
+}

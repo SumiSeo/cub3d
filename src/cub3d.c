@@ -6,14 +6,21 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 11:19:43 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/21 15:19:43 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	printf("Hello world\n");
-	return (0);
+	if (argc == 2)
+	{
+		if (argc < 1)
+			return (ERROR_PARSING);
+		if (bg_parsing(argv[1]))
+			return (print_err_msg(ERROR_PARSING_MSG));
+	}
+	else
+		return (printf("%s", ERROR_ARGUMENT_NB_MSG), (ERROR_PARSING));
 }
