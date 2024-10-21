@@ -2,7 +2,7 @@ NAME = cub3d
 
 SRC_DIR = src
 OBJ_DIR = obj
-OBJ_DIRS = $(OBJ_DIR)/parsing
+OBJ_DIRS = $(OBJ_DIR)/parsing $(OBJ_DIR)/utils
 
 SRC_FILES = cub3d.c
 
