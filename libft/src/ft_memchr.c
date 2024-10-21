@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libs.h                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 14:39:21 by sokaraku         ###   ########.fr       */
+/*   Created: 2023/11/05 17:59:01 by sokaraku          #+#    #+#             */
+/*   Updated: 2023/12/21 09:35:17 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __LIBS__H
-# define __LIBS__H
+#include "../includes/libft.h"
 
-# include "../libft/includes/libft.h"
-# include "macros.h"
-# include "structs.h"
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*s_2;
+	size_t			i;
 
-#endif //__LIBS__H
+	i = 0;
+	s_2 = (unsigned char *)s;
+	while (i < n)
+	{
+		if (s_2[i] == (unsigned char) c)
+			return (&(s_2[i]));
+		i++;
+	}
+	return (NULL);
+}

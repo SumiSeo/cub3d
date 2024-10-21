@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libs.h                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 14:39:21 by sokaraku         ###   ########.fr       */
+/*   Created: 2023/11/05 17:59:37 by sokaraku          #+#    #+#             */
+/*   Updated: 2023/12/21 09:35:48 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __LIBS__H
-# define __LIBS__H
+#include "../includes/libft.h"
 
-# include "../libft/includes/libft.h"
-# include "macros.h"
-# include "structs.h"
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int	i;
 
-#endif //__LIBS__H
+	if (!s || !f)
+		return ;
+	i = 0;
+	if (!f)
+		return ;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libs.h                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 14:39:21 by sokaraku         ###   ########.fr       */
+/*   Created: 2023/11/16 15:59:20 by sokaraku          #+#    #+#             */
+/*   Updated: 2023/12/21 10:37:33 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __LIBS__H
-# define __LIBS__H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include "../libft/includes/libft.h"
-# include "macros.h"
-# include "structs.h"
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
+# include "../../includes/libft.h"
+# include <stdarg.h>
 
-#endif //__LIBS__H
+void	to_hex(unsigned long nb, char c, char p, int *size);
+void	ft_putstr(char *str, int *size);
+void	ft_putnbr_long(long nb, int	*size);
+
+int		ft_printf(const char *str, ...);
+
+#endif

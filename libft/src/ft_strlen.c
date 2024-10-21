@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libs.h                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 14:39:21 by sokaraku         ###   ########.fr       */
+/*   Created: 2023/11/05 17:59:47 by sokaraku          #+#    #+#             */
+/*   Updated: 2024/02/29 13:22:33 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __LIBS__H
-# define __LIBS__H
+#include "../includes/libft.h"
 
-# include "../libft/includes/libft.h"
-# include "macros.h"
-# include "structs.h"
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
+long	ft_strlen(const char *s)
+{
+	long	i;
 
-#endif //__LIBS__H
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

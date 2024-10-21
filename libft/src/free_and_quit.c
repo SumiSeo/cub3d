@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libs.h                                             :+:      :+:    :+:   */
+/*   free_and_quit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 14:39:21 by sokaraku         ###   ########.fr       */
+/*   Created: 2024/03/20 11:40:03 by sokaraku          #+#    #+#             */
+/*   Updated: 2024/03/20 11:42:25 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __LIBS__H
-# define __LIBS__H
+#include "../includes/libft.h"
 
-# include "../libft/includes/libft.h"
-# include "macros.h"
-# include "structs.h"
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
-
-#endif //__LIBS__H
+/**
+ * @brief Prints a message to STD_ERROR, frees an array of string
+ * and then exit the program.
+ * @param msg The message to print.
+ * @param strs An array of strings.
+ * @returns void.
+ */
+void	free_and_quit(char *msg, char **strs)
+{
+	free_arrs((void **)strs);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(msg, 2);
+	exit(EXIT_FAILURE);
+}
