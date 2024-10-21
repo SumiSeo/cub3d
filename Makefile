@@ -10,17 +10,25 @@ SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
-INCLUDES			=	-I inc
+INCLUDES			=	-I inc -I libft/includes
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror
 DEBUGGER = -g3
 
-
+LIBFT_DIR	= libft
+LIBFT_LIB	= libft.a
+LIBFT		= $(addprefix $(LIBFT_DIR)/, $(LIBFT_LIB))
 
 all : $(NAME)
-$(NAME) : $(OBJ_DIR) $(OBJ) 
+
+$(LIBFT) :
+			@echo "$(GREEN)Compiling libft...$(COLOR_END)"
+			make -s -C libft
+			@echo "$(GREEN)libft compiled !$(COLOR_END)"
+	
+$(NAME) : $(OBJ_DIR) $(OBJ) $(LIBFT)
 				@echo "\n"
-				@echo "$(GREEN)Compiling...$(COLOR_END)"
+				@echo "$(GREEN)Compiling project...$(COLOR_END)"
 				$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(DEBUGGER) -o $(NAME)
 				@echo "$(LGREEN)project compiled !$(COLOR_END)"
 
@@ -31,15 +39,17 @@ $(OBJ_DIRS) :
 			mkdir -p $(OBJ_DIRS)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIRS)
-				$(CC) $(CFLAGS)$(INCLUDES) $(DEBUGGER) -c $< -o $@
+				$(CC) $(CFLAGS) $(INCLUDES) $(DEBUGGER) -c $< -o $@
 
 clean : 
 		rm -rf $(OBJ_DIR)
 
 fclean : clean
 		rm -rf $(NAME)
+		make -C libft fclean
 
 re : fclean all
+
 .PHONY : all clean fclean re 
 
 

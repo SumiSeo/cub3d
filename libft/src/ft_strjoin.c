@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libs.h                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 14:39:21 by sokaraku         ###   ########.fr       */
+/*   Created: 2023/11/05 17:59:40 by sokaraku          #+#    #+#             */
+/*   Updated: 2024/02/07 13:32:14 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __LIBS__H
-# define __LIBS__H
+#include "../includes/libft.h"
 
-# include "../libft/includes/libft.h"
-# include "macros.h"
-# include "structs.h"
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char		*new;
+	size_t		size;
 
-#endif //__LIBS__H
+	if (!s1 || !s2)
+		return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2);
+	new = (char *)ft_calloc(size + 1, sizeof(char));
+	if (!new)
+		return (NULL);
+	ft_memcpy(new, s1, ft_strlen(s1));
+	ft_memcpy(new + ft_strlen(s1), s2, ft_strlen(s2));
+	new[size] = '\0';
+	return (new);
+}
