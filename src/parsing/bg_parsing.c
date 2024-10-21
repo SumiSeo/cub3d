@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bg_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 16:11:05 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/21 16:28:23 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,6 @@ int	bg_parsing(char *argv)
 	{
 		return (1);
 	}
+	line = NULL;
+	return (1);
 }

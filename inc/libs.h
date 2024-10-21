@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 15:22:16 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/21 16:26:23 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/wait.h>
+# include <stdbool.h>
 
 #endif //__LIBS__H

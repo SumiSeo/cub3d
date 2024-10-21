@@ -4,7 +4,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 OBJ_DIRS = $(OBJ_DIR)/parsing $(OBJ_DIR)/handler
 
-SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c
+SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c parsing/check_map.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
@@ -28,7 +28,7 @@ $(LIBFT) :
 $(NAME) : $(OBJ_DIR) $(OBJ) $(LIBFT)
 				@echo "\n"
 				@echo "$(GREEN)Compiling project...$(COLOR_END)"
-				$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(DEBUGGER) -o $(NAME)
+				$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(DEBUGGER) -o $(NAME)
 				@echo "$(LGREEN)project compiled !$(COLOR_END)"
 
 $(OBJ_DIR) : 
