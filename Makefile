@@ -2,9 +2,10 @@ NAME = cub3D
 
 SRC_DIR = src
 OBJ_DIR = obj
-OBJ_DIRS = $(OBJ_DIR)/parsing $(OBJ_DIR)/handler
+OBJ_DIRS = $(OBJ_DIR)/parsing $(OBJ_DIR)/handler $(OBJ_DIR)/utils
 
-SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c parsing/check_map.c
+SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c parsing/check_map.c \
+			parsing/create_map.c utils/utils.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
