@@ -1,13 +1,12 @@
-NAME = cub3d
+NAME = cub3D
 
 SRC_DIR = src
 OBJ_DIR = obj
-OBJ_DIRS = $(OBJ_DIR)/parsing
+OBJ_DIRS = $(OBJ_DIR)/parsing $(OBJ_DIR)/handler
 
-SRC_FILES = cub3d.c
+SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
-
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 INCLUDES			=	-I inc -I libft/includes
