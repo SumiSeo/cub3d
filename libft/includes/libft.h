@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:01:44 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/21 17:28:58 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/21 19:39:03 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../ft_printf/includes/ft_printf.h"
 # include "../get_next_line/get_next_line.h"
-# include "../get_next_line/get_next_line_bonus.h"
 # include <fcntl.h>
 # include <stddef.h>
 # include <stdio.h>

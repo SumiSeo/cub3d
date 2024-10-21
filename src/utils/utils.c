@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/21 17:49:03 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:32:12 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,23 @@ char	*merge_strings(char *s1, char *s2, char c)
 	new[i] = 0;
 	free(s1);
 	return (new);
+}
+
+/**
+ * @brief Checks if a given char is present in a string.
+ * @param str The string to check.
+ * @param c The char to find.
+ * @returns True (1) if the char is found and false (0) otherwise.
+ */
+bool	find_char(char *str, char c)
+{
+	short int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == c)
+			return (true);
+	}
+	return (false);
 }

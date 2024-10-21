@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 16:28:23 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:35:23 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	bg_parsing(char *argv)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
+
 	fd = open(argv, O_RDONLY);
 	if (fd > 0)
 	{

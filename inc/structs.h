@@ -6,12 +6,12 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 16:35:27 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:34:46 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __STRUCTS__H
-# define __STRUCTS__H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 /**
  * @param file An array of strings containing everything inside the .cub's file.
@@ -22,9 +22,8 @@
  */
 typedef struct s_parsing
 {
-	char	**file;
-	char	**map;
-	char	**infos;
+	char		**file;
+	short int	map_beginning;
 }			t_parsing;
 
 #endif // __STRUCTS__H

@@ -6,12 +6,12 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 17:03:25 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:34:39 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __MACROS__H
-# define __MACROS__H
+#ifndef MACROS_H
+# define MACROS_H
 
 # define ERROR_PARSING 0
 # define ERROR_PARSING_MSG "Parsing"
