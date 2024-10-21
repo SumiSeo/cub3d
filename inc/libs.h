@@ -6,12 +6,12 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 16:26:23 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:34:04 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __LIBS__H
-# define __LIBS__H
+#ifndef LIBS_H
+# define LIBS_H
 
 # include "../libft/includes/libft.h"
 # include "macros.h"

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:01:44 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/21 15:41:36 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/21 19:39:03 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../ft_printf/includes/ft_printf.h"
 # include "../get_next_line/get_next_line.h"
-# include "../get_next_line/get_next_line_bonus.h"
 # include <fcntl.h>
 # include <stddef.h>
 # include <stdio.h>
@@ -75,7 +74,7 @@ void				free_arrs(void **arrs);
 void				close_handler(int size, ...);
 void				free_multiple_arrs(int n, ...);
 void				print_and_exit(char *msg);
-void				print_strs(char **strs);
+void				print_strs(char **strs, char new_line);
 void				free_and_quit(char *msg, char **strs);
 
 t_list				*ft_lstnew(void *content);

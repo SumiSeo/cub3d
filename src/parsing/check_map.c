@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:11:07 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/21 16:28:31 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:37:40 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,6 @@
 
 #include "cub3d.h"
 
-// CAREFUL of ft_error : first free memory and then call it
-
-// char	**create_map(char *file)
-// {
-// 	int		fd;
-// 	char	*tmp;
-// 	char	**map;
-
-// 	fd = open(file, O_RDONLY);
-// 	// if (fd == -1)
-// 	// 	ft_error("Unable to open map's file.");
-// }
 /**
  * @brief Checks the validity of one character.
  * @param c The character to check
