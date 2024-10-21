@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 15:24:08 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/21 16:11:05 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 int	bg_parsing(char *argv)
 {
-	if (open(argv, O_RDONLY) > 0)
+	int fd;
+	char *line;
+	fd = open(argv, O_RDONLY);
+	if (fd > 0)
 	{
 		printf("This is arugment %s\n", argv);
+		get_next_line(fd, 0);
 		return (0);
 	}
 	else
