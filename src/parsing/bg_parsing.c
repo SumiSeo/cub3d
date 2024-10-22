@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/22 16:50:29 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/22 16:53:03 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	bg_parsing(t_parsing parsing, t_screen screen)
 			assign_colors(&screen, "C", parsing.file[i]);
 		i++;
 	}
-	if (screen.floor == 0)
-		printf("nothing %s\n", screen.floor);
+	if (!screen.north || !screen.south || !screen.east || !screen.west
+		|| !screen.floor || !screen.ceiling)
+		return (1);
 	return (0);
 }
