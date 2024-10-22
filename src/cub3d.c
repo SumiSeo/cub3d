@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 20:44:37 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/22 09:37:07 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int	main(int argc, char **argv)
 {
+	t_parsing	parsing;
+
 	if (argc == 2)
 	{
 		if (argc < 1)
 			return (ERROR_PARSING);
-		if (bg_parsing(argv[1]))
+		parsing = init_pars(argv[1]);
+		if (bg_parsing(parsing))
 			print_err_msg(ERROR_PARSING_MSG, -1);
 	}
 	else

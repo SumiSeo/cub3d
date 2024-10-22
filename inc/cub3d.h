@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 20:44:20 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/22 09:36:46 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ char		**create_file(char *path);
 t_parsing	init_pars(char *path);
 
 // handler
-void			print_err_msg(char *msg, int fd);
+void		print_err_msg(char *msg, int fd);
 
 // bg_parsing.c
-int			bg_parsing(char *argv);
+int			bg_parsing(t_parsing parsing);
 #endif //__CUB3D__H
