@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 20:34:46 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:22:40 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ typedef struct s_parsing
 {
 	char		**file;
 	short int	map_beginning;
-}			t_parsing;
+}				t_parsing;
+
+typedef struct s_screen
+{
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
+	int			floor[3];
+	int			ceiling[3];
+
+}				t_screen;
 
 #endif // __STRUCTS__H

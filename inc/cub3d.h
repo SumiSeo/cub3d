@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/22 15:15:09 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/22 15:29:13 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_parsing	init_pars(char *path);
 void		print_err_msg(char *msg, int fd);
 
 // parsing/bg_parsing.c
-int			bg_parsing(t_parsing parsing);
+int			bg_parsing(t_parsing parsing, t_screen screen);
 
 // visualizing/launch_3d.c
 void		launch_game(t_parsing parsing);

@@ -36,9 +36,9 @@ $(MINILIBX) :
 	
 $(NAME) : $(OBJ_DIR) $(OBJ) $(LIBFT) $(MINILIBX)
 				@echo "\n"
-				@echo "$(GREEN)Compiling project...$(COLOR_END)"
+				@echo "$(PURPLE)Compiling project...$(COLOR_END)"
 				$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(DEBUGGER) -o $(NAME)
-				@echo "$(LGREEN)project compiled !$(COLOR_END)"
+				@echo "$(PURPLEN)project compiled !$(COLOR_END)"
 
 $(OBJ_DIR) : 
 			mkdir -p $@
@@ -66,6 +66,8 @@ GREEN				=	\033[32m
 
 LBLUE				=	\033[1;34m
 BLUE				=	\033[34m
+
+PURPLE 				= \033[0;35m
 
 RED					=	\033[31m
 
