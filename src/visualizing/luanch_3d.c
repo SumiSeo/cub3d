@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libs.h                                             :+:      :+:    :+:   */
+/*   luanch_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/22 14:56:01 by sumseo           ###   ########.fr       */
+/*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
+/*   Updated: 2024/10/22 15:15:00 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBS_H
-# define LIBS_H
+#include "cub3d.h"
 
-# include "../libft/includes/libft.h"
-# include "../minilibx-linux/mlx.h"
-# include "macros.h"
-# include "structs.h"
-# include <errno.h>
-# include <fcntl.h>
-# include <math.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
-
-#endif //__LIBS__H
+void	launch_game(t_parsing parsing)
+{
+	while (42)
+	{
+		printf("hello world \n");
+	}
+}

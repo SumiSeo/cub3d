@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 20:34:39 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:05:22 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,10 @@
 # define SUCCESS 1;
 # define ALLOWED_CHARACTERS "01NEWS"
 # define MKO "Allocation failure."
+
+// minilibx static value
+# define SCREEN_WINDOW 1900
+# define SCREEN_HEIGHT 1000
+# define TILE_SIZE 30
+
 #endif //__MACROS__H
