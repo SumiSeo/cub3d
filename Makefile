@@ -12,7 +12,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 INCLUDES			=	-I inc -I libft/includes
 CC = cc 
-CFLAGS = -Wall -Wextra -Werror #  -L./minilibx-linux -lmlx
+CFLAGS = -Wall -Wextra -Werror 
 DEBUGGER = -g3
 
 LIBFT_DIR	= libft
@@ -20,7 +20,7 @@ LIBFT_LIB	= libft.a
 LIBFT		= $(addprefix $(LIBFT_DIR)/, $(LIBFT_LIB))
 
 MINILIBX_DIR = minilibx-linux
-MINILIBX_LIB = minilibx.a
+MINILIBX_LIB = libmlx.a
 MINILIBX = $(addprefix $(MINILIBX_DIR)/, $(MINILIBX_LIB))
 
 all : $(NAME)
@@ -33,12 +33,13 @@ $(MINILIBX) :
 			@echo "$(BLUE)Compiling minilibx...$(COLOR_END)"
 			make -s -C minilibx-linux
 			@echo "$(BLUE)minilibx compiled !$(COLOR_END)"
-	
-$(NAME) : $(OBJ_DIR) $(OBJ) $(LIBFT) $(MINILIBX)
-				@echo "\n"
-				@echo "$(PURPLE)Compiling project...$(COLOR_END)"
-				$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(DEBUGGER) -o $(NAME)
-				@echo "$(PURPLEN)project compiled !$(COLOR_END)"
+
+$(NAME): $(OBJ_DIR) $(OBJ) $(LIBFT) $(MINILIBX)
+		@echo "\n"
+		@echo "$(PURPLE)Compiling project...$(COLOR_END)"
+		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MINILIBX) $(DEBUGGER) -o $(NAME) -Lminilibx-linux -lmlx -lm
+		@echo "$(PURPLEN)Project compiled!$(COLOR_END)"
+
 
 $(OBJ_DIR) : 
 			mkdir -p $@
@@ -47,7 +48,8 @@ $(OBJ_DIRS) :
 			mkdir -p $(OBJ_DIRS)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIRS)
-				$(CC) $(CFLAGS) $(INCLUDES) $(DEBUGGER) -c $< -o $@
+				$(CC) $(CFLAGS) $(INCLUDES) $(DEBUGGER) -Iminilibx_linux -c $< -o $@
+
 
 clean : 
 		rm -rf $(OBJ_DIR)
