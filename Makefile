@@ -10,7 +10,8 @@ SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c parsing/check_m
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
-INCLUDES			=	-I inc -I libft/includes
+INCLUDES = -I inc -I libft/includes -I minilibx-linux
+
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror 
 DEBUGGER = -g3
@@ -20,7 +21,7 @@ LIBFT_LIB	= libft.a
 LIBFT		= $(addprefix $(LIBFT_DIR)/, $(LIBFT_LIB))
 
 MINILIBX_DIR = minilibx-linux
-MINILIBX_LIB = libmlx.a
+MINILIBX_LIB = libminilibx.a
 MINILIBX = $(addprefix $(MINILIBX_DIR)/, $(MINILIBX_LIB))
 
 all : $(NAME)
@@ -37,7 +38,7 @@ $(MINILIBX) :
 $(NAME): $(OBJ_DIR) $(OBJ) $(LIBFT) $(MINILIBX)
 		@echo "\n"
 		@echo "$(PURPLE)Compiling project...$(COLOR_END)"
-		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MINILIBX) $(DEBUGGER) -o $(NAME) -Lminilibx-linux -lmlx -lm
+		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MINILIBX) $(DEBUGGER) -o $(NAME) -Lminilibx-linux -lminilibx -lm -lX11 -lXext
 		@echo "$(PURPLEN)Project compiled!$(COLOR_END)"
 
 
@@ -52,10 +53,9 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIRS)
 
 
 clean : 
-		rm -rf $(OBJ_DIR)
-
+		rm -rf $(OBJ_DIR) 
 fclean : clean
-		rm -rf $(NAME)
+		rm -rf $(NAME) $(LIBFT) $(MINILIBX)
 		make -C libft fclean
 
 re : fclean all
