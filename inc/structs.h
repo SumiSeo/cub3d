@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 20:34:46 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:36:36 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,24 @@
 typedef struct s_parsing
 {
 	char		**file;
+	char		**map;
+	short int	*rows_lens;
 	short int	map_beginning;
 }			t_parsing;
+
+typedef struct s_pos
+{
+	short int	x;
+	short int	y;
+}				t_pos;
+
+typedef struct s_stack
+{
+	t_pos			left;
+	t_pos			up;
+	t_pos			right;
+	t_pos			down;
+	struct s_stack	*next;
+}				t_stack;
 
 #endif // __STRUCTS__H

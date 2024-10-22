@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/21 20:32:12 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:21:14 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,50 @@ char	*merge_strings(char *s1, char *s2, char c)
 }
 
 /**
- * @brief Checks if a given char is present in a string.
- * @param str The string to check.
- * @param c The char to find.
- * @returns True (1) if the char is found and false (0) otherwise.
+ * @brief Checks if a given character is in a given set.
+ * @param c The character to check
+ * @param set The set in which to find the character.
+ * @returns True (1) if the character is valid and false (0) otherwise.
  */
-bool	find_char(char *str, char c)
+bool	is_in_set(char c, char *set)
 {
-	short int	i;
+	__int8_t	i;
 
 	i = -1;
-	while (str[++i])
+	while (set[++i])
 	{
-		if (str[i] == c)
+		if (c == set[i])
 			return (true);
 	}
 	return (false);
+}
+
+/**
+ * @brief
+ * @param
+ * @returns
+ */
+t_pos	find_player(char **map)
+{
+	short int	i;
+	short int	j;
+	t_pos		pos;
+
+	i = -1;
+	pos.y = -1;
+	pos.x = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (is_in_set(map[i][j], STARTING_POS_SET))
+			{
+				pos.y = i;
+				pos.x = j;
+				return (pos);
+			}
+		}
+	}
+	return (pos);
 }
