@@ -6,21 +6,36 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/21 20:44:37 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/23 18:00:57 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+bool	check_extension(char *file)
 {
-	if (argc == 2)
-	{
-		if (argc < 1)
-			return (ERROR_PARSING);
-		if (bg_parsing(argv[1]))
-			print_err_msg(ERROR_PARSING_MSG, -1);
-	}
-	else
-		return (printf("%s", ERROR_ARGUMENT_NB_MSG), (ERROR_PARSING));
+	char	*str;
+
+	str = ft_strnstr(file, ".cub", ft_strlen(file));
+	if (!str)
+		return (false);
+	if (ft_strlen(str) > 4)
+		return (false);
+	if (str == file)
+		return (false);
+	return (true);
+}
+
+int main(int argc, char **argv)
+{
+	(void)argc;
+	t_parsing	parsing;
+	// int			i = -1;
+	if (check_extension(argv[1]) == FAILURE)
+		print_err_msg("Invalid file extension", -1);
+	parsing = init_pars(argv[1]);
+	memory_handler(&parsing, true);
+	parse_map(&parsing);
+	free(parsing.rows_lens);
+	free_arrs((void **)parsing.file);
 }

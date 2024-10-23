@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:32:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/21 20:32:01 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/23 18:04:20 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ short int	find_map(char **file)
 	i = -1;
 	while (file[++i])
 	{
-		if (!find_char(VALID_FIRST_CHARS, file[i][0]) && file[i][0] != '\n')
+		if (!is_in_set(file[i][0], VALID_FIRST_CHARS) && file[i][0] != '\n')
 			return (i);
 	}
+	free_arrs((void **)file);
 	return (-1);
 }
 
@@ -98,7 +99,7 @@ __int8_t	check_empty_space(char **file)
  * @param path The path to the file.
  * @returns The file as an array of strings, or NULL if an error occured
  * (empty space, issue with file opening or allocation failure).
- * 
+ *
  * NOTE : If there is an issue with empty spaces, the strings' array is freed in
  * checke_empty_spaces.
  */
@@ -126,16 +127,34 @@ char	**create_file(char *path)
 	return (file);
 }
 
-//need to protet if crate_file fails since it exits ?
+// COME BACK need to protet if crate_file fails since it exits ?
 t_parsing	init_pars(char *path)
 {
 	t_parsing	data;
 	char		**file;
+	short int	*rows;
+	short int	map_start;
 
+	ft_bzero(&data, sizeof(data));
 	file = create_file(path);
 	if (!file)
 		print_err_msg("kaka", -1);
+	map_start = find_map(file);
+	if (map_start == -1)
+		print_err_msg("No map found", -1);
+	data.map = &file[map_start];
+	rows = malloc(sizeof(short int) * (find_len_strs(data.map) + 1));
+	if (!rows)
+		return (free_arrs((void **)file), print_err_msg(MKO, -1), data);
 	data.file = file;
-	data.map_beginning = find_map(file);
-	return (data);
+	data.rows_lens = rows;
+	data.map_beginning = map_start;
+	while (file[map_start])
+	{
+		*rows = ft_strlen(file[map_start]);
+		map_start++;
+		rows++;
+	}
+	*rows = -1;
+	return (data.filename = path, data);
 }

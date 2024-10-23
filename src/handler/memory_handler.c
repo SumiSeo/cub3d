@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.c                                    :+:      :+:    :+:   */
+/*   memory_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 14:49:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/23 17:50:09 by sokaraku         ###   ########.fr       */
+/*   Created: 2024/10/23 17:43:04 by sokaraku          #+#    #+#             */
+/*   Updated: 2024/10/23 18:05:28 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/**
- * @brief Prints an error message, close a file descriptor if needed
- * and exits the program.
- * @param msg The message to print.
- * @param fd  A file descriptor.
- * @returns void.
- */
-void	print_err_msg(char *msg, int fd)
+void	memory_handler(t_parsing *data, bool store)
 {
-	if (fd >= 0)
-		close(fd);
-	memory_handler(NULL, 0);
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-	ft_putendl_fd(msg, STDERR_FILENO);
-	exit(EXIT_FAILURE);
+	static t_parsing	*data_store;
+
+	if (store)
+	{
+		data_store = data;
+		return ;
+	}
+	if (data_store)
+	{
+		free_arrs((void **)data_store->file);
+		free(data_store->rows_lens);
+	}
 }
