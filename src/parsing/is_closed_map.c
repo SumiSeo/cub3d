@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:38 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/22 20:20:21 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:22:33 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static __int8_t	fill_map(t_parsing *data, short int y, short int x)
 	static short int	len_y = 0;
 
 	if (len_y == 0)
-		len_y = find_len_strs(&data->file[data->map_beginning]);
+		len_y = find_len_strs(data->map);
 	map = data->map;
 	rows = data->rows_lens;
 	if (x < 0 || y < 0 || y > len_y || x > ft_strlen(map[y])
@@ -51,7 +51,7 @@ static __int8_t	reset_and_check_map(char **map, short int *y, short int *x)
 		while (map[i][++j])
 		{
 			if (map[i][j] == '2')
-				map[i][j] = '1';
+				map[i][j] = '0';
 			else if (map[i][j] == -32)
 				return (*y = i, *x = j, MAP_NOT_CLOSED);
 		}

@@ -8,7 +8,7 @@ SRC_FILES = cub3d.c \
 			parsing/bg_parsing.c  parsing/check_map.c parsing/create_map.c \
 			parsing/is_closed_map.c parsing/parse_map.c \
 			utils/utils.c \
-			handler/error_handler.c \
+			handler/error_handler.c handler/memory_handler.c \
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
@@ -53,7 +53,11 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re 
+# test :	$(NAME)
+# 		cd maps
+# 		./test.sh
+
+.PHONY : all clean fclean re test
 
 
 LGREEN				=	\033[1;32m

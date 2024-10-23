@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:11:07 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/22 20:20:42 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:49:13 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	transform_space_in_wall(char **map)
+{
+	short int	i;
+	short int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == ' ')
+				map[i][j] = '1';
+		}
+	}
+}
 
 __int8_t	check_characters_in_map(char **map, short int *y, short int *x)
 {

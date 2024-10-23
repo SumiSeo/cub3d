@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:32:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/22 20:18:21 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/23 18:04:20 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ short int	find_map(char **file)
 		if (!is_in_set(file[i][0], VALID_FIRST_CHARS) && file[i][0] != '\n')
 			return (i);
 	}
+	free_arrs((void **)file);
 	return (-1);
 }
 
@@ -139,13 +140,15 @@ t_parsing	init_pars(char *path)
 	if (!file)
 		print_err_msg("kaka", -1);
 	map_start = find_map(file);
-	rows = malloc(sizeof(short int) * (find_len_strs(&file[map_start]) + 1));
+	if (map_start == -1)
+		print_err_msg("No map found", -1);
+	data.map = &file[map_start];
+	rows = malloc(sizeof(short int) * (find_len_strs(data.map) + 1));
 	if (!rows)
 		return (free_arrs((void **)file), print_err_msg(MKO, -1), data);
 	data.file = file;
 	data.rows_lens = rows;
 	data.map_beginning = map_start;
-	data.map = &file[map_start];
 	while (file[map_start])
 	{
 		*rows = ft_strlen(file[map_start]);
@@ -153,5 +156,5 @@ t_parsing	init_pars(char *path)
 		rows++;
 	}
 	*rows = -1;
-	return (data);
+	return (data.filename = path, data);
 }
