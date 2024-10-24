@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/22 20:21:14 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:07:16 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ char	*merge_strings(char *s1, char *s2, char c)
  * @brief Checks if a given character is in a given set.
  * @param c The character to check
  * @param set The set in which to find the character.
- * @returns True (1) if the character is valid and false (0) otherwise.
+ * @returns True (1) if the character is in the given set
+ * and false (0) otherwise.
  */
 bool	is_in_set(char c, char *set)
 {

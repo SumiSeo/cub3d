@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 12:44:59 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/24 19:24:40 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ t_pos		find_player(char **map);
 //									-> PARSING
 //-> create_map.c
 
+short int	find_map(char **file);
 char		**create_strs(int fd, char sep);
-char		**create_file(char *path);
-t_parsing	init_pars(char *path);
+char		**create_file(t_parsing *data, char *path);
+t_parsing	*init_pars(char *path);
 
 //->check_map.c
 
