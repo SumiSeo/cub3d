@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 15:25:15 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/24 15:33:54 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,20 @@ int	find_index(const char *str, char c)
 int	range_check(char **arr, t_screen *screen, int flag)
 {
 	int	i;
+	int	j;
 	int	converted;
 
 	i = 0;
+	j = 0; 
 	while (arr[i])
 	{
 		converted = ft_atoi(arr[i]);
 		if (converted < 0 || converted > 255)
 			return (0);
 		if (flag == 1)
-			screen->floor[i] = converted;
+			screen->floor[j++] = converted; 
 		else
-			screen->ceiling[i] = converted;
+			screen->ceiling[j++] = converted; 
 		i++;
 	}
 	return (1);
@@ -88,7 +90,8 @@ int	bg_parsing(t_parsing parsing, t_screen screen)
 			assign_colors(&screen, "C", parsing.file[i]);
 		i++;
 	}
-	if (!screen.north || !screen.south || !screen.east || !screen.west)
+	if (!screen.north || !screen.south || !screen.east || !screen.west
+		|| !(*screen.floor) || !(*screen.ceiling))
 		return (1);
 	return (0);
 }
