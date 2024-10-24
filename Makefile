@@ -21,7 +21,7 @@ LIBFT_LIB	= libft.a
 LIBFT		= $(addprefix $(LIBFT_DIR)/, $(LIBFT_LIB))
 
 MINILIBX_DIR = minilibx-linux
-MINILIBX_LIB = libminilibx.a
+MINILIBX_LIB = libmlx.a
 MINILIBX = $(addprefix $(MINILIBX_DIR)/, $(MINILIBX_LIB))
 
 all : $(NAME)
@@ -38,7 +38,7 @@ $(MINILIBX) :
 $(NAME): $(OBJ_DIR) $(OBJ) $(LIBFT) $(MINILIBX)
 		@echo "\n"
 		@echo "$(PURPLE)Compiling project...$(COLOR_END)"
-		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MINILIBX) $(DEBUGGER) -o $(NAME) -Lminilibx-linux -lminilibx -lm -lX11 -lXext
+		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MINILIBX) $(DEBUGGER) -o $(NAME) -Lminilibx-linux -lmlx -lm -lX11 -lXext
 		@echo "$(PURPLE)Project compiled!$(COLOR_END)"
 
 
