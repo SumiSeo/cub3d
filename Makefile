@@ -39,7 +39,7 @@ $(NAME): $(OBJ_DIR) $(OBJ) $(LIBFT) $(MINILIBX)
 		@echo "\n"
 		@echo "$(PURPLE)Compiling project...$(COLOR_END)"
 		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MINILIBX) $(DEBUGGER) -o $(NAME) -Lminilibx-linux -lminilibx -lm -lX11 -lXext
-		@echo "$(PURPLEN)Project compiled!$(COLOR_END)"
+		@echo "$(PURPLE)Project compiled!$(COLOR_END)"
 
 
 $(OBJ_DIR) : 
