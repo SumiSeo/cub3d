@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 12:42:20 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/24 13:53:29 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,14 @@ typedef struct s_screen
 	char			*ceiling;
 
 }					t_screen;
+
+typedef struct t_image
+{
+	void			*img;
+	void			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}					t_image;
 
 #endif // __STRUCTS__H

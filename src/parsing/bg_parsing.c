@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 12:41:11 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/24 13:13:18 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	assign_colors(t_screen *screen, char *place, char *color_arr)
 int	bg_parsing(t_parsing parsing, t_screen screen)
 {
 	int i = 0;
+	static const char *map_info[] = {"NO", "SO", "WE", "EA", "F", "C"};
+	(void)map_info;
 	while (parsing.file[i] && i < parsing.map_beginning)
 	{
 		if (ft_strncmp("NO", parsing.file[i], 2) == 0
