@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libs.h                                             :+:      :+:    :+:   */
+/*   launch_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:41:11 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 12:39:12 by sumseo           ###   ########.fr       */
+/*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
+/*   Updated: 2024/10/24 12:38:07 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBS_H
-# define LIBS_H
+#include "cub3d.h"
 
-# include "../libft/includes/libft.h"
-# include "../minilibx-linux/mlx.h"
-# include "macros.h"
-# include "structs.h"
-# include <errno.h>
-# include <fcntl.h>
-# include <fcntl.h>
-# include <math.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
+void	launch_game(t_parsing parsing)
+{
+	(void)parsing;
+	void *mlx;
+	void *mlx_win;
 
-#endif //__LIBS__H
+	mlx = mlx_init();
+
+	while (42)
+	{
+		// printf("hello world \n");
+		mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+		mlx_loop(mlx);
+	}
+}

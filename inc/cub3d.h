@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/23 17:49:07 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:44:59 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ void		print_err_msg(char *msg, int fd);
 
 void		memory_handler(t_parsing *data, bool store);
 
-// bg_parsing.c
-int			bg_parsing(char *argv);
+// parsing/bg_parsing.c
+int			bg_parsing(t_parsing parsing, t_screen screen);
+
+// visualizing/launch_3d.c
+void		launch_game(t_parsing parsing);
+
 #endif //__CUB3D__H
