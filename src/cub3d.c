@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 12:44:02 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/25 15:26:30 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 	if (bg_parsing(parsing, screen))
 		print_err_msg(ERROR_PARSING_MSG, -1);
 	launch_game(parsing);
+
 	memory_handler(&parsing, true);
 	parse_map(&parsing);
 	free(parsing.rows_lens);
