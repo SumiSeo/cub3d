@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/25 14:07:23 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/25 14:08:57 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,20 +104,15 @@ int	bg_parsing(t_parsing parsing, t_screen screen)
 			screen.east = parsing.file[i];
 		else if (ft_strncmp(parsing.file[i], "F", 1) == 0
 			&& parsing.file[i][1] == ' ')
-		{
 			assign_colors(&screen, "F", parsing.file[i]);
-			printf("Screen floor color -> %d\n", screen.floor[0]);
-		}
 		else if (ft_strncmp(parsing.file[i], "C", 1) == 0
 			&& parsing.file[i][1] == ' ')
-		{
 			assign_colors(&screen, "C", parsing.file[i]);
-		}
 
 		i++;
 	}
 	if (!screen.north || !screen.south || !screen.east || !screen.west
-		|| !(*screen.floor) || !(*screen.ceiling))
+		|| !screen.floor_color || !screen.ceiling_color)
 		return (1);
 	return (0);
 }
