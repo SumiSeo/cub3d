@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:04:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/25 15:04:35 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/25 16:04:12 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 int	is_valid_split(char *str)
 {
-	(void)str;
-	return (0);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\r'
+			&& str[i] != '\v' && str[i] != '\f')
+			return (0);
+		i++;
+	}
+	return (1);
 }
+
 int	range_check(char **arr, t_screen *screen, int flag)
 {
 	int	i;
