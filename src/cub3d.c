@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/25 15:26:30 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/25 15:49:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ int	main(int argc, char **argv)
 	t_screen screen;
 
 	if (check_extension(argv[1]) == FAILURE)
-	parsing = init_pars(argv[1]);
+		print_and_exit("Wrong extension. Allowed extension is .cub");
+	parsing = init_pars_struct(argv[1]);
+	parse_map(parsing);
 	ft_memset(&screen, 0, sizeof(t_screen));
-	if (bg_parsing(parsing, screen))
+	if (bg_parsing(*parsing, screen))
 		print_err_msg(ERROR_PARSING_MSG, -1);
-	launch_game(parsing);
-	memory_handler(&parsing, true);
-	parse_map(&parsing);
-	free(parsing.rows_lens);
-	free_arrs((void **)parsing.file);
+	launch_game(*parsing);
+	memory_handler(parsing, true);
+	free(parsing->rows_lens);
+	free_arrs((void **)parsing->file);
+	free(parsing);
 }
