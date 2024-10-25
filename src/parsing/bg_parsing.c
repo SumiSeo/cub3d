@@ -6,27 +6,33 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 12:41:11 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/25 15:04:34 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	assign_colors(t_screen *screen, char *place, char *color_arr)
+int	find_index(const char *str, char c)
 {
-	int	i;
+	char	*ptr;
 
-	i = 0;
-	if (ft_strncmp("F", place, 1) == 0)
-		screen->floor = &color_arr[1];
-	else if (ft_strncmp("C", place, 1) == 0)
-		screen->ceiling = &color_arr[1];
+	ptr = strchr(str, c);
+	if (ptr)
+		return (ptr - str); // Pointer arithmetic to find index
+	return (-1);            // Character not found
 }
+
+
 int	bg_parsing(t_parsing parsing, t_screen screen)
 {
-	int i = 0;
+	int					i;
+	static const char	*map_info[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
+
+	i = 0;
 	while (parsing.file[i] && i < parsing.map_beginning)
 	{
+		if (map_info[i] == NULL)
+			return (1);
 		if (ft_strncmp("NO", parsing.file[i], 2) == 0
 			&& parsing.file[i][2] == ' ')
 			screen.north = parsing.file[i];
@@ -47,8 +53,9 @@ int	bg_parsing(t_parsing parsing, t_screen screen)
 			assign_colors(&screen, "C", parsing.file[i]);
 		i++;
 	}
+	print_screen(screen);
 	if (!screen.north || !screen.south || !screen.east || !screen.west
-		|| !screen.floor || !screen.ceiling)
+		|| !screen.floor_color || !screen.ceiling_color)
 		return (1);
 	return (0);
 }

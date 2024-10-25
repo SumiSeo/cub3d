@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/25 14:18:40 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:05:45 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,19 @@ __int8_t	parse_map(t_parsing *data);
 
 __int8_t	is_closed_map(t_parsing *data, short int *y, short int *x);
 
-// 									-->HANDLER
+// ->bg_parsing.c
+int			bg_parsing(t_parsing parsing, t_screen screen);
+
+// ->debugging.c
+void		print_screen(t_screen screen);
+
+// ->color_parsing.c
+void		assign_colors(t_screen *screen, char *place, char *color_arr);
+void		convert_hex(t_screen *screen, int i);
+int			range_check(char **arr, t_screen *screen, int flag);
+int			is_valid_split(char *str);
+
+//								-->HANDLER
 //->error_handler.c
 
 void		print_err_msg(char *msg, int fd);
@@ -51,9 +63,6 @@ void		print_err_msg(char *msg, int fd);
 //->memory_handler.c
 
 void		memory_handler(t_parsing *data, bool store);
-
-// parsing/bg_parsing.c
-int			bg_parsing(t_parsing parsing, t_screen screen);
 
 // visualizing/launch_3d.c
 void		launch_game(t_parsing parsing);
