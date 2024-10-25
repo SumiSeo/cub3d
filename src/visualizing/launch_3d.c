@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/25 14:07:44 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/25 15:25:54 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,6 @@ void	launch_game(t_parsing parsing)
 	my_mlx_pixel_put(&img, 100, 100, 12087591);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
+	// mlx_destroy_window(mlx, mlx_win);
+	// mlx_destroy_image(mlx, img.img);
 }
