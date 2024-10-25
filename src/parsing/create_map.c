@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:32:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/24 19:41:51 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:32:00 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,17 @@ __int8_t	check_empty_space(char **file)
 /**
  * @brief Converts a file into an array of strings, while checking
  * if the map's component of the file has empty spaces.
+ * @param data A pointer to a structure containing informations about the file.
+ * Used for leak-handling purposes.
  * @param path The path to the file.
+ * @param ret Norm issues.
  * @returns The file as an array of strings, or NULL if an error occured
  * (empty space, issue with file opening or allocation failure).
- *
- * NOTE : If there is an issue with empty spaces, the strings' array is freed in
- * checke_empty_spaces.
  */
-char	**create_file(t_parsing *data, char *path)
+char	**create_file(t_parsing *data, char *path, __int8_t ret)
 {
 	char		**file;
 	int			fd;
-	__int8_t	ret;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -124,12 +123,11 @@ char	**create_file(t_parsing *data, char *path)
 		print_err_msg("No map found", fd);
 	free_arrs((void **)file);
 	close(fd);
-	open(path, O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		print_err_msg("Unable to open file.", fd);
 	file = create_strs(fd, '\n');
 	if (!file)
 		print_err_msg(MKO, fd);
-	close(fd);
-	return (file);
+	return (close(fd), file);
 }

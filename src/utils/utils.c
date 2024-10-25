@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/24 19:07:16 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:28:16 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ char	*merge_strings(char *s1, char *s2, char c)
 		return (NULL);
 	new = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 2);
 	if (!new)
+	{
+		if (s1)
+			free(s1);
 		return (NULL);
+	}
 	while (s1 && s1[i])
 	{
 		new[i] = s1[i];
@@ -43,9 +47,7 @@ char	*merge_strings(char *s1, char *s2, char c)
 		new[i++] = c;
 	while (s2 && s2[j])
 		new[i++] = s2[j++];
-	new[i] = 0;
-	free(s1);
-	return (new);
+	return (new[i] = 0, free(s1), new);
 }
 
 /**
@@ -69,9 +71,9 @@ bool	is_in_set(char c, char *set)
 }
 
 /**
- * @brief
- * @param
- * @returns
+ * @brief Finds the position of the player.
+ * @param map A pointer to an array of strings containing the map.
+ * @returns A structure containing the position of the player.
  */
 t_pos	find_player(char **map)
 {

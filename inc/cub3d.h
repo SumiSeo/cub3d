@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 19:24:40 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:18:40 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_pos		find_player(char **map);
 
 short int	find_map(char **file);
 char		**create_strs(int fd, char sep);
-char		**create_file(t_parsing *data, char *path);
-t_parsing	*init_pars(char *path);
+char		**create_file(t_parsing *data, char *path, __int8_t ret);
+t_parsing	*init_pars_struct(char *path);
 
 //->check_map.c
 
