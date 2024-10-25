@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:11:07 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/23 13:49:13 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:30:15 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
 
 #include "cub3d.h"
 
+/**
+ * @brief If empty spaces are found in the map, changes them in wall ('1')
+ * @param map A pointer to an array of strings containing the map.
+ * @returns void.
+ */
 void	transform_space_in_wall(char **map)
 {
 	short int	i;
@@ -43,6 +48,17 @@ void	transform_space_in_wall(char **map)
 	}
 }
 
+/**
+ * @brief Checks if the map is composed of only allowed characters "01NEWS" and
+ * that there are only one starting position.
+ * @param map A pointer to an array of strings containing the map.
+ * @param y A pointer to the line number at which an error was found.
+ * @param x A pointer to the column number at which an error was found.
+ * @returns -1 if a a forbidden character is found (FORBIDDEN_CHARACTER),
+ * -2 if there is no starting position (NO_STARTING_POS), -3 if there are
+ * multiple starting positions (MULTIPLE_STARTING_POS) and true (1) if none
+ * of these errors were found.
+ */
 __int8_t	check_characters_in_map(char **map, short int *y, short int *x)
 {
 	short int	i;

@@ -6,15 +6,15 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:49:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/23 17:50:09 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:28:40 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * @brief Prints an error message, close a file descriptor if needed
- * and exits the program.
+ * @brief Prints an error message, close a file descriptor if needed,
+ * frees allocated memory and exits the program.
  * @param msg The message to print.
  * @param fd  A file descriptor.
  * @returns void.

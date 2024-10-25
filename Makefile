@@ -58,7 +58,7 @@ clean :
 fclean : clean
 		rm -rf $(NAME) $(LIBFT) $(MINILIBX)
 		make -C libft fclean
-		make -C minilibx-linux clean 
+		make -C minilibx-linux clean
 
 re : fclean all
 
