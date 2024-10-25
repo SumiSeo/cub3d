@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 17:46:06 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/25 14:07:23 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,50 +46,13 @@ int	range_check(char **arr, t_screen *screen, int flag)
 	}
 	return (0);
 }
-int	create_trgb(unsigned char t, unsigned char r, unsigned char g,
-		unsigned char b)
-{
-	return (*(int *)(unsigned char[4]){b, g, r, t});
-}
 
-unsigned char	get_t(int trgb)
+void	convert_hex(t_screen *screen, int i)
 {
-	return (((unsigned char *)&trgb)[3]);
-}
-
-unsigned char	get_r(int trgb)
-{
-	return (((unsigned char *)&trgb)[2]);
-}
-
-unsigned char	get_g(int trgb)
-{
-	return (((unsigned char *)&trgb)[1]);
-}
-
-unsigned char	get_b(int trgb)
-{
-	return (((unsigned char *)&trgb)[0]);
-}
-int	hexcolor(int r, int g, int b)
-{
-	return ((r << 16) | (g << 8) | b);
-}
-
-void	convert_hex(t_screen *screen)
-{
-	unsigned char	r;
-	unsigned char	g;
-	int				col;
-
-	// int	trgb;
-	(void)screen;
-	r = get_r(screen->floor[0]);
-	g = get_g(screen->floor[1]);
-	printf("R : %c\n", r);
-	printf("G : %c\n", g);
-	col = hexcolor(screen->floor[0], screen->floor[1], screen->floor[2]);
-	printf("hex color %d\n", col);
+	if (i == 1)
+		screen->floor_color = ((screen->floor[0] & 0x0ff) << 16) | ((screen->floor[1] & 0x0ff) << 8) | (screen->floor[2] & 0x0ff);
+	else
+		screen->ceiling_color = ((screen->ceiling[0] & 0x0ff) << 16) | ((screen->ceiling[1] & 0x0ff) << 8) | (screen->ceiling[2] & 0x0ff);
 }
 void	assign_colors(t_screen *screen, char *place, char *color_arr)
 {
@@ -106,7 +69,7 @@ void	assign_colors(t_screen *screen, char *place, char *color_arr)
 			return ;
 		}
 		else
-			convert_hex(screen);
+			convert_hex(screen, 1);
 	}
 	else if (ft_strncmp("C", place, 1) == 0)
 	{
@@ -116,7 +79,7 @@ void	assign_colors(t_screen *screen, char *place, char *color_arr)
 			return ;
 		}
 		else
-			convert_hex(screen);
+			convert_hex(screen, 2);
 	}
 	free_arrs((void **)split);
 }

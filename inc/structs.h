@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 15:19:06 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/25 14:06:59 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ typedef struct s_screen
 	char			*west;
 	char			*east;
 	int				floor[3];
-	char			ceiling[3];
+	int				ceiling[3];
+	int				floor_color;
+	int				ceiling_color;
 
 }					t_screen;
 

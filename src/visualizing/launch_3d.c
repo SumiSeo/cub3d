@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/24 17:41:24 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/25 14:07:44 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ void	launch_game(t_parsing parsing)
 	(void)parsing;
 	void *mlx_win;
 	void *mlx;
+
 	t_image img;
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "CUB 3D");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	mlx_win = mlx_new_window(mlx, 500, 500, "CUB 3D");
+	img.img = mlx_new_image(mlx, 500, 500);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	my_mlx_pixel_put(&img, 100, 100, 0x008060C2);
+	my_mlx_pixel_put(&img, 100, 100, 12087591);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
