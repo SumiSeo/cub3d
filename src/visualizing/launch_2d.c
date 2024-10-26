@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define X_EVENT_KEY_PRESS 2
-#define X_EVENT_KEY_EXIT 17 // Exit program key code
+#define X_EVENT_KEY_EXIT 17
 
 #define KEY_ESC 53
 
@@ -36,7 +36,6 @@ typedef struct s_game
 	int		map[ROWS][COLS];
 }			t_game;
 
-// Draw the line by DDA algorithm
 void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
 {
 	double	deltaX;
@@ -174,7 +173,6 @@ int	call(void)
 	img_init(&game);
 	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close_g, &game);
-
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	return (1);
