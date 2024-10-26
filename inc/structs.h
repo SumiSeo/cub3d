@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/25 14:06:59 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/26 19:54:12 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,27 @@ typedef struct s_screen
 
 typedef struct t_image
 {
-	void			*img;
+	void			*img_ptr;
+	int				*data;
 	void			*addr;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+	int				width;
+	int				height;
 }					t_image;
+
+typedef struct t_key
+{
+	int				x;
+	int				y;
+	char			str[3];
+}					t_key;
+
+typedef struct s_mlx
+{
+	void			*mlx_ptr;
+	void			*win;
+}					t_mlx;
 
 #endif // __STRUCTS__H

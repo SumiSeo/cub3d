@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/23 18:00:30 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/26 19:37:47 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,25 @@
 # define MULTIPLE_STARTING_POS -3
 # define MAP_NOT_CLOSED -4
 # define MKO "Allocation failure."
+
+// key events
+# define KEY_PRESS 2
+# define KEY_RELEASE 3
+# define EVENT_KEY_EXIT 17
+
+# define KEY_ESC 53
+# define KEY_Q 12
+# define KEY_W 13
+# define KEY_E 14
+# define KEY_R 15
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+
+// WINDOW AND IMAGE INFO
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
+
+# define IMG_WIDTH 400
+# define IMG_HEIGHT 300
 #endif //__MACROS__H
