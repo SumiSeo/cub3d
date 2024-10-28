@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 15:57:11 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:05:02 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	img_launch(t_mlx *mlx)
 int	img_loop(t_mlx *mlx)
 {
 	draw_squares(mlx);
+	draw_hero(mlx);
 	draw_lines(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 	return (0);

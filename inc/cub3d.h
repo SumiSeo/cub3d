@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 15:56:46 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:02:14 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void		draw_person(t_mlx *mlx, int x, int y);
 void		draw_squares(t_mlx *mlx);
 void		draw_line(t_mlx *mlx, double x1, double y1, double x2, double y2);
 void		draw_lines(t_mlx *mlx);
+void		draw_hero(t_mlx *mlx);
 #endif //__CUB3D__H
