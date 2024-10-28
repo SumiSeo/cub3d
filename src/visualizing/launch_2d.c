@@ -7,8 +7,6 @@
 #define X_EVENT_KEY_PRESS 2
 #define X_EVENT_KEY_EXIT 17
 
-#define KEY_ESC 53
-
 #define TILE_SIZE 32
 #define ROWS 11
 #define COLS 15

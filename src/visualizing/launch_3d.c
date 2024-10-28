@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 14:45:05 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:26:39 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	draw_squares(t_mlx *mlx)
 		{
 			if (mlx->parsing->map[i][j] == '1')
 				draw_square(mlx, j, i);
-			if (mlx->parsing->map[i][j] == 'N')
+			else if (mlx->parsing->map[i][j] == 'N')
 				draw_person(mlx, j, i);
 			j++;
 		}
@@ -175,8 +175,14 @@ int	key_event(int key_code, t_mlx *mlx)
 	printf("Key event detected: %d\n", key_code); // Debug output
 	if (key_code == KEY_S)
 		printf("key s clicekd\n");
-	if (key_code == KEY_ESC)
+	else if (key_code == KEY_W)
 		printf("key s clicekd\n");
+	else if (key_code == KEY_A)
+		printf("key s clicekd\n");
+	else if (key_code == KEY_D)
+		printf("key s clicekd\n");
+	else if (key_code == KEY_ESC)
+		exit(0);
 	return (1);
 }
 void	launch_game(t_parsing *parsing)
