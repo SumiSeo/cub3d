@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/26 19:37:47 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 14:39:39 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define MKO "Allocation failure."
 
 // key events
-# define KEY_PRESS 2
-# define KEY_RELEASE 3
+# define EVENT_KEY_PRESS 2
+# define EVENT_KEY_RELEASE 3
 # define EVENT_KEY_EXIT 17
 
 # define KEY_ESC 53
@@ -37,7 +37,7 @@
 # define KEY_E 14
 # define KEY_R 15
 # define KEY_A 0
-# define KEY_S 1
+# define KEY_S 115
 # define KEY_D 2
 
 // WINDOW AND IMAGE INFO

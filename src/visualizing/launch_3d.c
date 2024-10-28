@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 14:14:28 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 14:45:05 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,16 @@ int	img_loop(t_mlx *mlx)
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 	return (0);
 }
+int	key_event(int key_code, t_mlx *mlx)
+{
+	(void)mlx;
+	printf("Key event detected: %d\n", key_code); // Debug output
+	if (key_code == KEY_S)
+		printf("key s clicekd\n");
+	if (key_code == KEY_ESC)
+		printf("key s clicekd\n");
+	return (1);
+}
 void	launch_game(t_parsing *parsing)
 {
 	t_mlx mlx;
@@ -177,6 +187,7 @@ void	launch_game(t_parsing *parsing)
 	mlx.parsing = parsing;
 	mlx_launch(&mlx);
 	img_launch(&mlx);
+	mlx_hook(mlx.win, 2, 1L << 0, &key_event, &mlx);
 	mlx_hook(mlx.win, EVENT_KEY_EXIT, 0, &close_game, &mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &img_loop, &mlx);
 	mlx_loop(mlx.mlx_ptr);
