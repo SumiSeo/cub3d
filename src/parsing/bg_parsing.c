@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/25 15:04:34 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:58:39 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ int	find_index(const char *str, char c)
 
 	ptr = strchr(str, c);
 	if (ptr)
-		return (ptr - str); // Pointer arithmetic to find index
-	return (-1);            // Character not found
+		return (ptr - str);
+	return (-1);
 }
-
 
 int	bg_parsing(t_parsing parsing, t_screen screen)
 {
