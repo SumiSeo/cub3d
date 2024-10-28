@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 11:44:08 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 14:17:10 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_parsing	*init_pars_struct(char *path);
 
 //->check_map.c
 
-void		transform_space_in_wall(char **map);
+void		transform_whitespace_in_wall(char **map);
 __int8_t	check_characters_in_map(char **map, short int *y, short int *x);
 
 //->parse_map.c

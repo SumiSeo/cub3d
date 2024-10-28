@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:17:01 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/25 15:27:06 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:17:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ __int8_t	parse_map(t_parsing *data)
 	map = data->map;
 	y = 0;
 	x = 0;
-	transform_space_in_wall(map);
+	transform_whitespace_in_wall(map);
 	ret = check_characters_in_map(map, &y, &x);
 	call_error_function(ret, y, x);
 	ret = is_closed_map(data, &y, &x);
