@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 13:19:45 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 13:58:58 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_parsing
 	char				*filename;
 	short int			*rows_lens;
 	short int			map_beginning;
+	short int			row;
+	short int			column;
 }						t_parsing;
 
 typedef struct s_pos

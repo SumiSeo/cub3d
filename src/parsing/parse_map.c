@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:17:01 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/25 15:27:06 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:02:25 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,22 @@ static void	call_error_function(__int8_t ret, short int y, short int x)
  * @param data A pointer to a structure containing informations about the file.
  * @returns void.
  */
+
+short int	find_maximum_col(t_parsing *data)
+{
+	short int	maximum;
+	int			i;
+
+	maximum = data->rows_lens[0];
+	i = 0;
+	while (data->rows_lens[i])
+	{
+		if (maximum < data->rows_lens[i])
+			maximum = data->rows_lens[i];
+		i++;
+	}
+	return (maximum);
+}
 static void	init_pars_struct_helper(t_parsing *data)
 {
 	short int	*rows;
@@ -86,6 +102,8 @@ static void	init_pars_struct_helper(t_parsing *data)
 		*rows = ft_strlen(data->map[i]);
 		rows++;
 	}
+	data->row = i;
+	data->column = find_maximum_col(data);
 	*rows = -1;
 	memory_handler(data, true);
 }
@@ -122,11 +140,11 @@ t_parsing	*init_pars_struct(char *path)
 }
 
 /**
- * @brief Does the final parsing checks 
- * 
+ * @brief Does the final parsing checks
+ *
  *  - character checking : Forbidden characters, no starting position
  * or too many starting positon
- * 
+ *
  *  - map opening : Checks if an opening is found and if it is accessible
  * to the player.
  * @param data A pointer to a structure containing informations about the file.
