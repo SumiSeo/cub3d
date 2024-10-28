@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:11:07 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/25 14:30:15 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:16:55 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
  * @param map A pointer to an array of strings containing the map.
  * @returns void.
  */
-void	transform_space_in_wall(char **map)
+void	transform_whitespace_in_wall(char **map)
 {
 	short int	i;
 	short int	j;
@@ -42,7 +42,7 @@ void	transform_space_in_wall(char **map)
 		j = -1;
 		while (map[i][++j])
 		{
-			if (map[i][j] == ' ')
+			if (map[i][j] == ' ' || map[i][j] == '\t')
 				map[i][j] = '1';
 		}
 	}
