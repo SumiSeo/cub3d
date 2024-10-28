@@ -7,7 +7,7 @@ OBJ_DIRS = $(OBJ_DIR)/parsing $(OBJ_DIR)/handler $(OBJ_DIR)/utils $(OBJ_DIR)/vis
 SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c parsing/check_map.c \
 			parsing/create_map.c utils/utils.c visualizing/launch_3d.c handler/memory_handler.c \
 			parsing/parse_map.c parsing/is_closed_map.c handler/debugging.c \
-			parsing/color_parsing.c
+			parsing/color_parsing.c visualizing/launch_2d.c
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
