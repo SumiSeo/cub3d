@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:04:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/25 16:04:12 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:59:32 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	range_check(char **arr, t_screen *screen, int flag)
 		return (1);
 	return (0);
 }
+
 void	convert_hex(t_screen *screen, int i)
 {
 	if (i == 1)
@@ -59,6 +60,7 @@ void	convert_hex(t_screen *screen, int i)
 	else
 		screen->ceiling_color = ((screen->ceiling[0] & 0x0ff) << 16) | ((screen->ceiling[1] & 0x0ff) << 8) | (screen->ceiling[2] & 0x0ff);
 }
+
 void	assign_colors(t_screen *screen, char *place, char *color_arr)
 {
 	int		i;

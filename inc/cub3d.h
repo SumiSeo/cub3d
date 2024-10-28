@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 14:17:10 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:02:14 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,28 @@ int			range_check(char **arr, t_screen *screen, int flag);
 int			is_valid_split(char *str);
 
 //								-->HANDLER
-//->error_handler.c
+// ->error_handler.c
 
 void		print_err_msg(char *msg, int fd);
 
-//->memory_handler.c
+// ->memory_handler.c
 
 void		memory_handler(t_parsing *data, bool store);
 
-// visualizing/launch_3d.c
+//								-->VISUALIZING
+// KEY_HANDLING.C
 void		launch_game(t_parsing *parsing);
 int			call(void);
+void		move_up(t_mlx *mlx);
+void		move_down(t_mlx *mlx);
+void		move_right(t_mlx *mlx);
+void		move_left(t_mlx *mlx);
+
+// DRAWING_MAP.C
+void		draw_square(t_mlx *mlx, int x, int y);
+void		draw_person(t_mlx *mlx, int x, int y);
+void		draw_squares(t_mlx *mlx);
+void		draw_line(t_mlx *mlx, double x1, double y1, double x2, double y2);
+void		draw_lines(t_mlx *mlx);
+void		draw_hero(t_mlx *mlx);
 #endif //__CUB3D__H
