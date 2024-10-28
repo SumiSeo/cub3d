@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:55:17 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 16:11:27 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:16:29 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_square(t_mlx *mlx, int x, int y)
 		j = 0;
 		while (j < TILE_SIZE)
 		{
-			mlx->img.data[(y + i) * WIDTH + x + j] = 0xFFFF0F;
+			mlx->img.data[(y + i) * WIDTH + x + j] = 0x87CEFA;
 			j++;
 		}
 		i++;
@@ -49,7 +49,7 @@ void	draw_person(t_mlx *mlx, int x, int y)
 		j = 0;
 		while (j < 10)
 		{
-			mlx->img.data[(y + i) * WIDTH + x + j] = 0xFF00FF;
+			mlx->img.data[(y + i) * WIDTH + x + j] = 0x006400;
 			j++;
 		}
 		i++;
