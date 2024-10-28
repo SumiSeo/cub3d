@@ -159,7 +159,7 @@ void	img_init(t_game *game)
 int	main_loop(t_game *game)
 {
 	draw_rectangles(game);
-	draw_lines(game);
+	// draw_lines(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }

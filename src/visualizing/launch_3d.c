@@ -6,11 +6,17 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/26 20:18:30 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 12:32:24 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+#define TILE_SIZE 32
+#define ROWS 11
+#define COLS 15
+#define WIDTH COLS *TILE_SIZE
+#define HEIGHT ROWS *TILE_SIZE
 
 void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
 {
@@ -33,11 +39,10 @@ int	key_press(int keycode, t_key *param)
 	printf("hello world\n");
 	if (keycode == KEY_W)
 		param->x++;
-	else if (keycode == KEY_S) // Action when S key pressed
+	else if (keycode == KEY_S)
 		param->x--;
-	else if (keycode == KEY_ESC) // Quit the program when ESC key pressed
+	else if (keycode == KEY_ESC)
 	{
-		printf("he\n");
 		exit(0);
 	}
 	printf("x: %d\n", param->x);
@@ -48,39 +53,73 @@ int	close_game(t_mlx *mlx)
 	(void)mlx;
 	exit(0);
 }
-
-void	launch_game(t_parsing parsing)
+void	mlx_launch(t_mlx *mlx)
 {
-	(void)parsing;
+	mlx->mlx_ptr = mlx_init();
+	mlx->win = mlx_new_window(mlx->mlx_ptr, 1000, 1000, "cub 3D");
+}
 
-	int count_w;
-	int count_h;
+void	img_launch(t_mlx *mlx)
+{
+	mlx->img.img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
+	mlx->img.data = (int *)mlx_get_data_addr(mlx->img.img_ptr,
+			&mlx->img.bits_per_pixel, &mlx->img.line_length, &mlx->img.endian);
+}
 
-	t_image img;
+void	draw_square(t_mlx *mlx, int x, int y)
+{
+	int	i;
+	int	j;
+
+	x *= TILE_SIZE;
+	y *= TILE_SIZE;
+	i = 0;
+	j = 0;
+	while (i < TILE_SIZE)
+	{
+		j = 0;
+		while (j < TILE_SIZE)
+		{
+			mlx->img.data[(y + i) * WIDTH + x + j] = 0xFFFFFF;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	draw_squares(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < ROWS)
+	{
+		j = 0;
+		while (j < COLS)
+		{
+			if (mlx->parsing->map[i][j] == '1')
+				draw_square(mlx, j, i);
+			j++;
+		}
+		i++;
+	}
+}
+int	img_loop(t_mlx *mlx)
+{
+	draw_squares(mlx);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
+	return (0);
+}
+void	launch_game(t_parsing *parsing)
+{
 	t_mlx mlx;
 
-	mlx.mlx_ptr = mlx_init();
-
-	mlx.win = mlx_new_window(mlx.mlx_ptr, 500, 500, "CUB 3D");
-	// img.img_ptr = mlx_new_image(mlx.mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
-	img.img_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, "./textures/cerisier.xpm",
-			&img.width, &img.height);
-	img.data = (int *)mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel,
-			&img.line_length, &img.endian);
-
-	count_h = -1;
-	while (++count_h < img.height)
-	{
-		count_w = -1;
-		while (++count_w < img.width / 2)
-		{
-			if (count_w % 2)
-				img.data[count_h * img.width + count_w] = 0xFFFFFF;
-			else
-				img.data[count_h * img.width + count_w] = 0xFF0000;
-		}
-	}
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win, img.img_ptr, 100, 100);
+	ft_memset(&mlx, 0, sizeof(mlx));
+	mlx.parsing = parsing;
+	mlx_launch(&mlx);
+	img_launch(&mlx);
 	mlx_hook(mlx.win, EVENT_KEY_EXIT, 0, &close_game, &mlx);
+	mlx_loop_hook(mlx.mlx_ptr, &img_loop, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 }
