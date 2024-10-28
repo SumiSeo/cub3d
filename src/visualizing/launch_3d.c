@@ -6,42 +6,12 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 15:26:39 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:44:05 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#define TILE_SIZE 20
-#define ROWS 12
-#define COLS 38
-#define WIDTH COLS *TILE_SIZE
-#define HEIGHT ROWS *TILE_SIZE
-#define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
-
-void	param_init(t_key *key_params)
-{
-	key_params->x = 3;
-	key_params->y = 4;
-	key_params->str[0] = 'a';
-	key_params->str[1] = 'b';
-	key_params->str[2] = '\0';
-}
-int	key_press(int keycode, t_key *param)
-{
-	// static int	a = 0;
-	printf("hello world\n");
-	if (keycode == KEY_W)
-		param->x++;
-	else if (keycode == KEY_S)
-		param->x--;
-	else if (keycode == KEY_ESC)
-	{
-		exit(0);
-	}
-	printf("x: %d\n", param->x);
-	return (0);
-}
 int	close_game(t_mlx *mlx)
 {
 	(void)mlx;
@@ -171,15 +141,17 @@ int	img_loop(t_mlx *mlx)
 }
 int	key_event(int key_code, t_mlx *mlx)
 {
-	(void)mlx;
-	printf("Key event detected: %d\n", key_code); // Debug output
-	if (key_code == KEY_S)
+	printf("Key event detected: %d\n", key_code);
+	if (key_code == KEY_DOWN)
+	{
 		printf("key s clicekd\n");
-	else if (key_code == KEY_W)
+		mlx->parsing->map[0][0] = 'N';
+	}
+	else if (key_code == KEY_UP)
 		printf("key s clicekd\n");
-	else if (key_code == KEY_A)
+	else if (key_code == KEY_LEFT)
 		printf("key s clicekd\n");
-	else if (key_code == KEY_D)
+	else if (key_code == KEY_RIGHT)
 		printf("key s clicekd\n");
 	else if (key_code == KEY_ESC)
 		exit(0);

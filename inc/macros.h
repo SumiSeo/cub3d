@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 15:26:20 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:44:14 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,28 @@
 # define MAP_NOT_CLOSED -4
 # define MKO "Allocation failure."
 
-// key events
+// KEY EVENTS
 # define EVENT_KEY_PRESS 2
 # define EVENT_KEY_RELEASE 3
 # define EVENT_KEY_EXIT 17
 
 # define KEY_ESC 65307
-# define KEY_Q 113
-# define KEY_W 119
-# define KEY_E 101
-# define KEY_R 114
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
+# define KEY_UP 119
+# define KEY_LEFT 97
+# define KEY_DOWN 115
+# define KEY_RIGHT 100
 
 // WINDOW AND IMAGE INFO
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
-
 # define IMG_WIDTH 400
 # define IMG_HEIGHT 300
+
+# define TILE_SIZE 20
+# define ROWS 12
+# define COLS 38
+# define WIDTH COLS *TILE_SIZE
+# define HEIGHT ROWS *TILE_SIZE
+# define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
+
 #endif //__MACROS__H
