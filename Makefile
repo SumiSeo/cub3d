@@ -58,11 +58,15 @@ clean :
 fclean : clean
 		rm -rf $(NAME) $(LIBFT) $(MINILIBX)
 		make -C libft fclean
-		make -C minilibx-linux clean 
+		make -C minilibx-linux clean
+		@if test -f "maps/output.txt"; then rm maps/output.txt; fi
 
 re : fclean all
 
-.PHONY : all clean fclean re 
+test : $(NAME)
+		(cd maps; ./test.sh)
+
+.PHONY : all clean fclean re test
 
 
 LGREEN				=	\033[1;32m
