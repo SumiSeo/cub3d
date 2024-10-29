@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 13:58:58 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/29 12:34:52 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_screen
 	int					ceiling[3];
 	int					floor_color;
 	int					ceiling_color;
+	int					start_x;
+	int					start_y;
 }						t_screen;
 
 typedef struct s_image
@@ -69,6 +71,7 @@ typedef struct s_mlx
 	void				*win;
 	t_parsing			*parsing;
 	t_image				img;
+	t_screen			*screen;
 }						t_mlx;
 
 typedef struct s_key

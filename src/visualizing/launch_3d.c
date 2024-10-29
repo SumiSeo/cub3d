@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 16:05:02 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/29 12:35:09 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	img_loop(t_mlx *mlx)
 	draw_squares(mlx);
 	draw_hero(mlx);
 	draw_lines(mlx);
+	draw_rays(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 	return (0);
 }
@@ -56,12 +57,13 @@ int	key_event(int key_code, t_mlx *mlx)
 	return (1);
 }
 
-void	launch_game(t_parsing *parsing)
+void	launch_game(t_parsing *parsing, t_screen *screen)
 {
 	t_mlx	mlx;
 
 	ft_memset(&mlx, 0, sizeof(mlx));
 	mlx.parsing = parsing;
+	mlx.screen = screen;
 	mlx_launch(&mlx);
 	img_launch(&mlx);
 	mlx_hook(mlx.win, 2, 1L << 0, &key_event, &mlx);
