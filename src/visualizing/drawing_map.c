@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:55:17 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 16:17:48 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/29 13:32:04 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	draw_person(t_mlx *mlx, int x, int y)
 	int	i;
 	int	j;
 
+	printf("position person X : %d\n", x);
+	printf("position person Y : %d\n", y);
 	x *= TILE_SIZE;
 	y *= TILE_SIZE;
-	printf("X %d\n", x);
-	printf("X %d\n", y);
 	i = 0;
 	j = 0;
 	while (i < 10)
@@ -90,7 +90,11 @@ void	draw_hero(t_mlx *mlx)
 			if (mlx->parsing->map[i][j] == 'N' || mlx->parsing->map[i][j] == 'E'
 				|| mlx->parsing->map[i][j] == 'S'
 				|| mlx->parsing->map[i][j] == 'W')
+			{
 				draw_person(mlx, j, i);
+				// mlx->screen->start_x = j;
+				// mlx->screen->start_y = i;
+			}
 			j++;
 		}
 		i++;

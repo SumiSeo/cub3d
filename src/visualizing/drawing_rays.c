@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debugging.c                                        :+:      :+:    :+:   */
+/*   drawing_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 14:20:28 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/29 13:40:24 by sumseo           ###   ########.fr       */
+/*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
+/*   Updated: 2024/10/29 14:13:41 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_screen(t_screen *screen)
+void	draw_rays(t_mlx *mlx)
 {
-	printf("NORTH [%s]\n", screen->north);
-	printf("SOUTH [%s]\n", screen->south);
-	printf("EAST [%s]\n", screen->east);
-	printf("WEST [%s]\n", screen->west);
-	printf("FLOOR [%d]\n", screen->floor_color);
-	printf("CEILING [%d]\n", screen->ceiling_color);
+	// printf("drawy rays\n");
+	// double dirX = -1;
+	// double dirY = 0;
+	// double planeX = 0;
+	// double planeY = 0.66;
+
+	(void)mlx;
+	// int x = 0;
+	printf("Width check %d\n", WIDTH);
+
+	// while (x < WIDTH)
+	// {
+	// 	// printf("x check %d\n", x);
+	// 	x++;
+	// }
 }
