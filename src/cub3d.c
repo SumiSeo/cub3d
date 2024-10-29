@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/29 14:13:02 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/29 15:37:14 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	main(int argc, char **argv)
 		print_err_msg(ERROR_PARSING_MSG, -1);
 	launch_game(parsing, screen);
 	// call();
-	// memory_handler(parsing, true);
-	// free(parsing->rows_lens);
-	// free_arrs((void **)parsing->file);
-	// free(parsing);
+	memory_handler(parsing, true);
+	free(parsing->rows_lens);
+	free_arrs((void **)parsing->file);
+	free(parsing);
 }
