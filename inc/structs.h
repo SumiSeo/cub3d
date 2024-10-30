@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/29 17:36:27 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:54:55 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,19 @@ typedef struct s_key
 
 typedef struct s_vector
 {
-	double	x;
-	double	y;	
-}				t_vector;
+	double				x;
+	double				y;
+}						t_vector;
 
-typedef struct s_raycasting
+typedef struct s_ray
 {
-	double		camera_x;
-	t_vector	player;
-	t_vector	plane;
-	t_vector	direction;
-	t_vector	ray_direction;
-	t_vector	side_dist;
-	t_vector	delta_dist;
-}				t_raycasting;
+	double				camera_x;
+	t_vector			player;
+	t_vector			plane;
+	t_vector			dir;
+	t_vector			ray_dir;
+	t_vector			side_dist;
+	t_vector			delta_dist;
+}						t_ray;
 
 #endif // __STRUCTS__H
