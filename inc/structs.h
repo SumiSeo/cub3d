@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/30 16:54:55 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/30 17:40:22 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,18 @@ typedef struct s_vector
 
 typedef struct s_ray
 {
-	double				camera_x;
+	double				camera_int;
 	t_vector			player;
 	t_vector			plane;
 	t_vector			dir;
 	t_vector			ray_dir;
 	t_vector			side_dist;
 	t_vector			delta_dist;
+	double				wall_dist;
+	int					step_x;
+	int					step_y;
+	int					hit;
+	int					side;
 }						t_ray;
 
 #endif // __STRUCTS__H
