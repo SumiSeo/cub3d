@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/29 13:51:41 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/31 18:54:08 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		move_right(t_mlx *mlx);
 void		move_left(t_mlx *mlx);
 
 // DRAWING_MAP.C
-void		draw_square(t_mlx *mlx, int x, int y);
+void		draw_square(t_mlx *mlx, int x, int y, int color);
 void		draw_person(t_mlx *mlx, int x, int y);
 void		draw_squares(t_mlx *mlx);
 void		draw_line(t_mlx *mlx, double x1, double y1, double x2, double y2);
@@ -83,4 +83,5 @@ void		draw_hero(t_mlx *mlx);
 
 // DRAWING_RAYS.c
 void		draw_rays(t_mlx *mlx);
+void		draw_rays_2(t_mlx *mlx);
 #endif //__CUB3D__H

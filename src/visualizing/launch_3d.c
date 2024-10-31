@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/29 12:35:09 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/31 19:00:48 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	img_loop(t_mlx *mlx)
 	draw_hero(mlx);
 	draw_lines(mlx);
 	draw_rays(mlx);
+	// draw_rays_2(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 	return (0);
 }

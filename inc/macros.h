@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 15:44:14 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/31 19:18:19 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@
 # define KEY_RIGHT 100
 
 // WINDOW AND IMAGE INFO
-# define WIN_WIDTH 800
+# define WIN_ 800
 # define WIN_HEIGHT 600
 # define IMG_WIDTH 400
 # define IMG_HEIGHT 300
 
 # define TILE_SIZE 20
-# define ROWS 12
+# define ROWS 11
 # define COLS 38
 # define WIDTH COLS *TILE_SIZE
 # define HEIGHT ROWS *TILE_SIZE

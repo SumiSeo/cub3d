@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:17:01 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/29 14:15:13 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/31 19:16:34 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ static void	init_pars_struct_helper(t_parsing *data)
 	}
 	data->row = i;
 	data->column = find_maximum_col(data);
+	data->width = data->row * TILE_SIZE;
+	data->height = data->column * TILE_SIZE;
 	memory_handler(data, true);
 }
 

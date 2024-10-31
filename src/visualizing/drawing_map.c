@@ -6,13 +6,13 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:55:17 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/29 14:19:24 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/31 19:18:45 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_square(t_mlx *mlx, int x, int y)
+void	draw_square(t_mlx *mlx, int x, int y, int color)
 {
 	int	i;
 	int	j;
@@ -26,7 +26,28 @@ void	draw_square(t_mlx *mlx, int x, int y)
 		j = 0;
 		while (j < TILE_SIZE)
 		{
-			mlx->img.data[(y + i) * WIDTH + x + j] = 0x87CEFA;
+			mlx->img.data[(y + i) * WIDTH + x + j] = color;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	draw_squares(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < mlx->parsing->row)
+	{
+		j = 0;
+		while (j < mlx->parsing->column)
+		{
+			if (mlx->parsing->map[i][j] == '1')
+				draw_square(mlx, j, i, mlx->screen->ceiling_color);
+			else
+				draw_square(mlx, j, i, mlx->screen->floor_color);
 			j++;
 		}
 		i++;
@@ -54,26 +75,6 @@ void	draw_person(t_mlx *mlx, int x, int y)
 	}
 }
 
-void	draw_squares(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < mlx->parsing->row)
-	{
-		j = 0;
-		while (j < mlx->parsing->column)
-		{
-			if (mlx->parsing->map[i][j] == '1')
-				draw_square(mlx, j, i);
-			// else if (mlx->parsing->map[i][j] == 'N')
-			// 	draw_person(mlx, j, i);
-			j++;
-		}
-		i++;
-	}
-}
 void	draw_hero(t_mlx *mlx)
 {
 	int	i;
