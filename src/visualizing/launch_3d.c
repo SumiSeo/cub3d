@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/31 19:00:48 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/31 21:51:16 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	img_launch(t_mlx *mlx)
 
 int	img_loop(t_mlx *mlx)
 {
-	draw_squares(mlx);
-	draw_hero(mlx);
-	draw_lines(mlx);
-	draw_rays(mlx);
-	// draw_rays_2(mlx);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
+	// draw_squares(mlx);
+	// draw_hero(mlx);
+	// draw_lines(mlx);
+	// draw_rays(mlx);
+	draw_rays_2(mlx);
+	// mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 	return (0);
 }
 
@@ -66,7 +66,7 @@ void	launch_game(t_parsing *parsing, t_screen *screen)
 	mlx.parsing = parsing;
 	mlx.screen = screen;
 	mlx_launch(&mlx);
-	img_launch(&mlx);
+	// img_launch(&mlx);
 	mlx_hook(mlx.win, 2, 1L << 0, &key_event, &mlx);
 	mlx_hook(mlx.win, EVENT_KEY_EXIT, 0, &close_game, &mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &img_loop, &mlx);

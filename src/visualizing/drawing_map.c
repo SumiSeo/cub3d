@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:55:17 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/31 19:18:45 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/10/31 21:35:36 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void	draw_person(t_mlx *mlx, int x, int y)
 	y *= TILE_SIZE;
 	i = 0;
 	j = 0;
-	while (i < 10)
+	while (i < TILE_SIZE)
 	{
 		j = 0;
-		while (j < 10)
+		while (j < TILE_SIZE)
 		{
 			mlx->img.data[(y + i) * WIDTH + x + j] = 0x006400;
 			j++;
@@ -93,6 +93,8 @@ void	draw_hero(t_mlx *mlx)
 				draw_person(mlx, j, i);
 				mlx->screen->start_x = j;
 				mlx->screen->start_y = i;
+				// printf("mlx->screen->start_x  %d\n", mlx->screen->start_x);
+				// printf("mlx->screen->start_y  %d\n", mlx->screen->start_y);
 			}
 			j++;
 		}
