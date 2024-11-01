@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 15:30:32 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:32:06 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ typedef struct s_data
 	double				planeY;
 	double				moveSpeed;
 	double				rotSpeed;
-	t_parsing			*parsing;
 }						t_data;
 typedef struct s_key
 {

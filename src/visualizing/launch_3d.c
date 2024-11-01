@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:00:43 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:17:14 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,19 @@ int	close_game(t_mlx *mlx)
 	exit(0);
 }
 
-void	mlx_launch(t_data *data)
+void	mlx_launch(t_data *data, t_parsing *parsing)
 {
 	data->mlx.mlx_ptr = mlx_init();
 	data->mlx.win = mlx_new_window(data->mlx.mlx_ptr, WIDTH, HEIGHT, "cub 3D");
+	data->posX = 4;
+	data->posY = 5;
+	data->dirX = -1;
+	data->dirY = 0;
+	data->planeX = 0;
+	data->planeY = 0.66;
+	data->moveSpeed = 0.05;
+	data->rotSpeed = 0.05;
+	data->mlx.parsing = parsing;
 }
 
 void	img_launch(t_mlx *mlx)
@@ -39,14 +48,15 @@ void	img_launch(t_mlx *mlx)
 
 int	img_loop(t_data *data)
 {
+	// **please keep this line for now ** minimap//
 	// draw_squares(mlx);
 	// draw_hero(mlx);
 	// draw_lines(mlx);
 	// draw_rays(mlx);
+	// **please keep this line for now ** minimap//
 	mlx_clear_window(data->mlx.mlx_ptr, data->mlx.win);
 	ft_bzero(data->mlx.map.data, HEIGHT * WIDTH * sizeof(int));
-	draw_rays_2(data);
-	// mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
+	draw_rays(data);
 	return (0);
 }
 
@@ -86,17 +96,8 @@ void	launch_game(t_parsing *parsing, t_screen *screen)
 
 	(void)screen;
 	data.mlx.mlx_ptr = mlx_init();
-	mlx_launch(&data);
+	mlx_launch(&data, parsing);
 	img_launch(&data.mlx);
-	data.posX = 4;
-	data.posY = 5;
-	data.dirX = -1;
-	data.dirY = 0;
-	data.planeX = 0;
-	data.planeY = 0.66;
-	data.moveSpeed = 0.05;
-	data.rotSpeed = 0.05;
-	data.mlx.parsing = parsing;
 	mlx_loop_hook(data.mlx.mlx_ptr, &img_loop, &data);
 	mlx_hook(data.mlx.win, EVENT_KEY_PRESS, 1L << 0, &key_event, &data);
 	mlx_hook(data.mlx.win, EVENT_KEY_EXIT, 0, &close_game, &data);

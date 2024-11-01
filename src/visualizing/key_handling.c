@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:44:45 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:06:52 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:36:34 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 void	move_up(t_data *data)
 {
-	if (!data->parsing->map[(int)(data->posX + data->dirX
-			* data->moveSpeed)][(int)(data->posY)])
+	if (data->mlx.parsing->map[(int)(data->posX + data->dirX
+			* data->moveSpeed)][(int)(data->posY)] == '0')
 		data->posX += data->dirX * data->moveSpeed;
-	if (!data->parsing->map[(int)(data->posX)][(int)(data->posY + data->dirY
-			* data->moveSpeed)])
+	if (data->mlx.parsing->map[(int)(data->posX)][(int)(data->posY + data->dirY
+			* data->moveSpeed)] == '0')
 		data->posY += data->dirY * data->moveSpeed;
-	else
-		printf("check\n");
 }
 
 void	move_down(t_data *data)
 {
-	if (!data->parsing->map[(int)(data->posX - data->dirX
-			* data->moveSpeed)][(int)(data->posY)])
+	if (data->mlx.parsing->map[(int)(data->posX - data->dirX
+			* data->moveSpeed)][(int)(data->posY)] == '0')
 		data->posX -= data->dirX * data->moveSpeed;
-	if (!data->parsing->map[(int)(data->posX)][(int)(data->posY - data->dirY
-			* data->moveSpeed)])
+	if (data->mlx.parsing->map[(int)(data->posX)][(int)(data->posY - data->dirY
+			* data->moveSpeed)] == '0')
 		data->posY -= data->dirY * data->moveSpeed;
 }
 

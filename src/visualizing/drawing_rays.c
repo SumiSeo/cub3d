@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 15:32:15 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:12:20 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ void	verLine(t_data *info, int x, int y1, int y2, int color)
 	y = y1;
 	while (y <= y2)
 	{
-		// mlx_pixel_put(info->mlx.mlx_ptr, info->mlx.win, x, y, color);
 		put_pixel_to_img(&info->mlx.map, x, y, color);
 		y++;
 	}
 }
 
-void	draw_rays_2(t_data *info)
+void	draw_rays(t_data *info)
 {
 	int		x;
 	double	cameraX;
@@ -44,6 +43,8 @@ void	draw_rays_2(t_data *info)
 	int		drawStart;
 	int		drawEnd;
 	int		color;
+	int		hit;
+	int		side;
 
 	x = 0;
 	while (x < WIDTH)
@@ -53,13 +54,9 @@ void	draw_rays_2(t_data *info)
 		rayDirY = info->dirY + info->planeY * cameraX;
 		mapX = (int)info->posX;
 		mapY = (int)info->posY;
-		// length of ray from current position to next x or y-side
-		// length of ray from one x or y-side to next x or y-side
 		deltaDistX = fabs(1 / rayDirX);
 		deltaDistY = fabs(1 / rayDirY);
-		// what direction to step in x or y-direction (either +1 or -1)
-		int hit = 0; // was there a wall hit?
-		int side;    // was a NS or a EW wall hit?
+		hit = 0;
 		if (rayDirX < 0)
 		{
 			stepX = -1;
@@ -82,7 +79,6 @@ void	draw_rays_2(t_data *info)
 		}
 		while (hit == 0)
 		{
-			// jump to next map square, OR in x-direction, OR in y-direction
 			if (sideDistX < sideDistY)
 			{
 				sideDistX += deltaDistX;
@@ -95,7 +91,6 @@ void	draw_rays_2(t_data *info)
 				mapY += stepY;
 				side = 1;
 			}
-			// Check if ray has hit a wall
 			if (info->mlx.parsing->map[mapX][mapY] != '0')
 				hit = 1;
 		}
@@ -103,9 +98,7 @@ void	draw_rays_2(t_data *info)
 			perpWallDist = (mapX - info->posX + (1 - stepX) / 2) / rayDirX;
 		else
 			perpWallDist = (mapY - info->posY + (1 - stepY) / 2) / rayDirY;
-		// Calculate height of line to draw on screen
 		lineHeight = (int)(HEIGHT / perpWallDist);
-		// calculate lowest and highest pixel to fill in current stripe
 		drawStart = -lineHeight / 2 + HEIGHT / 2;
 		if (drawStart < 0)
 			drawStart = 0;
