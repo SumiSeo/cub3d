@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:48:30 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 17:25:22 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,6 @@ int	map_loop(t_data *data)
 	ft_bzero(data->mlx.map.data, HEIGHT * WIDTH * sizeof(int));
 	draw_rays(data);
 	return (0);
-}
-
-t_ray	*init_rays(t_ray *rays, int pos_x, int pos_y)
-{
-	rays->camera_int = 0;
-	rays->player.x = pos_x;
-	rays->player.y = pos_y;
-	rays->dir.x = -1;
-	rays->dir.y = 0;
-	rays->plane.x = 0;
-	rays->plane.y = 0.66;
-	rays->ray_dir.x = 0;
-	rays->ray_dir.y = 0;
-	rays->delta_dist.x = 0;
-	rays->delta_dist.y = 0;
-	return (rays);
 }
 
 void	launch_game(t_parsing *parsing, t_screen *screen)

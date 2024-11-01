@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:32:06 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 17:09:31 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,28 +67,6 @@ typedef struct s_image
 	int					height;
 }						t_image;
 
-typedef struct s_vector
-{
-	double				x;
-	double				y;
-}						t_vector;
-
-typedef struct s_ray
-{
-	double				camera_int;
-	t_vector			player;
-	t_vector			plane;
-	t_vector			dir;
-	t_vector			ray_dir;
-	t_vector			side_dist;
-	t_vector			delta_dist;
-	double				wall_dist;
-	int					step_x;
-	int					step_y;
-	int					hit;
-	int					side;
-}						t_ray;
-
 typedef struct s_mlx
 {
 	void				*mlx_ptr;
@@ -97,7 +75,7 @@ typedef struct s_mlx
 	t_image				minimap;
 	t_image				map;
 	t_screen			*screen;
-	t_ray				*rays;
+
 }						t_mlx;
 
 typedef struct s_data

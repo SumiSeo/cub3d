@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:47:42 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 17:25:46 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void		verLine(t_data *info, int x, int y1, int y2, int color);
 
 // LAUNCH_3D.c
 void		launch_game(t_parsing *parsing, t_screen *screen);
-t_ray		*init_rays(t_ray *rays, int pos_x, int pos_y);
 int			map_loop(t_data *data);
 void		img_launch(t_mlx *mlx);
 void		mlx_launch(t_data *data, t_parsing *parsing);
