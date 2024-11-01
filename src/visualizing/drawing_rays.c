@@ -6,44 +6,37 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 13:49:13 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 15:32:15 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	verLine(t_mlx *info, int x, int y1, int y2, int color)
+void	verLine(t_data *info, int x, int y1, int y2, int color)
 {
 	int	y;
 
 	y = y1;
 	while (y <= y2)
 	{
-		mlx_pixel_put(info->mlx_ptr, info->win, x, y, color);
+		// mlx_pixel_put(info->mlx.mlx_ptr, info->mlx.win, x, y, color);
+		put_pixel_to_img(&info->mlx.map, x, y, color);
 		y++;
 	}
 }
 
-void	init_rays(t_ray *rays, int pos_x, int pos_y)
+void	draw_rays_2(t_data *info)
 {
-	rays->camera_int = 0;
-	rays->player.x = pos_x;
-	rays->player.y = pos_y;
-	rays->dir.x = -1;
-	rays->dir.y = 0;
-	rays->plane.x = 0;
-	rays->plane.y = 0.66;
-	rays->ray_dir.x = 0;
-	rays->ray_dir.y = 0;
-	rays->delta_dist.x = 0;
-	rays->delta_dist.y = 0;
-}
-void	draw_rays_2(t_mlx *mlx)
-{
-	t_ray	*rays;
 	int		x;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
 	int		mapX;
 	int		mapY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
 	double	perpWallDist;
 	int		stepX;
 	int		stepY;
@@ -51,83 +44,90 @@ void	draw_rays_2(t_mlx *mlx)
 	int		drawStart;
 	int		drawEnd;
 	int		color;
-	int		hit;
-	int		side;
 
-	rays = malloc(sizeof(t_ray));
-	init_rays(rays, 4, 5);
 	x = 0;
 	while (x < WIDTH)
 	{
-		rays->camera_int = 2 * x / (double)WIDTH - 1;
-		rays->ray_dir.x = rays->dir.x + rays->plane.x * rays->camera_int;
-		rays->ray_dir.y = rays->dir.y + rays->plane.y * rays->camera_int;
-		mapX = (int)rays->player.x;
-		mapY = (int)rays->player.y;
-		rays->delta_dist.x = fabs(1 / rays->ray_dir.x);
-		rays->delta_dist.y = fabs(1 / rays->ray_dir.y);
-		hit = 0;
-		if (rays->ray_dir.x < 0)
+		cameraX = 2 * x / (double)WIDTH - 1;
+		rayDirX = info->dirX + info->planeX * cameraX;
+		rayDirY = info->dirY + info->planeY * cameraX;
+		mapX = (int)info->posX;
+		mapY = (int)info->posY;
+		// length of ray from current position to next x or y-side
+		// length of ray from one x or y-side to next x or y-side
+		deltaDistX = fabs(1 / rayDirX);
+		deltaDistY = fabs(1 / rayDirY);
+		// what direction to step in x or y-direction (either +1 or -1)
+		int hit = 0; // was there a wall hit?
+		int side;    // was a NS or a EW wall hit?
+		if (rayDirX < 0)
 		{
 			stepX = -1;
-			rays->side_dist.x = (rays->player.x - mapX) * rays->delta_dist.x;
+			sideDistX = (info->posX - mapX) * deltaDistX;
 		}
 		else
 		{
 			stepX = 1;
-			rays->side_dist.x = (mapX + 1.0 - rays->player.x)
-				* rays->delta_dist.x;
+			sideDistX = (mapX + 1.0 - info->posX) * deltaDistX;
 		}
-		if (rays->ray_dir.y < 0)
+		if (rayDirY < 0)
 		{
 			stepY = -1;
-			rays->side_dist.y = (rays->player.y - mapY) * rays->delta_dist.y;
+			sideDistY = (info->posY - mapY) * deltaDistY;
 		}
 		else
 		{
 			stepY = 1;
-			rays->side_dist.y = (mapY + 1.0 - rays->player.y)
-				* rays->delta_dist.y;
+			sideDistY = (mapY + 1.0 - info->posY) * deltaDistY;
 		}
 		while (hit == 0)
 		{
-			if (rays->side_dist.x < rays->side_dist.y)
+			// jump to next map square, OR in x-direction, OR in y-direction
+			if (sideDistX < sideDistY)
 			{
-				rays->side_dist.x += rays->delta_dist.x;
+				sideDistX += deltaDistX;
 				mapX += stepX;
 				side = 0;
 			}
 			else
 			{
-				rays->side_dist.y += rays->side_dist.y;
+				sideDistY += deltaDistY;
 				mapY += stepY;
 				side = 1;
 			}
-			if (mlx->parsing->map[mapX][mapY] != '0')
+			// Check if ray has hit a wall
+			if (info->mlx.parsing->map[mapX][mapY] != '0')
 				hit = 1;
 		}
 		if (side == 0)
-			perpWallDist = (mapX - rays->player.x + (1 - stepX) / 2)
-				/ rays->ray_dir.x;
+			perpWallDist = (mapX - info->posX + (1 - stepX) / 2) / rayDirX;
 		else
-			perpWallDist = (mapY - rays->player.y + (1 - stepY) / 2)
-				/ rays->ray_dir.y;
+			perpWallDist = (mapY - info->posY + (1 - stepY) / 2) / rayDirY;
+		// Calculate height of line to draw on screen
 		lineHeight = (int)(HEIGHT / perpWallDist);
+		// calculate lowest and highest pixel to fill in current stripe
 		drawStart = -lineHeight / 2 + HEIGHT / 2;
 		if (drawStart < 0)
 			drawStart = 0;
 		drawEnd = lineHeight / 2 + HEIGHT / 2;
 		if (drawEnd >= HEIGHT)
 			drawEnd = HEIGHT - 1;
-		if (mlx->parsing->map[mapY][mapX] == '1')
-			color = 0x0000FF; // blue
-		else if (mlx->parsing->map[mapY][mapX] == '0')
-			color = 0xFF0000; // red
+		if (info->mlx.parsing->map[mapY][mapX] == '1')
+			color = 0xFF0000;
+		else if (info->mlx.parsing->map[mapY][mapX] == '0')
+			color = 0x00FF00;
 		else
-			color = 0x0000FF;
+			color = 0xFFFFFF;
 		if (side == 1)
 			color = color / 2;
-		verLine(mlx, x, drawStart, drawEnd, color);
+		verLine(info, x, drawStart, drawEnd, color);
 		x++;
 	}
+	mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win,
+		info->mlx.map.img_ptr, 0, 0);
+}
+
+void	put_pixel_to_img(t_image *img, int x, int y, int color)
+{
+	img->data[y * (img->line_length / sizeof(int)) + x] = color;
 }

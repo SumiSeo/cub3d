@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 13:45:32 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:00:59 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 
 # define KEY_ESC 65307
 # define KEY_UP 119
-# define KEY_LEFT 97
+# define KEY_LEFT 100
 # define KEY_DOWN 115
-# define KEY_RIGHT 100
+# define KEY_RIGHT 97
 
 // WINDOW AND IMAGE INFO
 # define WIN_ 800
@@ -46,8 +46,10 @@
 # define TILE_SIZE 50
 # define ROWS 20
 # define COLS 50
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1000
+# define HEIGHT 1000
+# define MINIMAP_WIDTH TILE_SIZE *ROWS
+# define MINIMAP_HEIGHT TILE_SIZE *COLS
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 
 #endif //__MACROS__H

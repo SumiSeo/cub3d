@@ -6,29 +6,64 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:44:45 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/31 19:49:36 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:06:52 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	move_up(t_mlx *mlx)
+void	move_up(t_data *data)
 {
-	(void)mlx;
+	if (!data->parsing->map[(int)(data->posX + data->dirX
+			* data->moveSpeed)][(int)(data->posY)])
+		data->posX += data->dirX * data->moveSpeed;
+	if (!data->parsing->map[(int)(data->posX)][(int)(data->posY + data->dirY
+			* data->moveSpeed)])
+		data->posY += data->dirY * data->moveSpeed;
+	else
+		printf("check\n");
 }
 
-void	move_down(t_mlx *mlx)
+void	move_down(t_data *data)
 {
-	(void)mlx;
-	printf("downdown mlx->screen->start_y += 1 : %d\n", mlx->screen->start_y);
+	if (!data->parsing->map[(int)(data->posX - data->dirX
+			* data->moveSpeed)][(int)(data->posY)])
+		data->posX -= data->dirX * data->moveSpeed;
+	if (!data->parsing->map[(int)(data->posX)][(int)(data->posY - data->dirY
+			* data->moveSpeed)])
+		data->posY -= data->dirY * data->moveSpeed;
 }
 
-void	move_right(t_mlx *mlx)
+void	move_left(t_data *data)
 {
-	(void)mlx;
+	double	oldDirX;
+	double	oldPlaneX;
+
+	oldDirX = data->dirX;
+	data->dirX = data->dirX * cos(-data->rotSpeed) - data->dirY
+		* sin(-data->rotSpeed);
+	data->dirY = oldDirX * sin(-data->rotSpeed) + data->dirY
+		* cos(-data->rotSpeed);
+	oldPlaneX = data->planeX;
+	data->planeX = data->planeX * cos(-data->rotSpeed) - data->planeY
+		* sin(-data->rotSpeed);
+	data->planeY = oldPlaneX * sin(-data->rotSpeed) + data->planeY
+		* cos(-data->rotSpeed);
 }
 
-void	move_left(t_mlx *mlx)
+void	move_right(t_data *data)
 {
-	(void)mlx;
+	double	oldDirX;
+	double	oldPlaneX;
+
+	oldDirX = data->dirX;
+	data->dirX = data->dirX * cos(data->rotSpeed) - data->dirY
+		* sin(data->rotSpeed);
+	data->dirY = oldDirX * sin(data->rotSpeed) + data->dirY
+		* cos(data->rotSpeed);
+	oldPlaneX = data->planeX;
+	data->planeX = data->planeX * cos(data->rotSpeed) - data->planeY
+		* sin(data->rotSpeed);
+	data->planeY = oldPlaneX * sin(data->rotSpeed) + data->planeY
+		* cos(data->rotSpeed);
 }

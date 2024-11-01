@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/31 19:16:27 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 15:30:32 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,6 @@ typedef struct s_image
 	int					height;
 }						t_image;
 
-typedef struct s_mlx
-{
-	void				*mlx_ptr;
-	void				*win;
-	t_parsing			*parsing;
-	t_image				img;
-	t_screen			*screen;
-}						t_mlx;
-
-typedef struct s_key
-{
-	int					x;
-	int					y;
-	char				str[3];
-}						t_key;
-
 typedef struct s_vector
 {
 	double				x;
@@ -104,5 +88,36 @@ typedef struct s_ray
 	int					hit;
 	int					side;
 }						t_ray;
+
+typedef struct s_mlx
+{
+	void				*mlx_ptr;
+	void				*win;
+	t_parsing			*parsing;
+	t_image				minimap;
+	t_image				map;
+	t_screen			*screen;
+	t_ray				*rays;
+}						t_mlx;
+
+typedef struct s_data
+{
+	t_mlx				mlx;
+	double				posX;
+	double				posY;
+	double				dirX;
+	double				dirY;
+	double				planeX;
+	double				planeY;
+	double				moveSpeed;
+	double				rotSpeed;
+	t_parsing			*parsing;
+}						t_data;
+typedef struct s_key
+{
+	int					x;
+	int					y;
+	char				str[3];
+}						t_key;
 
 #endif // __STRUCTS__H

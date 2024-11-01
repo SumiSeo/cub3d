@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/31 18:54:08 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 15:23:04 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void		memory_handler(t_parsing *data, bool store);
 // KEY_HANDLING.C
 void		launch_game(t_parsing *parsing, t_screen *screen);
 int			call(void);
-void		move_up(t_mlx *mlx);
-void		move_down(t_mlx *mlx);
-void		move_right(t_mlx *mlx);
-void		move_left(t_mlx *mlx);
+void		move_up(t_data *data);
+void		move_down(t_data *data);
+void		move_right(t_data *data);
+void		move_left(t_data *data);
 
 // DRAWING_MAP.C
 void		draw_square(t_mlx *mlx, int x, int y, int color);
@@ -83,5 +83,7 @@ void		draw_hero(t_mlx *mlx);
 
 // DRAWING_RAYS.c
 void		draw_rays(t_mlx *mlx);
-void		draw_rays_2(t_mlx *mlx);
+void		draw_rays_2(t_data *data);
+void		put_pixel_to_img(t_image *img, int x, int y, int color);
+
 #endif //__CUB3D__H
