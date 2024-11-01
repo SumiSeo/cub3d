@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing_map.c                                      :+:      :+:    :+:   */
+/*   drawing_minimap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:55:17 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 15:59:17 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:54:55 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ void	draw_hero(t_mlx *mlx)
 				draw_person(mlx, j, i);
 				mlx->screen->start_x = j;
 				mlx->screen->start_y = i;
-				// printf("mlx->screen->start_x  %d\n", mlx->screen->start_x);
-				// printf("mlx->screen->start_y  %d\n", mlx->screen->start_y);
 			}
 			j++;
 		}

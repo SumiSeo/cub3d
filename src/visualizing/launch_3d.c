@@ -6,17 +6,11 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:17:14 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:48:30 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	close_game(t_mlx *mlx)
-{
-	(void)mlx;
-	exit(0);
-}
 
 void	mlx_launch(t_data *data, t_parsing *parsing)
 {
@@ -28,8 +22,8 @@ void	mlx_launch(t_data *data, t_parsing *parsing)
 	data->dirY = 0;
 	data->planeX = 0;
 	data->planeY = 0.66;
-	data->moveSpeed = 0.05;
-	data->rotSpeed = 0.05;
+	data->moveSpeed = 0.2;
+	data->rotSpeed = 0.2;
 	data->mlx.parsing = parsing;
 }
 
@@ -46,7 +40,7 @@ void	img_launch(t_mlx *mlx)
 	ft_bzero(mlx->map.data, WIDTH * HEIGHT * sizeof(int));
 }
 
-int	img_loop(t_data *data)
+int	map_loop(t_data *data)
 {
 	// **please keep this line for now ** minimap//
 	// draw_squares(mlx);
@@ -60,21 +54,6 @@ int	img_loop(t_data *data)
 	return (0);
 }
 
-int	key_event(int key_code, t_data *data)
-{
-	printf("Key event detected: %d\n", key_code);
-	if (key_code == KEY_DOWN)
-		move_down(data);
-	else if (key_code == KEY_UP)
-		move_up(data);
-	else if (key_code == KEY_LEFT)
-		move_left(data);
-	else if (key_code == KEY_RIGHT)
-		move_right(data);
-	else if (key_code == KEY_ESC)
-		exit(0);
-	return (1);
-}
 t_ray	*init_rays(t_ray *rays, int pos_x, int pos_y)
 {
 	rays->camera_int = 0;
@@ -90,6 +69,7 @@ t_ray	*init_rays(t_ray *rays, int pos_x, int pos_y)
 	rays->delta_dist.y = 0;
 	return (rays);
 }
+
 void	launch_game(t_parsing *parsing, t_screen *screen)
 {
 	t_data	data;
@@ -98,7 +78,7 @@ void	launch_game(t_parsing *parsing, t_screen *screen)
 	data.mlx.mlx_ptr = mlx_init();
 	mlx_launch(&data, parsing);
 	img_launch(&data.mlx);
-	mlx_loop_hook(data.mlx.mlx_ptr, &img_loop, &data);
+	mlx_loop_hook(data.mlx.mlx_ptr, &map_loop, &data);
 	mlx_hook(data.mlx.win, EVENT_KEY_PRESS, 1L << 0, &key_event, &data);
 	mlx_hook(data.mlx.win, EVENT_KEY_EXIT, 0, &close_game, &data);
 	mlx_loop(data.mlx.mlx_ptr);

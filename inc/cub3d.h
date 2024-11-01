@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:10:19 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:47:42 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,20 @@ void		print_err_msg(char *msg, int fd);
 void		memory_handler(t_parsing *data, bool store);
 
 //								-->VISUALIZING
-// KEY_HANDLING.C
-void		launch_game(t_parsing *parsing, t_screen *screen);
+// MOVE_HANDLING.C
 int			call(void);
 void		move_up(t_data *data);
 void		move_down(t_data *data);
 void		move_right(t_data *data);
 void		move_left(t_data *data);
+
+// KEY_HANDLIG.c
+int			key_event(int key_code, t_data *data);
+int			close_game(t_mlx *mlx);
+
+// VIEW_HANDLING.c
+void		move_look_right(t_data *data);
+void		move_look_left(t_data *data);
 
 // DRAWING_MINIMAP.C
 void		draw_square(t_mlx *mlx, int x, int y, int color);
@@ -85,5 +92,12 @@ void		draw_hero(t_mlx *mlx);
 void		draw_rays(t_data *data);
 void		put_pixel_to_img(t_image *img, int x, int y, int color);
 void		verLine(t_data *info, int x, int y1, int y2, int color);
+
+// LAUNCH_3D.c
+void		launch_game(t_parsing *parsing, t_screen *screen);
+t_ray		*init_rays(t_ray *rays, int pos_x, int pos_y);
+int			map_loop(t_data *data);
+void		img_launch(t_mlx *mlx);
+void		mlx_launch(t_data *data, t_parsing *parsing);
 
 #endif //__CUB3D__H

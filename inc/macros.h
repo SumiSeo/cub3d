@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:00:59 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:47:12 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define KEY_LEFT 100
 # define KEY_DOWN 115
 # define KEY_RIGHT 97
+# define KEY_LOOK_RIGHT 65363
+# define KEY_LOOK_LEFT 65361
 
 // WINDOW AND IMAGE INFO
 # define WIN_ 800
