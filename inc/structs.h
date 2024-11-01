@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/29 17:36:27 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:09:31 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_parsing
 	short int			map_beginning;
 	short int			row;
 	short int			column;
+	int					width;
+	int					height;
 }						t_parsing;
 
 typedef struct s_pos
@@ -70,32 +72,29 @@ typedef struct s_mlx
 	void				*mlx_ptr;
 	void				*win;
 	t_parsing			*parsing;
-	t_image				img;
+	t_image				minimap;
+	t_image				map;
 	t_screen			*screen;
+
 }						t_mlx;
 
+typedef struct s_data
+{
+	t_mlx				mlx;
+	double				posX;
+	double				posY;
+	double				dirX;
+	double				dirY;
+	double				planeX;
+	double				planeY;
+	double				moveSpeed;
+	double				rotSpeed;
+}						t_data;
 typedef struct s_key
 {
 	int					x;
 	int					y;
 	char				str[3];
 }						t_key;
-
-typedef struct s_vector
-{
-	double	x;
-	double	y;	
-}				t_vector;
-
-typedef struct s_raycasting
-{
-	double		camera_x;
-	t_vector	player;
-	t_vector	plane;
-	t_vector	direction;
-	t_vector	ray_direction;
-	t_vector	side_dist;
-	t_vector	delta_dist;
-}				t_raycasting;
 
 #endif // __STRUCTS__H
