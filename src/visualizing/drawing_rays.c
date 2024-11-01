@@ -6,14 +6,11 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 13:38:40 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/01 13:49:13 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define width 640
-#define height 480
 
 void	verLine(t_mlx *info, int x, int y1, int y2, int color)
 {
@@ -60,9 +57,9 @@ void	draw_rays_2(t_mlx *mlx)
 	rays = malloc(sizeof(t_ray));
 	init_rays(rays, 4, 5);
 	x = 0;
-	while (x < width)
+	while (x < WIDTH)
 	{
-		rays->camera_int = 2 * x / (double)width - 1;
+		rays->camera_int = 2 * x / (double)WIDTH - 1;
 		rays->ray_dir.x = rays->dir.x + rays->plane.x * rays->camera_int;
 		rays->ray_dir.y = rays->dir.y + rays->plane.y * rays->camera_int;
 		mapX = (int)rays->player.x;
@@ -115,19 +112,19 @@ void	draw_rays_2(t_mlx *mlx)
 		else
 			perpWallDist = (mapY - rays->player.y + (1 - stepY) / 2)
 				/ rays->ray_dir.y;
-		lineHeight = (int)(height / perpWallDist);
-		drawStart = -lineHeight / 2 + height / 2;
+		lineHeight = (int)(HEIGHT / perpWallDist);
+		drawStart = -lineHeight / 2 + HEIGHT / 2;
 		if (drawStart < 0)
 			drawStart = 0;
-		drawEnd = lineHeight / 2 + height / 2;
-		if (drawEnd >= height)
-			drawEnd = height - 1;
+		drawEnd = lineHeight / 2 + HEIGHT / 2;
+		if (drawEnd >= HEIGHT)
+			drawEnd = HEIGHT - 1;
 		if (mlx->parsing->map[mapY][mapX] == '1')
-			color = 0xFF0000;
+			color = 0x0000FF; // blue
 		else if (mlx->parsing->map[mapY][mapX] == '0')
-			color = 0x00FF00;
+			color = 0xFF0000; // red
 		else
-			color = 0xFFFFFF;
+			color = 0x0000FF;
 		if (side == 1)
 			color = color / 2;
 		verLine(mlx, x, drawStart, drawEnd, color);
