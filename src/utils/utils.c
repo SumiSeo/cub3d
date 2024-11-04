@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/25 15:28:16 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/04 08:56:26 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,12 @@ bool	is_in_set(char c, char *set)
  * @param map A pointer to an array of strings containing the map.
  * @returns A structure containing the position of the player.
  */
-t_pos	find_player(char **map)
+void	find_player(char **map, double *posY, double *posX)
 {
 	short int	i;
 	short int	j;
-	t_pos		pos;
 
 	i = -1;
-	pos.y = -1;
-	pos.x = -1;
 	while (map[++i])
 	{
 		j = -1;
@@ -91,11 +88,10 @@ t_pos	find_player(char **map)
 		{
 			if (is_in_set(map[i][j], STARTING_POS_SET))
 			{
-				pos.y = i;
-				pos.x = j;
-				return (pos);
+				*posY = (double) i; 
+				*posX = (double) j;
+				return;
 			}
 		}
 	}
-	return (pos);
 }

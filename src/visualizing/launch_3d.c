@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 17:25:22 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/04 09:13:37 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	mlx_launch(t_data *data, t_parsing *parsing)
 {
 	data->mlx.mlx_ptr = mlx_init();
 	data->mlx.win = mlx_new_window(data->mlx.mlx_ptr, WIDTH, HEIGHT, "cub 3D");
-	data->posX = 4;
-	data->posY = 5;
+	data->posX = parsing->posX;
+	data->posY = parsing->posY;
 	data->dirX = -1;
 	data->dirY = 0;
 	data->planeX = 0;

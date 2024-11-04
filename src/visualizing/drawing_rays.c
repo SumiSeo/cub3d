@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 17:04:12 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/04 09:25:36 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	draw_rays(t_data *info)
 	int		color;
 	int		hit;
 	int		side;
+	// int		size_x;
+	int		size_y;
 
+	size_y = find_len_strs(info->mlx.parsing->map);
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -105,9 +108,9 @@ void	draw_rays(t_data *info)
 		drawEnd = lineHeight / 2 + HEIGHT / 2;
 		if (drawEnd >= HEIGHT)
 			drawEnd = HEIGHT - 1;
-		if (info->mlx.parsing->map[mapY][mapX] == '1')
+		if (mapY < size_y && info->mlx.parsing->map[mapY][mapX] == '1')
 			color = 0xFF0000;
-		else if (info->mlx.parsing->map[mapY][mapX] == '0')
+		else if (mapY < size_y && info->mlx.parsing->map[mapY][mapX] == '0')
 			color = 0x00FF00;
 		else
 			color = 0xFFFFFF;

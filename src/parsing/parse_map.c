@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:17:01 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/31 19:16:34 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/04 09:10:35 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,18 @@ static void	call_error_function(__int8_t ret, short int y, short int x)
 }
 
 /**
- * @brief Helper for the init_pars_struct function.
- * Allocate an array of short int containing the len of each line
- * of the map.
+ * @brief Finds the maximum col inide the map
  * @param data A pointer to a structure containing informations about the file.
- * @returns void.
+ * @returns The maximum col inside the map.
  */
-
-short int	find_maximum_col(t_parsing *data)
+static short int	find_maximum_col(t_parsing *data)
 {
 	short int	maximum;
 	int			i;
 
 	maximum = data->rows_lens[0];
 	i = 0;
-	while (data->rows_lens[i])
+	while (data->rows_lens[i] != -1)
 	{
 		if (maximum < data->rows_lens[i])
 			maximum = data->rows_lens[i];
@@ -87,6 +84,14 @@ short int	find_maximum_col(t_parsing *data)
 	}
 	return (maximum);
 }
+
+/**
+ * @brief Helper for the init_pars_struct function.
+ * Allocate an array of short int containing the len of each line
+ * of the map.
+ * @param data A pointer to a structure containing informations about the file.
+ * @returns void.
+ */
 static void	init_pars_struct_helper(t_parsing *data)
 {
 	short int	*rows;
@@ -102,6 +107,7 @@ static void	init_pars_struct_helper(t_parsing *data)
 		*rows = ft_strlen(data->map[i]);
 		rows++;
 	}
+	*rows = -1;
 	data->row = i;
 	data->column = find_maximum_col(data);
 	data->width = data->row * TILE_SIZE;

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:38 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/25 15:25:59 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/04 08:56:12 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,7 @@ static __int8_t	reset_and_check_map(char **map, short int *y, short int *x)
  */
 __int8_t	is_closed_map(t_parsing *data, short int *y, short int *x)
 {
-	t_pos	pos;
-
-	pos = find_player(data->map);
-	fill_map(data, pos.y, pos.x);
+	find_player(data->map, &data->posY, &data->posX);
+	fill_map(data, data->posY, data->posX);
 	return (reset_and_check_map(data->map, y, x));
 }
