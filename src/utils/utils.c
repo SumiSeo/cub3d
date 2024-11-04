@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/04 08:56:26 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:26:37 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,25 @@ void	find_player(char **map, double *posY, double *posX)
 			}
 		}
 	}
+}
+
+/**
+ * @brief Finds the maximum col inide the map
+ * @param data A pointer to a structure containing informations about the file.
+ * @returns The maximum col inside the map.
+ */
+short int	find_maximum_col(t_parsing *data)
+{
+	short int	maximum;
+	int			i;
+
+	maximum = data->rows_lens[0];
+	i = 0;
+	while (data->rows_lens[i] != -1)
+	{
+		if (maximum < data->rows_lens[i])
+			maximum = data->rows_lens[i];
+		i++;
+	}
+	return (maximum);
 }

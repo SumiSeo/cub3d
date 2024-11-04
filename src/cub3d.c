@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 14:52:54 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:14:59 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,19 @@ int	main(int argc, char **argv)
 {
 	(void)argc;
 	t_parsing *parsing;
-	t_screen *screen;
+	t_screen screen;
 
 	if (check_extension(argv[1]) == FAILURE)
 		print_and_exit("Wrong extension. Allowed extension is .cub");
 	parsing = init_pars_struct(argv[1]);
-	screen = malloc(sizeof(t_screen));
 	parse_map(parsing);
-	ft_memset(screen, 0, sizeof(t_screen));
+	ft_memset(&screen, 0, sizeof(t_screen));
 	printf("parsing file %s\b", parsing->file[0]);
-	if (bg_parsing(parsing, screen))
+	if (bg_parsing(parsing, &screen))
 		print_err_msg(ERROR_PARSING_MSG, -1);
-	launch_game(parsing, screen);
+	launch_game(parsing, &screen);
 	// call();
-	memory_handler(parsing, true);
-	free(parsing->rows_lens);
-	free_arrs((void **)parsing->file);
-	free(parsing);
+	// free(parsing->rows_lens);
+	// free_arrs((void **)parsing->file);
+	// free(parsing);
 }
