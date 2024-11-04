@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:49:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/25 15:28:40 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:25:02 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_err_msg(char *msg, int fd)
 {
 	if (fd >= 0)
 		close(fd);
-	memory_handler(NULL, 0);
+	memory_handler(NULL, false);
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	ft_putendl_fd(msg, STDERR_FILENO);
 	exit(EXIT_FAILURE);

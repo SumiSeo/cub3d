@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:17:01 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/04 09:10:35 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:26:26 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,6 @@ static void	call_error_function(__int8_t ret, short int y, short int x)
 		print_err_msg("Too many starting positions", -1);
 	else if (ret == MAP_NOT_CLOSED)
 		error_helper(ret, y, x);
-}
-
-/**
- * @brief Finds the maximum col inide the map
- * @param data A pointer to a structure containing informations about the file.
- * @returns The maximum col inside the map.
- */
-static short int	find_maximum_col(t_parsing *data)
-{
-	short int	maximum;
-	int			i;
-
-	maximum = data->rows_lens[0];
-	i = 0;
-	while (data->rows_lens[i] != -1)
-	{
-		if (maximum < data->rows_lens[i])
-			maximum = data->rows_lens[i];
-		i++;
-	}
-	return (maximum);
 }
 
 /**

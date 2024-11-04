@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/04 08:47:25 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:29:28 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ typedef struct s_parsing
 	char				*filename;
 	short int			*rows_lens;
 }						t_parsing;
-
-typedef struct s_pos
-{
-	short int			x;
-	short int			y;
-}						t_pos;
 
 typedef struct s_screen
 {
@@ -75,7 +69,6 @@ typedef struct s_mlx
 	t_image				minimap;
 	t_image				map;
 	t_screen			*screen;
-
 }						t_mlx;
 
 typedef struct s_data
