@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 17:25:46 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/04 08:56:35 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 char		*merge_strings(char *s1, char *s2, char c);
 bool		is_in_set(char c, char *set);
-t_pos		find_player(char **map);
+void		find_player(char **map, double *posY, double *posX);
 
 //									-> PARSING
 //-> create_map.c
