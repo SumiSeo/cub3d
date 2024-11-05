@@ -6,11 +6,13 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/04 14:56:57 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:26:25 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#define CEILING_COLOR 0x800080
+#define FLOOR_COLOR 0x808080
 
 void	verLine(t_data *info, int x, int y1, int y2, int color)
 {
@@ -20,6 +22,26 @@ void	verLine(t_data *info, int x, int y1, int y2, int color)
 	while (y <= y2)
 	{
 		put_pixel_to_img(&info->mlx.map, x, y, color);
+		y++;
+	}
+}
+
+void	draw_floor_ceiling(t_image *map, int x, int draw_start, int draw_end)
+{
+	int	y;
+
+	y = 0;
+	if (draw_end < 0)
+		return ;
+	while (y < draw_start)
+	{
+		put_pixel_to_img(map, x, y, CEILING_COLOR);
+		y++;
+	}
+	y = draw_end + 1;
+	while (y < HEIGHT)
+	{
+		put_pixel_to_img(map, x, y, FLOOR_COLOR);
 		y++;
 	}
 }
@@ -45,9 +67,9 @@ void	draw_rays(t_data *info)
 	int		color;
 	int		hit;
 	int		side;
-	// int		size_x;
 	int		size_y;
 
+	// int		size_x;
 	size_y = find_len_strs(info->mlx.parsing->map);
 	x = 0;
 	while (x < WIDTH)
@@ -117,6 +139,7 @@ void	draw_rays(t_data *info)
 		if (side == 1)
 			color = color / 2;
 		verLine(info, x, drawStart, drawEnd, color);
+		draw_floor_ceiling(&info->mlx.map, x, drawStart, drawEnd);
 		x++;
 	}
 	mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win,
