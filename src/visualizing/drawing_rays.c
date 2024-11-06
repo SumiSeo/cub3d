@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/05 19:26:25 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:01:06 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#define CEILING_COLOR 0x800080
-#define FLOOR_COLOR 0x808080
 
 void	verLine(t_data *info, int x, int y1, int y2, int color)
 {
@@ -26,7 +24,7 @@ void	verLine(t_data *info, int x, int y1, int y2, int color)
 	}
 }
 
-void	draw_floor_ceiling(t_image *map, int x, int draw_start, int draw_end)
+void	draw_floor_ceiling(t_data *info, int x, int draw_start, int draw_end)
 {
 	int	y;
 
@@ -35,13 +33,13 @@ void	draw_floor_ceiling(t_image *map, int x, int draw_start, int draw_end)
 		return ;
 	while (y < draw_start)
 	{
-		put_pixel_to_img(map, x, y, CEILING_COLOR);
+		put_pixel_to_img(&info->mlx.map, x, y, info->mlx.screen->ceiling_color);
 		y++;
 	}
 	y = draw_end + 1;
 	while (y < HEIGHT)
 	{
-		put_pixel_to_img(map, x, y, FLOOR_COLOR);
+		put_pixel_to_img(&info->mlx.map, x, y, info->mlx.screen->floor_color);
 		y++;
 	}
 }
@@ -139,7 +137,7 @@ void	draw_rays(t_data *info)
 		if (side == 1)
 			color = color / 2;
 		verLine(info, x, drawStart, drawEnd, color);
-		draw_floor_ceiling(&info->mlx.map, x, drawStart, drawEnd);
+		draw_floor_ceiling(info, x, drawStart, drawEnd);
 		x++;
 	}
 	mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win,
