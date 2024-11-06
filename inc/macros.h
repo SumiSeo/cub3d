@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:47:12 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/06 16:14:48 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 
 # define KEY_ESC 65307
 # define KEY_UP 119
-# define KEY_LEFT 100
+# define KEY_LEFT 97
 # define KEY_DOWN 115
-# define KEY_RIGHT 97
+# define KEY_RIGHT 100
 # define KEY_LOOK_RIGHT 65363
 # define KEY_LOOK_LEFT 65361
 
