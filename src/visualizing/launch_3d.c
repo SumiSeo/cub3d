@@ -6,13 +6,13 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/06 15:01:16 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/06 15:19:37 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	mlx_launch(t_data *data, t_parsing *parsing)
+void	mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen)
 {
 	data->mlx.mlx_ptr = mlx_init();
 	data->mlx.win = mlx_new_window(data->mlx.mlx_ptr, WIDTH, HEIGHT, "cub 3D");
@@ -25,6 +25,7 @@ void	mlx_launch(t_data *data, t_parsing *parsing)
 	data->moveSpeed = 0.2;
 	data->rotSpeed = 0.2;
 	data->mlx.parsing = parsing;
+	data->mlx.screen = screen;
 }
 
 void	img_launch(t_mlx *mlx)
@@ -58,10 +59,9 @@ void	launch_game(t_parsing *parsing, t_screen *screen)
 {
 	t_data	data;
 
-	(void)screen;
 	// data.mlx.mlx_ptr = mlx_init();
 	memory_handler(parsing, true);
-	mlx_launch(&data, parsing);
+	mlx_launch(&data, parsing, screen);
 	img_launch(&data.mlx);
 	mlx_loop_hook(data.mlx.mlx_ptr, &map_loop, &data);
 	mlx_hook(data.mlx.win, EVENT_KEY_PRESS, 1L << 0, &key_event, &data);
