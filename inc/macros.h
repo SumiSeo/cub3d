@@ -48,10 +48,11 @@
 # define TILE_SIZE 50
 # define ROWS 20
 # define COLS 50
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 640
+# define HEIGHT 480
 # define MINIMAP_WIDTH TILE_SIZE *ROWS
 # define MINIMAP_HEIGHT TILE_SIZE *COLS
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
-
+# define texHeight 64
+# define texWidth 64
 #endif //__MACROS__H
