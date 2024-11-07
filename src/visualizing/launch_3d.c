@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 18:17:17 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:43:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	mlx_launch(t_data *data, t_parsing *parsing,t_screen *screen)
 	{
 		data->texture[i] = (int *)malloc(sizeof(int) * (texHeight * texWidth));
 		if (!data->texture[i])
-			printf("Memory allocation failed for texture array");
+			printf("Memory allocation failed for texture array"); 
 		i++;
 	}
 	i = 0;

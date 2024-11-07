@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bg_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 15:56:03 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 21:04:35 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	find_index(const char *str, char c)
 {
 	char	*ptr;
 
-	ptr = strchr(str, c);
+	ptr = ft_strchr(str, c);
 	if (ptr)
 		return (ptr - str);
 	return (-1);

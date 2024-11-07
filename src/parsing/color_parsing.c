@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   color_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:04:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 15:47:19 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 21:06:43 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	only_digit_char(char *str)
+{
+	short int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (ft_isdigit(str[i]) == false)
+			return (false);
+	}
+	return (true);
+}
 
 int	is_valid_split(char *str)
 {
@@ -37,7 +50,7 @@ int	range_check(char **arr, t_screen *screen, int flag)
 	j = 0;
 	while (arr[i])
 	{
-		if (is_valid_split(arr[i]))
+		if (is_valid_split(arr[i]) || only_digit_char(arr[i]) == false)
 			return (1);
 		converted = ft_atoi(arr[i]);
 		if (converted < 0 || converted > 255)
@@ -80,6 +93,7 @@ void	assign_colors(t_screen *screen, char *place, char *color_arr)
 
 	i = 0;
 	split = ft_split(&color_arr[2], ',');
+	if (find_len_strs(split) != 3)
 	if (ft_strncmp("F", place, 1) == 0)
 	{
 		if (range_check(split, screen, 1))
