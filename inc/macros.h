@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/01 16:47:12 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 13:56:11 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@
 # define TILE_SIZE 50
 # define ROWS 20
 # define COLS 50
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 640
+# define HEIGHT 480
 # define MINIMAP_WIDTH TILE_SIZE *ROWS
 # define MINIMAP_HEIGHT TILE_SIZE *COLS
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
-
+# define texHeight 64
+# define texWidth 64
 #endif //__MACROS__H

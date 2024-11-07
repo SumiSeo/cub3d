@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 11:28:37 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 14:05:12 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_mlx
 typedef struct s_data
 {
 	t_mlx		mlx;
-	int			**texture;
+	int			*texture[8];
 	int			buf[HEIGHT][WIDTH];
 	int			re_buf;
 	double		posX;

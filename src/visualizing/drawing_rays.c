@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/06 16:04:37 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 15:07:21 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ void	draw_rays(t_data *info)
 	int		hit;
 	int		side;
 	int		size_y;
+	int		texNum;
+	double	wallX;
+	int		texX;
+	double	step;
+	double	texPos;
+	int		texY;
 
 	size_y = find_len_strs(info->mlx.parsing->map);
 	x = 0;
@@ -133,15 +139,42 @@ void	draw_rays(t_data *info)
 		drawEnd = lineHeight / 2 + HEIGHT / 2;
 		if (drawEnd >= HEIGHT)
 			drawEnd = HEIGHT - 1;
-		if (mapY < size_y && info->mlx.parsing->map[mapY][mapX] == '1')
-			color = 0xFF0000;
-		else if (mapY < size_y && info->mlx.parsing->map[mapY][mapX] == '0')
-			color = 0x00FF00;
+		// texNum = info->mlx.parsing->map[mapX][mapY] - '0';
+		texNum = 6;
+		if (side == 0)
+			wallX = info->posY + perpWallDist * rayDirY;
 		else
-			color = 0xFFFFFF;
-		if (side == 1)
-			color = color / 2;
-		verLine(info, x, drawStart, drawEnd, color);
+			wallX = info->posX + perpWallDist * rayDirX;
+		wallX -= floor(wallX);
+		texX = (int)(wallX * (double)texWidth);
+		if (side == 0 && rayDirX > 0)
+			texX = texWidth - texX - 1;
+		if (side == 1 && rayDirY < 0)
+			texX = texWidth - texX - 1;
+		step = 1.0 * texHeight / lineHeight;
+		texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
+		for (int y = drawStart; y < drawEnd; y++)
+		{
+			texY = (int)texPos & (texHeight - 1);
+			texPos += step;
+			color = info->texture[texNum][texHeight * texY + texX];
+			// printf("color %d\n", color);
+			if (side == 1)
+				color = (color >> 1) & 8355711;
+			put_pixel_to_img(&info->mlx.map, x, y, color);
+			info->buf[y][x] = color;
+			info->re_buf = 1;
+		}
+		// if (mapY < size_y && info->mlx.parsing->map[mapY][mapX] == '1')
+		// 	color = 0xFF0000;
+		// else if (mapY < size_y
+		// && info->mlx.parsing->map[mapY][mapX] == '0')
+		// 	color = 0x00FF00;
+		// else
+		// 	color = 0xFFFFFF;
+		// if (side == 1)
+		// 	color = color / 2;
+		// verLine(info, x, drawStart, drawEnd, color);
 		draw_floor_ceiling(info, x, drawStart, drawEnd);
 		x++;
 	}
