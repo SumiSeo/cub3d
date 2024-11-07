@@ -6,11 +6,16 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/06 15:20:14 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/06 16:04:37 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	put_pixel_to_img(t_image *img, int x, int y, int color)
+{
+	img->data[y * (img->line_length / sizeof(int)) + x] = color;
+}
 
 void	verLine(t_data *info, int x, int y1, int y2, int color)
 {
@@ -20,6 +25,7 @@ void	verLine(t_data *info, int x, int y1, int y2, int color)
 	while (y <= y2)
 	{
 		put_pixel_to_img(&info->mlx.map, x, y, color);
+		// img->data[y * (img->line_length / sizeof(int)) + x] = color;
 		y++;
 	}
 }
@@ -67,7 +73,6 @@ void	draw_rays(t_data *info)
 	int		side;
 	int		size_y;
 
-	// int		size_x;
 	size_y = find_len_strs(info->mlx.parsing->map);
 	x = 0;
 	while (x < WIDTH)
@@ -142,9 +147,4 @@ void	draw_rays(t_data *info)
 	}
 	mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win,
 		info->mlx.map.img_ptr, 0, 0);
-}
-
-void	put_pixel_to_img(t_image *img, int x, int y, int color)
-{
-	img->data[y * (img->line_length / sizeof(int)) + x] = color;
 }

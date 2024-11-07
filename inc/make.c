@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   launch_3d.c                                        :+:      :+:    :+:   */
+/*   make.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 12:33:51 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/06 17:53:48 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#define texHeight 100
-#define texWidth 100
 
 void	mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen)
 {
@@ -28,45 +26,19 @@ void	mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen)
 	data->rotSpeed = 0.2;
 	data->mlx.parsing = parsing;
 	data->mlx.screen = screen;
-	data->re_buf = 0;
-	// Allocate memory for textures
-	data->texture = (int **)malloc(sizeof(int *) * 8);
-	if (!data->texture)
-	{
-		fprintf(stderr, "Memory allocation failed for texture array\n");
-		exit(1); // Handle memory allocation failure
-	}
-	for (int i = 0; i < 8; i++)
-	{
-		data->texture[i] = (int *)malloc(sizeof(int) * texHeight * texWidth);
-		if (!data->texture[i])
-		{
-			fprintf(stderr, "Memory allocation failed for texture %d\n", i);
-			exit(1); // Handle memory allocation failure
-		}
-	}
-	// Initialize textures
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < texHeight * texWidth; j++)
-		{
-			data->texture[i][j] = 0;
-		}
-	}
 }
 
-void	img_launch(t_mlx *mlx)
+void info->mlx.(t_mlx *mlx)
 {
 	mlx->minimap.img_ptr = mlx_new_image(mlx->mlx_ptr, MINIMAP_WIDTH,
 			MINIMAP_HEIGHT);
 	mlx->minimap.data = (int *)mlx_get_data_addr(mlx->minimap.img_ptr,
 			&mlx->minimap.bits_per_pixel, &mlx->minimap.line_length,
 			&mlx->minimap.endian);
-	// mlx->map.img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
-	// mlx->map.data = (int *)mlx_get_data_addr(mlx->map.img_ptr,
-	// 		&mlx->map.bits_per_pixel, &mlx->map.line_length, &mlx->map.endian);
-	// ft_bzero(mlx->map.data, WIDTH * HEIGHT * sizeof(int));
-	// (void)mlx;
+	mlx->map.img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
+	mlx->map.data = (int *)mlx_get_data_addr(mlx->map.img_ptr,
+			&mlx->map.bits_per_pixel, &mlx->map.line_length, &mlx->map.endian);
+	ft_bzero(mlx->map.data, WIDTH * HEIGHT * sizeof(int));
 }
 
 int	map_loop(t_data *data)
@@ -82,37 +54,35 @@ int	map_loop(t_data *data)
 	draw_rays(data);
 	return (0);
 }
-void	load_image(t_mlx *mlx, int *texture, char *path)
+void	load_image(t_data *info, int *texture, char *path)
 {
-	mlx->map.img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
-	mlx->map.data = (int *)mlx_get_data_addr(mlx->map.img_ptr,
-			&mlx->map.bits_per_pixel, &mlx->map.line_length, &mlx->map.endian);
-	(void)path;
-	for (int y = 0; y < mlx->map.height; y++)
+	info->mlx.map.img_ptr = mlx_xpm_file_to_image(info->mlx.mlx_ptr, path,
+			&info->image.width, &info->image.height);
+	info->image.data = (int *)mlx_get_data_addr(info->mlx.map.img_ptr,
+			&info->image.bits_per_pixel, &info->image.line_length,
+			&info->image.endian);
+	for (int y = 0; y < info->image.height; y++)
 	{
-		for (int x = 0; x < mlx->map.width; x++)
+		for (int x = 0; x < info->image.width; x++)
 		{
-			texture[mlx->map.width * y + x] = mlx->map.data[mlx->map.width * y
-				+ x];
+			texture[info->image.width * y
+				+ x] = info->image.data[info->image.width * y + x];
 		}
 	}
-	ft_bzero(mlx->map.data, WIDTH * HEIGHT * sizeof(int));
-	(void)texture;
-	// mlx_destroy_image(mlx->mlx_ptr, mlx->map.img_ptr);
+	mlx_destroy_image(info->mlx.mlx_ptr, info->image.img_ptr);
 }
 
 void	load_texture(t_data *info)
 {
-	load_image(&info->mlx, info->texture[0], "textures/");
-	// printf("info->texture[0] %d\n", info->texture[0]);
+	load_image(info, info->texture[0], "textures/");
 }
 void	launch_game(t_parsing *parsing, t_screen *screen)
 {
 	t_data	data;
 
-	// memory_handler(parsing, true);
+	memory_handler(parsing, true);
 	mlx_launch(&data, parsing, screen);
-	img_launch(&data.mlx);
+	info->mlx.(&data.mlx);
 	load_texture(&data);
 	mlx_loop_hook(data.mlx.mlx_ptr, &map_loop, &data);
 	mlx_hook(data.mlx.win, EVENT_KEY_PRESS, 1L << 0, &key_event, &data);
@@ -120,10 +90,10 @@ void	launch_game(t_parsing *parsing, t_screen *screen)
 	mlx_loop(data.mlx.mlx_ptr);
 	mlx_destroy_image(data.mlx.mlx_ptr, data.mlx.map.img_ptr);
 	mlx_destroy_image(data.mlx.mlx_ptr, data.mlx.minimap.img_ptr);
-	// free_arrs((void **)data.mlx.parsing->file);
-	// free(data.mlx.parsing->rows_lens);
-	// free(data.mlx.parsing);
-	// mlx_destroy_window(data.mlx.mlx_ptr, data.mlx.win);
-	// mlx_destroy_display(data.mlx.mlx_ptr);
-	// free(data.mlx.mlx_ptr);
+	free_arrs((void **)data.mlx.parsing->file);
+	free(data.mlx.parsing->rows_lens);
+	free(data.mlx.parsing);
+	mlx_destroy_window(data.mlx.mlx_ptr, data.mlx.win);
+	mlx_destroy_display(data.mlx.mlx_ptr);
+	free(data.mlx.mlx_ptr);
 }
