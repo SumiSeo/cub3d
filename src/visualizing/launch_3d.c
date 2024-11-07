@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/06 16:01:51 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:08:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	set_dir_and_plane(t_data *data, char direction)
 {
+	data->dirY = 0;
+	data->dirX = 0;
+	data->planeX = 0;
+	data->planeY = 0;
 	if (direction == 'N')
 	{
 		data->dirY = -1;
@@ -43,7 +47,7 @@ void	mlx_launch(t_data *data, t_parsing *parsing)
 	data->posX = parsing->posX;
 	data->posY = parsing->posY;
 	set_dir_and_plane(data, parsing->map[(int)parsing->posY][(int)parsing->posX]);
-	data->moveSpeed = 0.2;
+	data->moveSpeed = 0.1;
 	data->rotSpeed = 0.2;
 	data->mlx.parsing = parsing;
 }
