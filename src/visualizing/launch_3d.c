@@ -6,13 +6,37 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 16:04:30 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/06 16:01:51 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen)
+void	set_dir_and_plane(t_data *data, char direction)
+{
+	if (direction == 'N')
+	{
+		data->dirY = -1;
+		data->planeX = 0.66;
+	}
+	else if (direction == 'S')
+	{
+		data->dirY = 1;
+		data->planeX = -0.66;
+	}
+	else if (direction == 'W')
+	{
+		data->dirX = -1;
+		data->planeY = -0.66;
+	}
+	else if (direction == 'E')
+	{
+		data->dirX = 1;
+		data->planeY = 0.66;
+	}
+}
+
+void	mlx_launch(t_data *data, t_parsing *parsing)
 {
 	int	i;
 	int	j;
@@ -21,10 +45,7 @@ void	mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen)
 	data->mlx.win = mlx_new_window(data->mlx.mlx_ptr, WIDTH, HEIGHT, "cub 3D");
 	data->posX = parsing->posX;
 	data->posY = parsing->posY;
-	data->dirX = -1;
-	data->dirY = 0;
-	data->planeX = 0;
-	data->planeY = 0.66;
+	set_dir_and_plane(data, parsing->map[(int)parsing->posY][(int)parsing->posX]);
 	data->moveSpeed = 0.2;
 	data->rotSpeed = 0.2;
 	data->mlx.parsing = parsing;
