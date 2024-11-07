@@ -43,13 +43,13 @@ void	move_left(t_data *data)
 	new_y = data->posY - data->dirX * data->moveSpeed;
 	if (map[(int)data->posY][(int)new_x] != '1')
 	{
-		
 		if (map[(int)new_y][(int)data->posX] != '1')
 		{	
 			data->posX = new_x;
 			data->posY = new_y;
 		}
 	}
+
 }
 
 void	move_right(t_data *data)
@@ -63,7 +63,6 @@ void	move_right(t_data *data)
 	new_y = data->posY + data->dirX * data->moveSpeed;
 	if (map[(int)data->posY][(int)new_x] != '1')
 	{
-		
 		if (map[(int)new_y][(int)data->posX] != '1')
 		{
 			data->posX = new_x;

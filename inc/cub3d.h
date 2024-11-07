@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/04 15:26:46 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:20:23 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,5 @@ void		verLine(t_data *info, int x, int y1, int y2, int color);
 void		launch_game(t_parsing *parsing, t_screen *screen);
 int			map_loop(t_data *data);
 void		img_launch(t_mlx *mlx);
-void		mlx_launch(t_data *data, t_parsing *parsing);
-
+void		mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen);
 #endif //__CUB3D__H

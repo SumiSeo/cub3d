@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:04:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/28 15:59:32 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 15:47:19 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,22 @@ int	range_check(char **arr, t_screen *screen, int flag)
 
 void	convert_hex(t_screen *screen, int i)
 {
+	int	color;
+
 	if (i == 1)
-		screen->floor_color = ((screen->floor[0] & 0x0ff) << 16) | ((screen->floor[1] & 0x0ff) << 8) | (screen->floor[2] & 0x0ff);
+	{
+		color = (screen->floor[0] & 0x0FF) << 16;
+		color |= (screen->floor[1] & 0x0FF) << 8;
+		color |= (screen->floor[2] & 0x0FF);
+		screen->floor_color = color;
+	}
 	else
-		screen->ceiling_color = ((screen->ceiling[0] & 0x0ff) << 16) | ((screen->ceiling[1] & 0x0ff) << 8) | (screen->ceiling[2] & 0x0ff);
+	{
+		color = (screen->ceiling[0] & 0x0FF) << 16;
+		color |= (screen->ceiling[1] & 0x0FF) << 8;
+		color |= (screen->ceiling[2] & 0x0FF);
+		screen->ceiling_color = color;
+	}
 }
 
 void	assign_colors(t_screen *screen, char *place, char *color_arr)
