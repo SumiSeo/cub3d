@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:04:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 21:06:43 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:09:27 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	assign_colors(t_screen *screen, char *place, char *color_arr)
 
 	i = 0;
 	split = ft_split(&color_arr[2], ',');
-	if (find_len_strs(split) != 3)
+	// if (find_len_strs(split) != 3)
 	if (ft_strncmp("F", place, 1) == 0)
 	{
 		if (range_check(split, screen, 1))
