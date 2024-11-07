@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 15:07:21 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 15:08:27 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,18 +162,9 @@ void	draw_rays(t_data *info)
 			if (side == 1)
 				color = (color >> 1) & 8355711;
 			put_pixel_to_img(&info->mlx.map, x, y, color);
-			info->buf[y][x] = color;
-			info->re_buf = 1;
+			// info->buf[y][x] = color;
+			// info->re_buf = 1;
 		}
-		// if (mapY < size_y && info->mlx.parsing->map[mapY][mapX] == '1')
-		// 	color = 0xFF0000;
-		// else if (mapY < size_y
-		// && info->mlx.parsing->map[mapY][mapX] == '0')
-		// 	color = 0x00FF00;
-		// else
-		// 	color = 0xFFFFFF;
-		// if (side == 1)
-		// 	color = color / 2;
 		// verLine(info, x, drawStart, drawEnd, color);
 		draw_floor_ceiling(info, x, drawStart, drawEnd);
 		x++;
