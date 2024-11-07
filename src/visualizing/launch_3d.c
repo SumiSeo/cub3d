@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/06 16:01:51 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:23:34 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	set_dir_and_plane(t_data *data, char direction)
 	}
 }
 
-void	mlx_launch(t_data *data, t_parsing *parsing)
+void	mlx_launch(t_data *data, t_parsing *parsing,t_screen *screen)
 {
 	int	i;
 	int	j;
