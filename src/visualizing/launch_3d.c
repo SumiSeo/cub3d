@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 15:12:22 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 16:04:30 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen)
 {
+	int	i;
+	int	j;
+	
 	data->mlx.mlx_ptr = mlx_init();
 	data->mlx.win = mlx_new_window(data->mlx.mlx_ptr, WIDTH, HEIGHT, "cub 3D");
 	data->posX = parsing->posX;
@@ -27,25 +30,35 @@ void	mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen)
 	data->mlx.parsing = parsing;
 	data->mlx.screen = screen;
 	data->re_buf = 0;
-	for (int i = 0; i < HEIGHT; i++)
+	i = 0;
+	while (i < HEIGHT)
 	{
-		for (int j = 0; j < WIDTH; j++)
+		j = 0;
+		while (j < WIDTH)
 		{
 			data->buf[i][j] = 0;
+			j++;
 		}
+		i++;
 	}
-	for (int i = 0; i < 8; i++)
+	i = 0;
+	while (i < 8)
 	{
-		if (!(data->texture[i] = (int *)malloc(sizeof(int) * (texHeight
-						* texWidth))))
+		data->texture[i] = (int *)malloc(sizeof(int) * (texHeight * texWidth));
+		if (!data->texture[i])
 			printf("Memory allocation failed for texture array");
+		i++;
 	}
-	for (int i = 0; i < 8; i++)
+	i = 0;
+	while (i < 8)
 	{
-		for (int j = 0; j < texHeight * texWidth; j++)
+		j = 0;
+		while (j < texHeight * texWidth)
 		{
 			data->texture[i][j] = 0;
+			j++;
 		}
+		i++;
 	}
 }
 
@@ -75,20 +88,27 @@ int	map_loop(t_data *data)
 	draw_rays(data);
 	return (0);
 }
+
 void	load_image(t_mlx *mlx, int *texture, char *path)
 {
 	t_image	img;
+	int		y;
+	int		x;
 
 	img.img_ptr = mlx_xpm_file_to_image(mlx->mlx_ptr, path, &img.width,
 			&img.height);
 	img.data = (int *)mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel,
 			&img.line_length, &img.endian);
-	for (int y = 0; y < texHeight; y++)
+	y = 0;
+	while (y < texHeight)
 	{
-		for (int x = 0; x < texWidth; x++)
+		x = 0;
+		while (x < texWidth)
 		{
 			texture[texWidth * y + x] = img.data[texWidth * y + x];
+			x++;
 		}
+		y++;
 	}
 	mlx_destroy_image(mlx->mlx_ptr, img.img_ptr);
 }
@@ -104,13 +124,13 @@ void	load_texture(t_data *info)
 	load_image(&info->mlx, info->texture[6], "textures/wood.xpm");
 	load_image(&info->mlx, info->texture[7], "textures/colorstone.xpm");
 }
+
 void	launch_game(t_parsing *parsing, t_screen *screen)
 {
 	t_data	data;
 
-	// memory_handler(parsing, true);
+	memory_handler(parsing, true);
 	mlx_launch(&data, parsing, screen);
-	/* img_launch function should be renamed */
 	img_launch(&data.mlx);
 	load_texture(&data);
 	mlx_loop_hook(data.mlx.mlx_ptr, &map_loop, &data);
@@ -119,10 +139,10 @@ void	launch_game(t_parsing *parsing, t_screen *screen)
 	mlx_loop(data.mlx.mlx_ptr);
 	mlx_destroy_image(data.mlx.mlx_ptr, data.mlx.map.img_ptr);
 	mlx_destroy_image(data.mlx.mlx_ptr, data.mlx.minimap.img_ptr);
-	// free_arrs((void **)data.mlx.parsing->file);
-	// free(data.mlx.parsing->rows_lens);
-	// free(data.mlx.parsing);
-	// mlx_destroy_window(data.mlx.mlx_ptr, data.mlx.win);
-	// mlx_destroy_display(data.mlx.mlx_ptr);
-	// free(data.mlx.mlx_ptr);
+	free_arrs((void **)data.mlx.parsing->file);
+	free(data.mlx.parsing->rows_lens);
+	free(data.mlx.parsing);
+	mlx_destroy_window(data.mlx.mlx_ptr, data.mlx.win);
+	mlx_destroy_display(data.mlx.mlx_ptr);
+	free(data.mlx.mlx_ptr);
 }

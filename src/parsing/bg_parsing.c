@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/10/29 13:52:49 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 15:56:03 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,28 @@ int	find_index(const char *str, char c)
 	return (-1);
 }
 
+void	parsing_texture(t_parsing *parsing, t_screen *screen, int i)
+{
+	if (ft_strncmp("NO", parsing->file[i], 2) == 0
+		&& parsing->file[i][2] == ' ')
+		screen->north = parsing->file[i];
+	else if (ft_strncmp(parsing->file[i], "SO", 2) == 0
+		&& parsing->file[i][2] == ' ')
+		screen->south = parsing->file[i];
+	else if (ft_strncmp(parsing->file[i], "WE", 2) == 0
+		&& parsing->file[i][2] == ' ')
+		screen->west = parsing->file[i];
+	else if (ft_strncmp(parsing->file[i], "EA", 2) == 0
+		&& parsing->file[i][2] == ' ')
+		screen->east = parsing->file[i];
+	else if (ft_strncmp(parsing->file[i], "F", 1) == 0
+		&& parsing->file[i][1] == ' ')
+		assign_colors(screen, "F", parsing->file[i]);
+	else if (ft_strncmp(parsing->file[i], "C", 1) == 0
+		&& parsing->file[i][1] == ' ')
+		assign_colors(screen, "C", parsing->file[i]);
+}
+
 int	bg_parsing(t_parsing *parsing, t_screen *screen)
 {
 	int					i;
@@ -32,27 +54,9 @@ int	bg_parsing(t_parsing *parsing, t_screen *screen)
 	{
 		if (map_info[i] == NULL)
 			return (1);
-		if (ft_strncmp("NO", parsing->file[i], 2) == 0
-			&& parsing->file[i][2] == ' ')
-			screen->north = parsing->file[i];
-		else if (ft_strncmp(parsing->file[i], "SO", 2) == 0
-			&& parsing->file[i][2] == ' ')
-			screen->south = parsing->file[i];
-		else if (ft_strncmp(parsing->file[i], "WE", 2) == 0
-			&& parsing->file[i][2] == ' ')
-			screen->west = parsing->file[i];
-		else if (ft_strncmp(parsing->file[i], "EA", 2) == 0
-			&& parsing->file[i][2] == ' ')
-			screen->east = parsing->file[i];
-		else if (ft_strncmp(parsing->file[i], "F", 1) == 0
-			&& parsing->file[i][1] == ' ')
-			assign_colors(screen, "F", parsing->file[i]);
-		else if (ft_strncmp(parsing->file[i], "C", 1) == 0
-			&& parsing->file[i][1] == ' ')
-			assign_colors(screen, "C", parsing->file[i]);
+		parsing_texture(parsing, screen, i);
 		i++;
 	}
-	print_screen(screen);
 	if (!screen->north || !screen->south || !screen->east || !screen->west
 		|| !screen->floor_color || !screen->ceiling_color)
 		return (1);
