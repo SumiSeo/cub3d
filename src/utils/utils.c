@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/04 15:26:37 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:34:39 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,10 @@ short int	find_maximum_col(t_parsing *data)
 		i++;
 	}
 	return (maximum);
+}
+
+void	free_textures(int *textures[], __int8_t n)
+{
+	while (n--)
+		free(textures[n]);
 }

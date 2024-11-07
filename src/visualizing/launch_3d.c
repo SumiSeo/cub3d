@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 16:23:34 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:17:17 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ void	launch_game(t_parsing *parsing, t_screen *screen)
 	mlx_loop(data.mlx.mlx_ptr);
 	mlx_destroy_image(data.mlx.mlx_ptr, data.mlx.map.img_ptr);
 	mlx_destroy_image(data.mlx.mlx_ptr, data.mlx.minimap.img_ptr);
+	free_textures(data.texture, 8);
 	free_arrs((void **)data.mlx.parsing->file);
 	free(data.mlx.parsing->rows_lens);
 	free(data.mlx.parsing);

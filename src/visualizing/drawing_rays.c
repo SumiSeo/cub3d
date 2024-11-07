@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 15:56:56 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/07 18:23:50 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	draw_rays(t_data *info)
 				map_y += step_y;
 				side = 1;
 			}
-			if (info->mlx.parsing->map[map_x][map_y] != '0')
+			if (info->mlx.parsing->map[map_y][map_x] != '0')
 				hit = 1;
 		}
 		if (side == 0)
