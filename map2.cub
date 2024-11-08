@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO textures/barrel.xpm
+SO textures/bluestone.xpm
+EA textures/colorstone.xpm
+WE textures/eagle.xpm
 
 F 184,113,75
 C 211,198,222
