@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/08 12:02:00 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:21:40 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,17 @@ void	draw_floor_ceiling(t_data *info, int x, int draw_start, int draw_end)
 		put_pixel_to_img(&info->mlx.map, x, y, info->mlx.screen->floor_color);
 		y++;
 	}
+}
+
+/*checks given the rays direction which side of the wall was hit
+and returns the accord texture*/
+__int8_t find_texture(double ray_dir_x, double ray_dir_y, int side)
+{
+	if (side == 0)
+		return (ray_dir_x <= 0);
+	else
+		return ((ray_dir_y <= 0) + 2);
+	return 4;
 }
 
 void	draw_rays(t_data *info)
@@ -156,6 +167,7 @@ void	draw_rays(t_data *info)
 		tex_pos = (draw_start - HEIGHT / 2 + line_height / 2) * step;
 		for (int y = draw_start; y < draw_end; y++)
 		{
+			tex_num = find_texture(ray_dir_x, ray_dir_y, side);
 			tex_y = (int)tex_pos & (TEX_HEIGHT - 1);
 			tex_pos += step;
 			color = info->texture[tex_num][TEX_HEIGHT * tex_y + tex_x];
