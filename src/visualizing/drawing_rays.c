@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/08 10:50:58 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:02:00 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	draw_rays(t_data *info)
 				map_y += step_y;
 				side = 1;
 			}
-			if (info->mlx.parsing->map[map_y][map_x] != '0')
+			if (info->mlx.parsing->map[map_y][map_x] == '1')
 				hit = 1;
 		}
 		if (side == 0)
