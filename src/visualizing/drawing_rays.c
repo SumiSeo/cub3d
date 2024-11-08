@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 18:23:50 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:50:58 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,32 +83,32 @@ void	draw_rays(t_data *info)
 	while (x < WIDTH)
 	{
 		camera_x = 2 * x / (double)WIDTH - 1;
-		ray_dir_x = info->dirX + info->planeX * camera_x;
-		ray_dir_y = info->dirY + info->planeY * camera_x;
-		map_x = (int)info->posX;
-		map_y = (int)info->posY;
+		ray_dir_x = info->dir_x + info->plane_x * camera_x;
+		ray_dir_y = info->dir_y + info->plane_y * camera_x;
+		map_x = (int)info->pos_x;
+		map_y = (int)info->pos_y;
 		delta_dist_x = fabs(1 / ray_dir_x);
 		delta_dist_y = fabs(1 / ray_dir_y);
 		hit = 0;
 		if (ray_dir_x < 0)
 		{
 			step_x = -1;
-			side_dist_x = (info->posX - map_x) * delta_dist_x;
+			side_dist_x = (info->pos_x - map_x) * delta_dist_x;
 		}
 		else
 		{
 			step_x = 1;
-			side_dist_x = (map_x + 1.0 - info->posX) * delta_dist_x;
+			side_dist_x = (map_x + 1.0 - info->pos_x) * delta_dist_x;
 		}
 		if (ray_dir_y < 0)
 		{
 			step_y = -1;
-			side_dist_y = (info->posY - map_y) * delta_dist_y;
+			side_dist_y = (info->pos_y - map_y) * delta_dist_y;
 		}
 		else
 		{
 			step_y = 1;
-			side_dist_y = (map_y + 1.0 - info->posY) * delta_dist_y;
+			side_dist_y = (map_y + 1.0 - info->pos_y) * delta_dist_y;
 		}
 		while (hit == 0)
 		{
@@ -128,10 +128,10 @@ void	draw_rays(t_data *info)
 				hit = 1;
 		}
 		if (side == 0)
-			perp_wall_dist = (map_x - info->posX + (1 - step_x) / 2)
+			perp_wall_dist = (map_x - info->pos_x + (1 - step_x) / 2)
 				/ ray_dir_x;
 		else
-			perp_wall_dist = (map_y - info->posY + (1 - step_y) / 2)
+			perp_wall_dist = (map_y - info->pos_y + (1 - step_y) / 2)
 				/ ray_dir_y;
 		line_height = (int)(HEIGHT / perp_wall_dist);
 		draw_start = -line_height / 2 + HEIGHT / 2;
@@ -143,22 +143,22 @@ void	draw_rays(t_data *info)
 		// tex_num = info->mlx.parsing->map[map_x][map_y] - '0';
 		tex_num = 4;
 		if (side == 0)
-			wall_x = info->posY + perp_wall_dist * ray_dir_y;
+			wall_x = info->pos_y + perp_wall_dist * ray_dir_y;
 		else
-			wall_x = info->posX + perp_wall_dist * ray_dir_x;
+			wall_x = info->pos_x + perp_wall_dist * ray_dir_x;
 		wall_x -= floor(wall_x);
-		tex_x = (int)(wall_x * (double)texWidth);
+		tex_x = (int)(wall_x * (double)TEX_WIDTH);
 		if (side == 0 && ray_dir_x > 0)
-			tex_x = texWidth - tex_x - 1;
+			tex_x = TEX_WIDTH - tex_x - 1;
 		if (side == 1 && ray_dir_y < 0)
-			tex_x = texWidth - tex_x - 1;
-		step = 1.0 * texHeight / line_height;
+			tex_x = TEX_WIDTH - tex_x - 1;
+		step = 1.0 * TEX_HEIGHT / line_height;
 		tex_pos = (draw_start - HEIGHT / 2 + line_height / 2) * step;
 		for (int y = draw_start; y < draw_end; y++)
 		{
-			tex_y = (int)tex_pos & (texHeight - 1);
+			tex_y = (int)tex_pos & (TEX_HEIGHT - 1);
 			tex_pos += step;
-			color = info->texture[tex_num][texHeight * tex_y + tex_x];
+			color = info->texture[tex_num][TEX_HEIGHT * tex_y + tex_x];
 			if (side == 1)
 				color = (color >> 1) & 8355711;
 			put_pixel_to_img(&info->mlx.map, x, y, color);

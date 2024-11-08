@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 14:05:12 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/08 10:48:32 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_parsing
 	short int	column;
 	int			width;
 	int			height;
-	double		posX;
-	double		posY;
+	double		pos_x;
+	double		pos_y;
 	char		**file;
 	char		**map;
 	char		*filename;
@@ -77,14 +77,14 @@ typedef struct s_data
 	int			*texture[8];
 	int			buf[HEIGHT][WIDTH];
 	int			re_buf;
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-	double		moveSpeed;
-	double		rotSpeed;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		move_speed;
+	double		rot_speed;
 
 }				t_data;
 typedef struct s_key

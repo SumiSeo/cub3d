@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:41:12 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 18:17:10 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:51:13 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	close_game(t_mlx *mlx)
 
 int	key_event(int key_code, t_data *data)
 {
-	printf("Key event detected: %d\n", key_code);
-	// printf("posx = %d posy = %d\n", (int)data->posX, (int)data->posY);
 	if (key_code == KEY_DOWN)
 		move_down(data);
 	else if (key_code == KEY_UP)

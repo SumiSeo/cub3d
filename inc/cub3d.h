@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 18:18:28 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:54:10 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 char		*merge_strings(char *s1, char *s2, char c);
 bool		is_in_set(char c, char *set);
-void		find_player(char **map, double *posY, double *posX);
+void		find_player(char **map, double *pos_y, double *pos_x);
 short int	find_maximum_col(t_parsing *data);
 void		free_textures(int *textures[], __int8_t n);
 //									-> PARSING
