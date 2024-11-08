@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/08 10:49:22 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:29:03 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void	find_player(char **map, double *pos_y, double *pos_x)
 		{
 			if (is_in_set(map[i][j], STARTING_POS_SET))
 			{
-				*pos_y = (double) i; 
+				*pos_y = (double) i;
 				*pos_x = (double) j;
-				return;
+				return ;
 			}
 		}
 	}
