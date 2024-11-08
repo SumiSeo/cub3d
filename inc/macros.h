@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/06 16:14:48 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:55:27 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@
 # define MINIMAP_WIDTH TILE_SIZE *ROWS
 # define MINIMAP_HEIGHT TILE_SIZE *COLS
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
-# define texHeight 64
-# define texWidth 64
+# define TEX_HEIGHT 64
+# define TEX_WIDTH 64
 #endif //__MACROS__H

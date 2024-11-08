@@ -6,11 +6,38 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 21:08:28 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:59:50 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+#define NOT_EXISTING_TEXTURE "Issue with opening one texture file"
+#define MISSING_TEXTURE_OR_COLOR "Colors' informations or texture(s) not found"
+#define EXCESSIVE_INFORMATIONS "Only four textures and two colors are expected."
+
+bool	check_if_textures_exist(t_screen *screen)
+{
+	int	fd;
+
+	fd = open(screen->north + 3, O_RDONLY);
+	if (fd == -1)
+		print_err_msg(NOT_EXISTING_TEXTURE, -1);
+	close(fd);
+	fd = open(screen->east + 3, O_RDONLY);
+	if (fd == -1)
+		print_err_msg(NOT_EXISTING_TEXTURE, -1);
+	close(fd);
+	fd = open(screen->south + 3, O_RDONLY);
+	if (fd == -1)
+		print_err_msg(NOT_EXISTING_TEXTURE, -1);
+	close(fd);
+	fd = open(screen->west + 3, O_RDONLY);
+	if (fd == -1)
+		print_err_msg(NOT_EXISTING_TEXTURE, -1);
+	close(fd);
+	return (true);
+}
 
 int	find_index(const char *str, char c)
 {
@@ -53,12 +80,13 @@ int	bg_parsing(t_parsing *parsing, t_screen *screen)
 	while (parsing->file[i] && i < parsing->map_beginning)
 	{
 		if (map_info[i] == NULL)
-			return (1);
+			print_err_msg(EXCESSIVE_INFORMATIONS, -1);
 		parsing_texture(parsing, screen, i);
 		i++;
 	}
 	if (!screen->north || !screen->south || !screen->east || !screen->west
 		|| !screen->floor_color || !screen->ceiling_color)
-		return (1);
+		print_err_msg(MISSING_TEXTURE_OR_COLOR, -1);
+	check_if_textures_exist(screen);
 	return (0);
 }

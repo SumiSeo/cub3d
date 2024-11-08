@@ -6,37 +6,37 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 19:43:21 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:53:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_dir_and_plane(t_data *data, char direction)
+void	set_dir_plane(t_data *data, char direction)
 {
-	data->dirY = 0;
-	data->dirX = 0;
-	data->planeX = 0;
-	data->planeY = 0;
+	data->dir_y = 0;
+	data->dir_x = 0;
+	data->plane_x = 0;
+	data->plane_y = 0;
 	if (direction == 'N')
 	{
-		data->dirY = -1;
-		data->planeX = 0.66;
+		data->dir_y = -1;
+		data->plane_x = 0.66;
 	}
 	else if (direction == 'S')
 	{
-		data->dirY = 1;
-		data->planeX = -0.66;
+		data->dir_y = 1;
+		data->plane_x = -0.66;
 	}
 	else if (direction == 'W')
 	{
-		data->dirX = -1;
-		data->planeY = -0.66;
+		data->dir_x = -1;
+		data->plane_y = -0.66;
 	}
 	else if (direction == 'E')
 	{
-		data->dirX = 1;
-		data->planeY = 0.66;
+		data->dir_x = 1;
+		data->plane_y = 0.66;
 	}
 }
 
@@ -47,11 +47,11 @@ void	mlx_launch(t_data *data, t_parsing *parsing,t_screen *screen)
 	
 	data->mlx.mlx_ptr = mlx_init();
 	data->mlx.win = mlx_new_window(data->mlx.mlx_ptr, WIDTH, HEIGHT, "cub 3D");
-	data->posX = parsing->posX;
-	data->posY = parsing->posY;
-	set_dir_and_plane(data, parsing->map[(int)parsing->posY][(int)parsing->posX]);
-	data->moveSpeed = 0.1;
-	data->rotSpeed = 0.2;
+	data->pos_x = parsing->pos_x;
+	data->pos_y = parsing->pos_y;
+	set_dir_plane(data, parsing->map[(int)parsing->pos_y][(int)parsing->pos_x]);
+	data->move_speed = 0.1;
+	data->rot_speed = 0.2;
 	data->mlx.parsing = parsing;
 	data->mlx.screen = screen;
 	data->re_buf = 0;
@@ -69,7 +69,7 @@ void	mlx_launch(t_data *data, t_parsing *parsing,t_screen *screen)
 	i = 0;
 	while (i < 8)
 	{
-		data->texture[i] = (int *)malloc(sizeof(int) * (texHeight * texWidth));
+		data->texture[i] = (int *)malloc(sizeof(int) * (TEX_HEIGHT * TEX_WIDTH));
 		if (!data->texture[i])
 			printf("Memory allocation failed for texture array"); 
 		i++;
@@ -78,7 +78,7 @@ void	mlx_launch(t_data *data, t_parsing *parsing,t_screen *screen)
 	while (i < 8)
 	{
 		j = 0;
-		while (j < texHeight * texWidth)
+		while (j < TEX_HEIGHT * TEX_WIDTH)
 		{
 			data->texture[i][j] = 0;
 			j++;
@@ -125,12 +125,12 @@ void	load_image(t_mlx *mlx, int *texture, char *path)
 	img.data = (int *)mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel,
 			&img.line_length, &img.endian);
 	y = 0;
-	while (y < texHeight)
+	while (y < TEX_HEIGHT)
 	{
 		x = 0;
-		while (x < texWidth)
+		while (x < TEX_WIDTH)
 		{
-			texture[texWidth * y + x] = img.data[texWidth * y + x];
+			texture[TEX_WIDTH * y + x] = img.data[TEX_WIDTH * y + x];
 			x++;
 		}
 		y++;
