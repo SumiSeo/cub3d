@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:57:58 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 20:01:13 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/09 21:43:30 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,42 @@ void	img_launch(t_mlx *mlx)
 	mlx->map.data = (int *)mlx_get_data_addr(mlx->map.img_ptr,
 			&mlx->map.bits_per_pixel, &mlx->map.line_length, &mlx->map.endian);
 	ft_bzero(mlx->map.data, WIDTH * HEIGHT * sizeof(int));
+}
+
+void	init_side(t_data *info)
+{
+	if (info->ray_dir_x < 0)
+	{
+		info->step_x = -1;
+		info->side_dist_x = (info->pos_x - info->map_x) * info->delta_dist_x;
+	}
+	else
+	{
+		info->step_x = 1;
+		info->side_dist_x = (info->map_x + 1.0 - info->pos_x)
+			* info->delta_dist_x;
+	}
+	if (info->ray_dir_y < 0)
+	{
+		info->step_y = -1;
+		info->side_dist_y = (info->pos_y - info->map_y) * info->delta_dist_y;
+	}
+	else
+	{
+		info->step_y = 1;
+		info->side_dist_y = (info->map_y + 1.0 - info->pos_y)
+			* info->delta_dist_y;
+	}
+}
+
+void	init_ray(t_data *info, int x)
+{
+	info->camera_x = 2 * x / (double)WIDTH - 1;
+	info->ray_dir_x = info->dir_x + info->plane_x * info->camera_x;
+	info->ray_dir_y = info->dir_y + info->plane_y * info->camera_x;
+	info->map_x = (int)info->pos_x;
+	info->map_y = (int)info->pos_y;
+	info->delta_dist_x = fabs(1 / info->ray_dir_x);
+	info->delta_dist_y = fabs(1 / info->ray_dir_y);
+	init_side(info);
 }

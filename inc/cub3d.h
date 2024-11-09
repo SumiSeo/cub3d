@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 20:04:49 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/09 21:43:43 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void		draw_hero(t_mlx *mlx);
 void		draw_rays(t_data *data);
 void		put_pixel_to_img(t_image *img, int x, int y, int color);
 void		verLine(t_data *info, int x, int y1, int y2, int color);
+void		find_wall_x(t_data *info);
+void		find_perp_wall(t_data *info);
 
 // LAUNCH_3D.c
 void		launch_game(t_parsing *parsing, t_screen *screen);
@@ -103,10 +105,15 @@ void		set_dir_plane(t_data *data, char direction);
 void		img_launch(t_mlx *mlx);
 void		mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen);
 void		launch_texture(t_data *data);
+void		init_ray(t_data *info, int x);
+void		init_side(t_data *info);
 
 // LAUNCH_RAYCASTING.C
 __int8_t	find_texture(double ray_dir_x, double ray_dir_y, int side);
 void		put_pixel_to_img(t_image *img, int x, int y, int color);
 void		draw_floor_ceiling(t_data *info, int x, int draw_start,
 				int draw_end);
+void		draw_wall(t_data *info, int x);
+void		calc_and_draw(t_data *info, int x);
+
 #endif //__CUB3D__H
