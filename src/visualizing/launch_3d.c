@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/08 10:53:21 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:31:17 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,14 +140,31 @@ void	load_image(t_mlx *mlx, int *texture, char *path)
 
 void	load_texture(t_data *info)
 {
-	load_image(&info->mlx, info->texture[0], "textures/barrel.xpm");
-	load_image(&info->mlx, info->texture[1], "textures/redbrick.xpm");
-	load_image(&info->mlx, info->texture[2], "textures/purplestone.xpm");
-	load_image(&info->mlx, info->texture[3], "textures/greystone.xpm");
-	load_image(&info->mlx, info->texture[4], "textures/bluestone.xpm");
-	load_image(&info->mlx, info->texture[5], "textures/mossy.xpm");
-	load_image(&info->mlx, info->texture[6], "textures/wood.xpm");
-	load_image(&info->mlx, info->texture[7], "textures/colorstone.xpm");
+	char		**file;
+	__int8_t	i;
+
+	file = info->mlx.parsing->file;
+	i = 0;
+	while (i < info->mlx.parsing->map_beginning - 2)
+	{
+		if (file[i][0] == 'N')
+			load_image(&info->mlx, info->texture[NORTH], &file[i][3]);
+		else if (file[i][0] == 'E')
+			load_image(&info->mlx, info->texture[EAST], &file[i][3]);
+		else if (file[i][0] == 'S')
+			load_image(&info->mlx, info->texture[SOUTH], &file[i][3]);
+		else if (file[i][0] == 'W')
+			load_image(&info->mlx, info->texture[WEST], &file[i][3]);
+		i++;
+	}
+	// load_image(&info->mlx, info->texture[0], "textures/barrel.xpm");
+	// load_image(&info->mlx, info->texture[1], "textures/redbrick.xpm");
+	// load_image(&info->mlx, info->texture[2], "textures/purplestone.xpm");
+	// load_image(&info->mlx, info->texture[3], "textures/greystone.xpm");
+	// load_image(&info->mlx, info->texture[4], "textures/bluestone.xpm");
+	// load_image(&info->mlx, info->texture[5], "textures/mossy.xpm");
+	// load_image(&info->mlx, info->texture[6], "textures/wood.xpm");
+	// load_image(&info->mlx, info->texture[7], "textures/colorstone.xpm");
 }
 
 void	launch_game(t_parsing *parsing, t_screen *screen)
