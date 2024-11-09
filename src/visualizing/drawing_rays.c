@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/08 15:21:40 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:47:12 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,6 @@
 void	put_pixel_to_img(t_image *img, int x, int y, int color)
 {
 	img->data[y * (img->line_length / sizeof(int)) + x] = color;
-}
-
-void	verLine(t_data *info, int x, int y1, int y2, int color)
-{
-	int	y;
-
-	y = y1;
-	while (y <= y2)
-	{
-		put_pixel_to_img(&info->mlx.map, x, y, color);
-		y++;
-	}
 }
 
 void	draw_floor_ceiling(t_data *info, int x, int draw_start, int draw_end)
@@ -51,13 +39,13 @@ void	draw_floor_ceiling(t_data *info, int x, int draw_start, int draw_end)
 
 /*checks given the rays direction which side of the wall was hit
 and returns the accord texture*/
-__int8_t find_texture(double ray_dir_x, double ray_dir_y, int side)
+__int8_t	find_texture(double ray_dir_x, double ray_dir_y, int side)
 {
 	if (side == 0)
 		return (ray_dir_x <= 0);
 	else
 		return ((ray_dir_y <= 0) + 2);
-	return 4;
+	return (4);
 }
 
 void	draw_rays(t_data *info)
@@ -152,7 +140,7 @@ void	draw_rays(t_data *info)
 		if (draw_end >= HEIGHT)
 			draw_end = HEIGHT - 1;
 		// tex_num = info->mlx.parsing->map[map_x][map_y] - '0';
-		tex_num = 4;
+		tex_num = 5;
 		if (side == 0)
 			wall_x = info->pos_y + perp_wall_dist * ray_dir_y;
 		else
@@ -174,8 +162,6 @@ void	draw_rays(t_data *info)
 			if (side == 1)
 				color = (color >> 1) & 8355711;
 			put_pixel_to_img(&info->mlx.map, x, y, color);
-			// info->buf[y][x] = color;
-			// info->re_buf = 1;
 		}
 		draw_floor_ceiling(info, x, draw_start, draw_end);
 		x++;

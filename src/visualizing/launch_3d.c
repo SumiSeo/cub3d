@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/08 10:53:21 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:48:55 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,6 @@ void	img_launch(t_mlx *mlx)
 
 int	map_loop(t_data *data)
 {
-	// **please keep this line for now ** minimap//
-	// draw_squares(mlx);
-	// draw_hero(mlx);
-	// draw_lines(mlx);
-	// draw_rays(mlx);
-	// **please keep this line for now ** minimap//
-	// mlx_clear_window(data->mlx.mlx_ptr, data->mlx.win);
 	ft_bzero(data->mlx.map.data, HEIGHT * WIDTH * sizeof(int));
 	draw_rays(data);
 	return (0);
