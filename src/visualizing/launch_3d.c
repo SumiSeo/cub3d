@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 17:48:55 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/09 19:59:40 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,66 +38,6 @@ void	set_dir_plane(t_data *data, char direction)
 		data->dir_x = 1;
 		data->plane_y = 0.66;
 	}
-}
-
-void	mlx_launch(t_data *data, t_parsing *parsing,t_screen *screen)
-{
-	int	i;
-	int	j;
-	
-	data->mlx.mlx_ptr = mlx_init();
-	data->mlx.win = mlx_new_window(data->mlx.mlx_ptr, WIDTH, HEIGHT, "cub 3D");
-	data->pos_x = parsing->pos_x;
-	data->pos_y = parsing->pos_y;
-	set_dir_plane(data, parsing->map[(int)parsing->pos_y][(int)parsing->pos_x]);
-	data->move_speed = 0.1;
-	data->rot_speed = 0.2;
-	data->mlx.parsing = parsing;
-	data->mlx.screen = screen;
-	data->re_buf = 0;
-	i = 0;
-	while (i < HEIGHT)
-	{
-		j = 0;
-		while (j < WIDTH)
-		{
-			data->buf[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < 8)
-	{
-		data->texture[i] = (int *)malloc(sizeof(int) * (TEX_HEIGHT * TEX_WIDTH));
-		if (!data->texture[i])
-			printf("Memory allocation failed for texture array"); 
-		i++;
-	}
-	i = 0;
-	while (i < 8)
-	{
-		j = 0;
-		while (j < TEX_HEIGHT * TEX_WIDTH)
-		{
-			data->texture[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
-}
-
-void	img_launch(t_mlx *mlx)
-{
-	mlx->minimap.img_ptr = mlx_new_image(mlx->mlx_ptr, MINIMAP_WIDTH,
-			MINIMAP_HEIGHT);
-	mlx->minimap.data = (int *)mlx_get_data_addr(mlx->minimap.img_ptr,
-			&mlx->minimap.bits_per_pixel, &mlx->minimap.line_length,
-			&mlx->minimap.endian);
-	mlx->map.img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
-	mlx->map.data = (int *)mlx_get_data_addr(mlx->map.img_ptr,
-			&mlx->map.bits_per_pixel, &mlx->map.line_length, &mlx->map.endian);
-	ft_bzero(mlx->map.data, WIDTH * HEIGHT * sizeof(int));
 }
 
 int	map_loop(t_data *data)

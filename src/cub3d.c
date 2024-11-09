@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 17:47:46 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/09 20:02:19 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int	main(int argc, char **argv)
 {
 	t_parsing	*parsing;
 	t_screen	screen;
-	(void)argc;
-	
+
+	if (argc != 2)
+		print_and_exit("Wrong arguments number");
 	if (check_extension(argv[1]) == FAILURE)
 		print_and_exit("Wrong extension. Allowed extension is .cub");
 	parsing = init_pars_struct(argv[1]);
