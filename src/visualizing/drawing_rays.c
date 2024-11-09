@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 20:32:28 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:40:48 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,6 @@ void	draw_floor_ceiling(t_data *info, int x, int draw_start, int draw_end)
 	}
 }
 
-/*checks given the rays direction which side of the wall was hit
-// and returns the accord texture*/
-// __int8_t find_texture(double ray_dir_x, double ray_dir_y, int side)
-// {
-// 	if (side == 0)
-// 		return (ray_dir_x <= 0);
-// 	else
-// 		return ((ray_dir_y <= 0) + 2);
-// 	return 4;
-// }
-
 int find_texture(double ray_dir_x, double ray_dir_y, int side)
 {
 	if (side == 0)
@@ -69,7 +58,7 @@ int find_texture(double ray_dir_x, double ray_dir_y, int side)
 		else
 			return (WEST);
 	}
-	else // Horizontal wall
+	else
 	{
 		if (ray_dir_y > 0)
 			return (SOUTH);
