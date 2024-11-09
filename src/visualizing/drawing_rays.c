@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 21:17:51 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/09 21:28:02 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,42 @@ void	avance_side_y(t_data *info)
 	info->map_y += info->step_y;
 	info->side = 1;
 }
+
+void	find_wall_x(t_data *info)
+{
+	if (info->side == 0)
+		info->wall_x = info->pos_y + info->perp_wall_dist * info->ray_dir_y;
+	else
+		info->wall_x = info->pos_x + info->perp_wall_dist * info->ray_dir_x;
+	info->wall_x -= floor(info->wall_x);
+	info->line_height = (int)(HEIGHT / info->perp_wall_dist);
+}
+
+void	find_perp_wall(t_data *info)
+{
+	if (info->side == 0)
+		info->perp_wall_dist = (info->map_x - info->pos_x + (1 - info->step_x)
+				/ 2) / info->ray_dir_x;
+	else
+		info->perp_wall_dist = (info->map_y - info->pos_y + (1 - info->step_y)
+				/ 2) / info->ray_dir_y;
+}
+
 void	draw_rays(t_data *info)
 {
 	int		x;
-	double	perp_wall_dist;
-	int		line_height;
 	int		draw_start;
 	int		draw_end;
-	int		color;
 	int		hit;
 	int		size_y;
-	int		tex_num;
-	double	wall_x;
-	int		tex_x;
 	double	step;
-	double	tex_pos;
 	int		tex_y;
+	int		color;
+	double	tex_pos;
+	int		tex_num;
+	int		tex_x;
 
+	// int		line_height;
 	size_y = find_len_strs(info->mlx.parsing->map);
 	x = 0;
 	while (x < WIDTH)
@@ -93,31 +112,21 @@ void	draw_rays(t_data *info)
 			if (info->mlx.parsing->map[info->map_y][info->map_x] == '1')
 				hit = 1;
 		}
-		if (info->side == 0)
-			perp_wall_dist = (info->map_x - info->pos_x + (1 - info->step_x)
-					/ 2) / info->ray_dir_x;
-		else
-			perp_wall_dist = (info->map_y - info->pos_y + (1 - info->step_y)
-					/ 2) / info->ray_dir_y;
-		line_height = (int)(HEIGHT / perp_wall_dist);
-		draw_start = -line_height / 2 + HEIGHT / 2;
+		find_perp_wall(info);
+		draw_start = -info->line_height / 2 + HEIGHT / 2;
 		if (draw_start < 0)
 			draw_start = 0;
-		draw_end = line_height / 2 + HEIGHT / 2;
+		draw_end = info->line_height / 2 + HEIGHT / 2;
 		if (draw_end >= HEIGHT)
 			draw_end = HEIGHT - 1;
-		if (info->side == 0)
-			wall_x = info->pos_y + perp_wall_dist * info->ray_dir_y;
-		else
-			wall_x = info->pos_x + perp_wall_dist * info->ray_dir_x;
-		wall_x -= floor(wall_x);
-		tex_x = (int)(wall_x * (double)TEX_WIDTH);
+		find_wall_x(info);
+		tex_x = (int)(info->wall_x * (double)TEX_WIDTH);
 		if (info->side == 0 && info->ray_dir_x > 0)
 			tex_x = TEX_WIDTH - tex_x - 1;
 		if (info->side == 1 && info->ray_dir_y < 0)
 			tex_x = TEX_WIDTH - tex_x - 1;
-		step = 1.0 * TEX_HEIGHT / line_height;
-		tex_pos = (draw_start - HEIGHT / 2 + line_height / 2) * step;
+		step = 1.0 * TEX_HEIGHT / info->line_height;
+		tex_pos = (draw_start - HEIGHT / 2 + info->line_height / 2) * step;
 		for (int y = draw_start; y < draw_end; y++)
 		{
 			tex_num = find_texture(info->ray_dir_x, info->ray_dir_y,
