@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:17:01 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/04 15:26:26 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:08:06 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ static void	init_pars_struct_helper(t_parsing *data)
 	*rows = -1;
 	data->row = i;
 	data->column = find_maximum_col(data);
-	data->width = data->row * TILE_SIZE;
-	data->height = data->column * TILE_SIZE;
 	memory_handler(data, true);
 }
 

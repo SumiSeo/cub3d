@@ -8,7 +8,7 @@ SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c parsing/check_m
 			parsing/create_map.c utils/utils.c visualizing/launch_3d.c handler/memory_handler.c \
 			parsing/parse_map.c parsing/is_closed_map.c handler/debugging.c \
 			parsing/color_parsing.c visualizing/key_handling.c \
-			visualizing/drawing_minimap.c visualizing/drawing_rays.c \
+			visualizing/drawing_rays.c \
 			visualizing/move_handling.c visualizing/view_handling.c \
 			visualizing/launch_mlx.c visualizing/launch_raycasting.c \
 
