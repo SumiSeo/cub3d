@@ -40,17 +40,8 @@
 # define KEY_LOOK_RIGHT 65363
 # define KEY_LOOK_LEFT 65361
 
-// WINDOW AND IMAGE INFO
-# define WIN_ 800
-# define WIN_HEIGHT 600
-# define IMG_WIDTH 400
-# define IMG_HEIGHT 300
-
-# define TILE_SIZE 50
-# define ROWS 20
-# define COLS 50
-# define WIDTH 640
-# define HEIGHT 400
+# define WIDTH 1920
+# define HEIGHT 1080
 # define TEX_HEIGHT 64
 # define TEX_WIDTH 64
 
