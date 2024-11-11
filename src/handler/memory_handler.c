@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:43:04 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/08 15:29:34 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:43:20 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,28 @@ void	memory_handler(t_parsing *parsing, bool store)
 	}
 	if (parsing_store)
 	{
-		free_arrs((void **)parsing_store->file);
+		if (parsing_store->file)
+			free_arrs((void **)parsing_store->file);
 		if (parsing_store->rows_lens)
 			free(parsing_store->rows_lens);
 		free(parsing_store);
 	}
+}
+
+/**
+ * @brief Frees the mlx.
+ * @param data A pointer to a structure.
+ * @returns void.
+ */
+void	free_mlx(t_data *data)
+{
+	mlx_destroy_image(data->mlx.mlx_ptr, data->mlx.map.img_ptr);
+	mlx_destroy_image(data->mlx.mlx_ptr, data->mlx.minimap.img_ptr);
+	free_textures(data->texture, 8);
+	free_arrs((void **)data->mlx.parsing->file);
+	free(data->mlx.parsing->rows_lens);
+	free(data->mlx.parsing);
+	mlx_destroy_window(data->mlx.mlx_ptr, data->mlx.win);
+	mlx_destroy_display(data->mlx.mlx_ptr);
+	free(data->mlx.mlx_ptr);
 }

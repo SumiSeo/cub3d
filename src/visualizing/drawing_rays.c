@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 12:38:28 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:06:26 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw_rays(t_data *info)
 
 	size_y = find_len_strs(info->mlx.parsing->map);
 	x = 0;
-	while (++x < WIDTH)
+	while (x < WIDTH)
 	{
 		init_ray(info, x);
 		hit = 0;

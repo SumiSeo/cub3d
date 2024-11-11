@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 12:30:09 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:41:45 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ bool	check_extension(char *file)
 	return (true);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char *envp[])
 {
 	t_parsing	*parsing;
 	t_screen	screen;
 
 	if (argc != 2)
 		print_and_exit("Wrong arguments number");
+	if (!envp)
+		print_and_exit("Environment not found");
 	if (check_extension(argv[1]) == FAILURE)
 		print_and_exit("Wrong extension. Allowed extension is .cub");
 	if (WIDTH < 0 || HEIGHT < 0)

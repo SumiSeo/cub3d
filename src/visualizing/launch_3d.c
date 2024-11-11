@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 12:38:40 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:35:31 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	map_loop(t_data *data)
 	return (0);
 }
 
-void	load_image(t_mlx *mlx, int *texture, char *path)
+bool	load_image(t_mlx *mlx, int *texture, char *path)
 {
 	t_image	img;
 	int		y;
@@ -55,8 +55,12 @@ void	load_image(t_mlx *mlx, int *texture, char *path)
 
 	img.img_ptr = mlx_xpm_file_to_image(mlx->mlx_ptr, path, &img.width,
 			&img.height);
+	if (!img.img_ptr)
+		return (FAILURE);
 	img.data = (int *)mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel,
 			&img.line_length, &img.endian);
+	if (!img.img_ptr)
+		return (false);
 	y = 0;
 	while (y < TEX_HEIGHT)
 	{
@@ -69,26 +73,33 @@ void	load_image(t_mlx *mlx, int *texture, char *path)
 		y++;
 	}
 	mlx_destroy_image(mlx->mlx_ptr, img.img_ptr);
+	return (SUCCESS);
 }
 
 void	load_texture(t_data *info)
 {
 	char		**file;
 	__int8_t	i;
+	bool		ret;
 
 	file = info->mlx.parsing->file;
 	i = 0;
 	while (i < info->mlx.parsing->map_beginning - 2)
 	{
 		if (file[i][0] == 'N')
-			load_image(&info->mlx, info->texture[NORTH], &file[i][3]);
+			ret = load_image(&info->mlx, info->texture[NORTH], &file[i][3]);
 		else if (file[i][0] == 'E')
-			load_image(&info->mlx, info->texture[EAST], &file[i][3]);
+			ret = load_image(&info->mlx, info->texture[EAST], &file[i][3]);
 		else if (file[i][0] == 'S')
-			load_image(&info->mlx, info->texture[SOUTH], &file[i][3]);
+			ret = load_image(&info->mlx, info->texture[SOUTH], &file[i][3]);
 		else if (file[i][0] == 'W')
-			load_image(&info->mlx, info->texture[WEST], &file[i][3]);
+			ret = load_image(&info->mlx, info->texture[WEST], &file[i][3]);
 		i++;
+		if (ret == FAILURE)
+		{
+			free_mlx(info);
+			print_and_exit("Issue while loading an image");
+		}
 	}
 }
 
@@ -105,13 +116,5 @@ void	launch_game(t_parsing *parsing, t_screen *screen)
 	mlx_hook(data.mlx.win, EVENT_KEY_PRESS, 1L << 0, &key_event, &data);
 	mlx_hook(data.mlx.win, EVENT_KEY_EXIT, 0, &mlx_loop_end, data.mlx.mlx_ptr);
 	mlx_loop(data.mlx.mlx_ptr);
-	mlx_destroy_image(data.mlx.mlx_ptr, data.mlx.map.img_ptr);
-	mlx_destroy_image(data.mlx.mlx_ptr, data.mlx.minimap.img_ptr);
-	free_textures(data.texture, 8);
-	free_arrs((void **)data.mlx.parsing->file);
-	free(data.mlx.parsing->rows_lens);
-	free(data.mlx.parsing);
-	mlx_destroy_window(data.mlx.mlx_ptr, data.mlx.win);
-	mlx_destroy_display(data.mlx.mlx_ptr);
-	free(data.mlx.mlx_ptr);
+	free_mlx(&data);
 }

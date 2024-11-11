@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/08 10:59:50 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:43:50 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	bg_parsing(t_parsing *parsing, t_screen *screen)
 		i++;
 	}
 	if (!screen->north || !screen->south || !screen->east || !screen->west
-		|| !screen->floor_color || !screen->ceiling_color)
+		|| screen->floor_color < 0 || screen->ceiling_color < 0)
 		print_err_msg(MISSING_TEXTURE_OR_COLOR, -1);
 	check_if_textures_exist(screen);
 	return (0);

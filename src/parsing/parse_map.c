@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:17:01 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/11 12:08:06 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 14:55:49 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ t_parsing	*init_pars_struct(char *path)
 		print_err_msg(MKO, -1);
 	ft_bzero(data, sizeof(data));
 	data->rows_lens = NULL;
+	data->file = NULL;
 	memory_handler(data, 1);
 	file = create_file(data, path, 0);
 	data->file = file;

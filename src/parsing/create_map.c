@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:32:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/08 13:07:08 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:55:04 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	**create_file(t_parsing *data, char *path, __int8_t ret)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		print_err_msg("Unable to open file.", fd);
+		print_err_msg("Unable to open file.", -1);
 	file = create_strs(fd, -32);
 	if (!file)
 		print_err_msg(MKO, fd);

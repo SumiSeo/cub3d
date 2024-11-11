@@ -6,12 +6,12 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 11:19:01 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/21 13:58:08 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:10:17 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-//careful with arrays that arent strings
+
 void	free_arrs(void **arrs)
 {
 	int	i;

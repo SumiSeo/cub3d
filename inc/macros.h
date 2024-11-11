@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 12:30:32 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:06:00 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 # define KEY_LOOK_RIGHT 65363
 # define KEY_LOOK_LEFT 65361
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1000
+# define HEIGHT 800
 # define TEX_HEIGHT 64
 # define TEX_WIDTH 64
 
