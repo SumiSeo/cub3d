@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:57:58 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 11:22:06 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:47:14 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,18 @@ void	init_side(t_data *info)
 			* info->delta_dist_y;
 	}
 }
-
+/*
+draw_start = -line_height / 2 + HEIGHT / 2;
+		if (draw_start < 0)
+			draw_start = 0;
+		draw_end = line_height / 2 + HEIGHT / 2;
+		if (draw_end >= HEIGHT)
+			draw_end = HEIGHT - 1;
+*/
 void	init_ray(t_data *info, int x)
 {
+	info->draw_end = 0;
+	info->draw_start = 0;
 	info->camera_x = 2 * x / (double)WIDTH - 1;
 	info->ray_dir_x = info->dir_x + info->plane_x * info->camera_x;
 	info->ray_dir_y = info->dir_y + info->plane_y * info->camera_x;
