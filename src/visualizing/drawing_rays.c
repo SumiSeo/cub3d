@@ -3,50 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
+/*   Updated: 2024/11/09 21:43:14 by sumseo           ###   ########.fr       */
 /*   Updated: 2024/11/09 20:40:48 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	put_pixel_to_img(t_image *img, int x, int y, int color)
+void	avance_side_x(t_data *info)
 {
-	img->data[y * (img->line_length / sizeof(int)) + x] = color;
+	info->side_dist_x += info->delta_dist_x;
+	info->map_x += info->step_x;
+	info->side = 0;
 }
 
-void	verLine(t_data *info, int x, int y1, int y2, int color)
+void	avance_side_y(t_data *info)
 {
-	int	y;
-
-	y = y1;
-	while (y <= y2)
-	{
-		put_pixel_to_img(&info->mlx.map, x, y, color);
-		y++;
-	}
+	info->side_dist_y += info->delta_dist_y;
+	info->map_y += info->step_y;
+	info->side = 1;
 }
 
-void	draw_floor_ceiling(t_data *info, int x, int draw_start, int draw_end)
+void	find_wall_x(t_data *info)
 {
-	int	y;
+	if (info->side == 0)
+		info->wall_x = info->pos_y + info->perp_wall_dist * info->ray_dir_y;
+	else
+		info->wall_x = info->pos_x + info->perp_wall_dist * info->ray_dir_x;
+	info->wall_x -= floor(info->wall_x);
+	info->line_height = (int)(HEIGHT / info->perp_wall_dist);
+	info->tex_x = (int)(info->wall_x * (double)TEX_WIDTH);
+	if (info->side == 0 && info->ray_dir_x > 0)
+		info->tex_x = TEX_WIDTH - info->tex_x - 1;
+	if (info->side == 1 && info->ray_dir_y < 0)
+		info->tex_x = TEX_WIDTH - info->tex_x - 1;
+	info->step = 1.0 * TEX_HEIGHT / info->line_height;
+	info->tex_pos = (info->draw_start - HEIGHT / 2 + info->line_height / 2)
+		* info->step;
+}
 
-	y = 0;
-	if (draw_end < 0)
-		return ;
-	while (y < draw_start)
-	{
-		put_pixel_to_img(&info->mlx.map, x, y, info->mlx.screen->ceiling_color);
-		y++;
-	}
-	y = draw_end + 1;
-	while (y < HEIGHT)
-	{
-		put_pixel_to_img(&info->mlx.map, x, y, info->mlx.screen->floor_color);
-		y++;
-	}
+void	find_perp_wall(t_data *info)
+{
+	if (info->side == 0)
+		info->perp_wall_dist = (info->map_x - info->pos_x + (1 - info->step_x)
+				/ 2) / info->ray_dir_x;
+	else
+		info->perp_wall_dist = (info->map_y - info->pos_y + (1 - info->step_y)
+				/ 2) / info->ray_dir_y;
+	info->draw_start = -info->line_height / 2 + HEIGHT / 2;
+	if (info->draw_start < 0)
+		info->draw_start = 0;
+	info->draw_end = info->line_height / 2 + HEIGHT / 2;
+	if (info->draw_end >= HEIGHT)
+		info->draw_end = HEIGHT - 1;
 }
 
 int find_texture(double ray_dir_x, double ray_dir_y, int side)
@@ -70,122 +82,26 @@ int find_texture(double ray_dir_x, double ray_dir_y, int side)
 
 void	draw_rays(t_data *info)
 {
-	int		x;
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		color;
-	int		hit;
-	int		side;
-	int		size_y;
-	int		tex_num;
-	double	wall_x;
-	int		tex_x;
-	double	step;
-	double	tex_pos;
-	int		tex_y;
+	int	x;
+	int	hit;
+	int	size_y;
 
 	size_y = find_len_strs(info->mlx.parsing->map);
 	x = 0;
 	while (x < WIDTH)
 	{
-		camera_x = 2 * x / (double)WIDTH - 1;
-		ray_dir_x = info->dir_x + info->plane_x * camera_x;
-		ray_dir_y = info->dir_y + info->plane_y * camera_x;
-		map_x = (int)info->pos_x;
-		map_y = (int)info->pos_y;
-		delta_dist_x = fabs(1 / ray_dir_x);
-		delta_dist_y = fabs(1 / ray_dir_y);
+		init_ray(info, x);
 		hit = 0;
-		if (ray_dir_x < 0)
-		{
-			step_x = -1;
-			side_dist_x = (info->pos_x - map_x) * delta_dist_x;
-		}
-		else
-		{
-			step_x = 1;
-			side_dist_x = (map_x + 1.0 - info->pos_x) * delta_dist_x;
-		}
-		if (ray_dir_y < 0)
-		{
-			step_y = -1;
-			side_dist_y = (info->pos_y - map_y) * delta_dist_y;
-		}
-		else
-		{
-			step_y = 1;
-			side_dist_y = (map_y + 1.0 - info->pos_y) * delta_dist_y;
-		}
 		while (hit == 0)
 		{
-			if (side_dist_x < side_dist_y)
-			{
-				side_dist_x += delta_dist_x;
-				map_x += step_x;
-				side = 0;
-			}
+			if (info->side_dist_x < info->side_dist_y)
+				avance_side_x(info);
 			else
-			{
-				side_dist_y += delta_dist_y;
-				map_y += step_y;
-				side = 1;
-			}
-			if (info->mlx.parsing->map[map_y][map_x] == '1')
+				avance_side_y(info);
+			if (info->mlx.parsing->map[info->map_y][info->map_x] == '1')
 				hit = 1;
 		}
-		if (side == 0)
-			perp_wall_dist = (map_x - info->pos_x + (1 - step_x) / 2)
-				/ ray_dir_x;
-		else
-			perp_wall_dist = (map_y - info->pos_y + (1 - step_y) / 2)
-				/ ray_dir_y;
-		line_height = (int)(HEIGHT / perp_wall_dist);
-		draw_start = -line_height / 2 + HEIGHT / 2;
-		if (draw_start < 0)
-			draw_start = 0;
-		draw_end = line_height / 2 + HEIGHT / 2;
-		if (draw_end >= HEIGHT)
-			draw_end = HEIGHT - 1;
-		// tex_num = info->mlx.parsing->map[map_x][map_y] - '0';
-		tex_num = 4;
-		if (side == 0)
-			wall_x = info->pos_y + perp_wall_dist * ray_dir_y;
-		else
-			wall_x = info->pos_x + perp_wall_dist * ray_dir_x;
-		wall_x -= floor(wall_x);
-		tex_x = (int)(wall_x * (double)TEX_WIDTH);
-		if (side == 0 && ray_dir_x > 0)
-			tex_x = TEX_WIDTH - tex_x - 1;
-		if (side == 1 && ray_dir_y < 0)
-			tex_x = TEX_WIDTH - tex_x - 1;
-		step = 1.0 * TEX_HEIGHT / line_height;
-		tex_pos = (draw_start - HEIGHT / 2 + line_height / 2) * step;
-		for (int y = draw_start; y < draw_end; y++)
-		{
-			tex_num = find_texture(ray_dir_x, ray_dir_y, side);
-			tex_y = (int)tex_pos & (TEX_HEIGHT - 1);
-			tex_pos += step;
-			color = info->texture[tex_num][TEX_HEIGHT * tex_y + tex_x];
-			if (side == 1)
-				color = (color >> 1) & 8355711;
-			put_pixel_to_img(&info->mlx.map, x, y, color);
-			// info->buf[y][x] = color;
-			// info->re_buf = 1;
-		}
-		draw_floor_ceiling(info, x, draw_start, draw_end);
+		calc_and_draw(info, x);
 		x++;
 	}
 	mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win,

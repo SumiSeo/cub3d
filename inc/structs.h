@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/08 13:14:20 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:48:06 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ typedef struct s_data
 {
 	t_mlx		mlx;
 	int			*texture[8];
-	int			buf[HEIGHT][WIDTH];
-	int			re_buf;
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
@@ -85,6 +83,33 @@ typedef struct s_data
 	double		plane_y;
 	double		move_speed;
 	double		rot_speed;
+
+	//
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			color;
+	int			hit;
+	int			side;
+	int			size_y;
+	int			tex_num;
+	double		wall_x;
+	int			tex_x;
+	double		step;
+	double		tex_pos;
+	int			tex_y;
 
 }				t_data;
 typedef struct s_key

@@ -1,7 +1,7 @@
-NO textures/barrel.xpm
-SO textures/bluestone.xpm
-EA textures/colorstone.xpm
-WE textures/eagle.xpm
+NO textures/mossy.xpm
+SO textures/pillar.xpm
+EA textures/redbrick.xpm
+WE textures/wood.xpm
 
 F 245,244,249
 C 105,66,98

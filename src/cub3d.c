@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/07 13:55:09 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/09 20:02:19 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ bool	check_extension(char *file)
 
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	t_parsing *parsing;
-	t_screen screen;
+	t_parsing	*parsing;
+	t_screen	screen;
 
+	if (argc != 2)
+		print_and_exit("Wrong arguments number");
 	if (check_extension(argv[1]) == FAILURE)
 		print_and_exit("Wrong extension. Allowed extension is .cub");
 	parsing = init_pars_struct(argv[1]);
@@ -40,8 +41,4 @@ int	main(int argc, char **argv)
 	if (bg_parsing(parsing, &screen))
 		print_err_msg(ERROR_PARSING_MSG, -1);
 	launch_game(parsing, &screen);
-	// call();
-	// free(parsing->rows_lens);
-	// free_arrs((void **)parsing->file);
-	// free(parsing);
 }

@@ -10,7 +10,8 @@ SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c parsing/check_m
 			parsing/color_parsing.c visualizing/key_handling.c \
 			visualizing/drawing_minimap.c visualizing/drawing_rays.c \
 			visualizing/move_handling.c visualizing/view_handling.c \
-			visualizing/drawing_minimap_line.c
+			visualizing/launch_mlx.c visualizing/launch_raycasting.c \
+
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
