@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:41:12 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 17:35:06 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:19:06 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	close_game(t_mlx *mlx)
-{
-	(void)mlx;
-	exit(0);
-}
 
 int	key_event(int key_code, t_data *data)
 {

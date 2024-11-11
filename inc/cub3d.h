@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 11:20:23 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:24:47 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_parsing	*init_pars_struct(char *path);
 
 //->check_map.c
 
+bool		check_screen_size(void *mlx_ptr);
 void		transform_whitespace_in_wall(char **map);
 __int8_t	check_characters_in_map(char **map, short int *y, short int *x);
 
@@ -75,7 +76,6 @@ void		move_left(t_data *data);
 
 // KEY_HANDLIG.c
 int			key_event(int key_code, t_data *data);
-int			close_game(t_mlx *mlx);
 
 // VIEW_HANDLING.c
 void		move_look_right(t_data *data);
