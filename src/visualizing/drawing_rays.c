@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 12:18:39 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:38:28 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	draw_rays(t_data *info)
 	while (++x < WIDTH)
 	{
 		init_ray(info, x);
-		
 		hit = 0;
 		while (hit == 0)
 		{
