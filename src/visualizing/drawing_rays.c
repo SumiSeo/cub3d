@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 11:18:16 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:49:38 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	draw_rays(t_data *info)
 	while (x < WIDTH)
 	{
 		init_ray(info, x);
+		
 		hit = 0;
 		while (hit == 0)
 		{

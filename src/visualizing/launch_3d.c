@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   launch_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 19:59:40 by sumseo           ###   ########.fr       */
-/*   Updated: 2024/11/09 20:31:17 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:51:58 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d.h"
 
@@ -97,6 +97,7 @@ void	launch_game(t_parsing *parsing, t_screen *screen)
 {
 	t_data	data;
 
+	ft_bzero(&data, sizeof(t_data));
 	memory_handler(parsing, true);
 	mlx_launch(&data, parsing, screen);
 	img_launch(&data.mlx);
