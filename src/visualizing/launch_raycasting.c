@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 20:03:06 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 21:42:16 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:18:23 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,22 @@ void	put_pixel_to_img(t_image *img, int x, int y, int color)
 	img->data[y * (img->line_length / sizeof(int)) + x] = color;
 }
 
-__int8_t	find_texture(double ray_dir_x, double ray_dir_y, int side)
+int	find_texture(double ray_dir_x, double ray_dir_y, int side)
 {
 	if (side == 0)
-		return (ray_dir_x <= 0);
+	{
+		if (ray_dir_x > 0)
+			return (EAST);
+		else
+			return (WEST);
+	}
 	else
-		return ((ray_dir_y <= 0) + 2);
+	{
+		if (ray_dir_y > 0)
+			return (SOUTH);
+		else
+			return (NORTH);
+	}
 	return (4);
 }
 

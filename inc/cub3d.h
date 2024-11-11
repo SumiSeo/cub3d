@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 21:43:43 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:18:43 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void		init_ray(t_data *info, int x);
 void		init_side(t_data *info);
 
 // LAUNCH_RAYCASTING.C
-__int8_t	find_texture(double ray_dir_x, double ray_dir_y, int side);
+int			find_texture(double ray_dir_x, double ray_dir_y, int side);
 void		put_pixel_to_img(t_image *img, int x, int y, int color);
 void		draw_floor_ceiling(t_data *info, int x, int draw_start,
 				int draw_end);
