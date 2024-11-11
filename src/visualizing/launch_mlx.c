@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:57:58 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 21:43:30 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:22:06 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen)
 
 void	img_launch(t_mlx *mlx)
 {
-	mlx->minimap.img_ptr = mlx_new_image(mlx->mlx_ptr, MINIMAP_WIDTH,
-			MINIMAP_HEIGHT);
+	mlx->minimap.img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	mlx->minimap.data = (int *)mlx_get_data_addr(mlx->minimap.img_ptr,
 			&mlx->minimap.bits_per_pixel, &mlx->minimap.line_length,
 			&mlx->minimap.endian);
