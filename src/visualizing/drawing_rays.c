@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:19:05 by sumseo            #+#    #+#             */
 /*   Updated: 2024/11/09 21:43:14 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/09 20:40:48 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +59,25 @@ void	find_perp_wall(t_data *info)
 	info->draw_end = info->line_height / 2 + HEIGHT / 2;
 	if (info->draw_end >= HEIGHT)
 		info->draw_end = HEIGHT - 1;
+}
+
+int find_texture(double ray_dir_x, double ray_dir_y, int side)
+{
+	if (side == 0)
+	{
+		if (ray_dir_x > 0)
+			return (EAST); 
+		else
+			return (WEST);
+	}
+	else
+	{
+		if (ray_dir_y > 0)
+			return (SOUTH);
+		else
+			return (NORTH);
+	}
+	return (4);
 }
 
 void	draw_rays(t_data *info)

@@ -6,13 +6,14 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/08 10:55:27 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:30:51 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
+// PARSING
 # define ERROR_PARSING 0
 # define ERROR_PARSING_MSG "Parsing"
 # define ERROR_ARGUMENT_NB_MSG "Check argument number of the program."
@@ -55,4 +56,11 @@
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 # define TEX_HEIGHT 64
 # define TEX_WIDTH 64
+
+// MAP_INDEX
+
+# define WEST 0
+# define EAST 1
+# define NORTH 2
+# define SOUTH 3
 #endif //__MACROS__H
