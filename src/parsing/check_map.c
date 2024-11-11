@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:11:07 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/10/28 15:24:11 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:27:35 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	check_screen_size(void *mlx_ptr)
+{
+	int	x;
+	int	y;
+
+	mlx_get_screen_size(mlx_ptr, &x, &y);
+	if (x < WIDTH || y < HEIGHT)
+		return (false);
+	return (true);
+}
 
 /**
  * @brief If empty spaces are found in the map, changes them in wall ('1')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:57:58 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 11:22:06 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:21:55 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ void	launch_texture(t_data *data)
 void	mlx_launch(t_data *data, t_parsing *parsing, t_screen *screen)
 {
 	data->mlx.mlx_ptr = mlx_init();
+	if (check_screen_size(data->mlx.mlx_ptr) == FAILURE)
+	{
+		mlx_destroy_display(data->mlx.mlx_ptr);
+		free(data->mlx.mlx_ptr);
+		print_err_msg("Display is bigger than screen's size", -1);
+	}
 	data->mlx.win = mlx_new_window(data->mlx.mlx_ptr, WIDTH, HEIGHT, "cub 3D");
 	data->pos_x = parsing->pos_x;
 	data->pos_y = parsing->pos_y;

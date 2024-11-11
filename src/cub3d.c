@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:55 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 20:02:19 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:30:09 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	main(int argc, char **argv)
 		print_and_exit("Wrong arguments number");
 	if (check_extension(argv[1]) == FAILURE)
 		print_and_exit("Wrong extension. Allowed extension is .cub");
+	if (WIDTH < 0 || HEIGHT < 0)
+		print_and_exit("Width and/or height is negative");
 	parsing = init_pars_struct(argv[1]);
 	parse_map(parsing);
 	ft_memset(&screen, 0, sizeof(t_screen));
