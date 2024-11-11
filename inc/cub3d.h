@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 11:18:43 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:20:23 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,11 @@ void		move_look_left(t_data *data);
 void		draw_square(t_mlx *mlx, int x, int y, int color);
 void		draw_person(t_mlx *mlx, int x, int y);
 void		draw_squares(t_mlx *mlx);
-void		draw_line(t_mlx *mlx, double x1, double y1, double x2, double y2);
-void		draw_lines(t_mlx *mlx);
 void		draw_hero(t_mlx *mlx);
 
 // DRAWING_RAYS.c
 void		draw_rays(t_data *data);
 void		put_pixel_to_img(t_image *img, int x, int y, int color);
-void		verLine(t_data *info, int x, int y1, int y2, int color);
 void		find_wall_x(t_data *info);
 void		find_perp_wall(t_data *info);
 

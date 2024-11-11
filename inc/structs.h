@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:40:59 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 20:48:06 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:20:56 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ typedef struct s_data
 	double		plane_y;
 	double		move_speed;
 	double		rot_speed;
-
-	//
 	double		camera_x;
 	double		ray_dir_x;
 	double		ray_dir_y;

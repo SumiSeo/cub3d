@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:04 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/09 20:30:51 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:20:43 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@
 # define COLS 50
 # define WIDTH 640
 # define HEIGHT 480
-# define MINIMAP_WIDTH TILE_SIZE *ROWS
-# define MINIMAP_HEIGHT TILE_SIZE *COLS
-# define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 # define TEX_HEIGHT 64
 # define TEX_WIDTH 64
 
