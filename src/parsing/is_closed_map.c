@@ -6,13 +6,35 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:38 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/11 12:17:26 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:40:44 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 #define OUT_OF_BOUND -3
+
+static bool	can_escape(t_parsing *data, short int y, short int x, int len_y)
+{
+	char		**map;
+	short int	*rows;
+
+	map = data->map;
+	rows = data->rows_lens;
+	if (y == 0 && map[y][x] == -32)
+		return (true);
+	if (y == len_y - 1 && map[y][x] == -32)
+		return (true);
+	if (map[y][x] == '2' && (rows[y + 1] < x || (y > 0 && rows[y - 1] < x)))
+		return (map[y][x] = -32, true);
+	if (map[y][x] == '2' && (y == 0 || x == 0))
+		return (map[y][x] = -32, true);
+	if (x == rows[y] - 1 && map[y][x] == '2')
+		return (map[y][x] = -32, true);
+	if ((y + 1 < len_y && x >= rows[y + 1]) || (y > 0 && x >= rows[y - 1]))
+		return (map[y][x] = -32, true);
+	return (false);
+}
 
 /**
  * @brief Recursively flood-fills the map and checks for an opening.
@@ -25,29 +47,24 @@
  * @returns 0 if the recursion can't continue, -1 if an opening is found
  * and 1 if none of these cases were encountered.
  */
-static __int8_t	fill_map(t_parsing *data, short int y, short int x)
+static __int8_t	fill_map(t_parsing *data, short int y, short int x, int len_y)
 {
-	char				**map;
-	short int			*rows;
-	static short int	len_y = 0;
+	char		**map;
+	short int	*rows;
 
-	if (len_y == 0)
-		len_y = find_len_strs(data->map);
 	map = data->map;
 	rows = data->rows_lens;
-	if (x < 0 || y < 0 || y > len_y || x > ft_strlen(map[y]) || map[y][x] == '1'
+	if (x < 0 || y < 0 || y > len_y || x > rows[y] || map[y][x] == '1'
 		|| map[y][x] == '2' || !map[y] || !map[y][x])
 		return (0);
 	if (map[y][x] == '0')
 		map[y][x] = '2';
-	if (map[y][x] == '2' && (rows[y + 1] < x || (y > 0 && rows[y - 1] < x)))
-		return (map[y][x] = -32, -1);
-	if (map[y][x] == '2' && (y == 0 || x == 0))
-		return (map[y][x] = -32, -1);
-	fill_map(data, y, x - 1);
-	fill_map(data, y - 1, x);
-	fill_map(data, y, x + 1);
-	fill_map(data, y + 1, x);
+	if (can_escape(data, y, x, len_y) == true)
+		return (FAILURE);
+	fill_map(data, y, x - 1, len_y);
+	fill_map(data, y - 1, x, len_y);
+	fill_map(data, y, x + 1, len_y);
+	fill_map(data, y + 1, x, len_y);
 	return (true);
 }
 
@@ -95,7 +112,18 @@ static __int8_t	reset_and_check_map(char **map, short int *y, short int *x)
  */
 __int8_t	is_closed_map(t_parsing *data, short int *y, short int *x)
 {
-	find_player(data->map, &data->pos_y, &data->pos_x);
-	fill_map(data, (short int)data->pos_y, (short int)data->pos_x);
-	return (reset_and_check_map(data->map, y, x));
+	int		len_y;
+	char	**map;
+
+	map = data->map;
+	len_y = find_len_strs(map);
+	find_player(map, &data->pos_y, &data->pos_x);
+	if ((short int)data->pos_x == 0 || (short int)data->pos_y == 0)
+		return (MAP_NOT_CLOSED);
+	else if ((short int)data->pos_y == len_y - 1)
+		return (MAP_NOT_CLOSED);
+	else if ((short int)data->pos_x + 1 >= (ft_strlen(map[(int)data->pos_y])))
+		return (MAP_NOT_CLOSED);
+	fill_map(data, (short int)data->pos_y, (short int)data->pos_x, len_y);
+	return (reset_and_check_map(map, y, x));
 }

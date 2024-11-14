@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:17:01 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/11 14:55:49 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:56:06 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,9 @@ __int8_t	parse_map(t_parsing *data)
 	short int	x;
 
 	map = data->map;
-	y = 0;
-	x = 0;
+	find_player(map, &data->pos_y, &data->pos_x);
+	y = (short int)data->pos_y;
+	x = (short int)data->pos_x;
 	transform_whitespace_in_wall(map);
 	ret = check_characters_in_map(map, &y, &x);
 	call_error_function(ret, y, x);

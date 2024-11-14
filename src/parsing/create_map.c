@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:32:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/11 14:55:04 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:35:59 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 #define VALID_FIRST_CHARS "NEWSFC"
 #define NO_MAP_FOUND -1
-
-// CAREFUL of ft_error : first free memory and then call it
 
 /**
  * @brief Finds the beginning of the map in an array of strings.
@@ -31,6 +29,11 @@ short int	find_map(char **file)
 	i = -1;
 	while (file[++i])
 	{
+		if (is_in_set(file[i][0], VALID_FIRST_CHARS) && file[i][0] != '\n')
+		{
+			if (!is_in_set(file[i][1], "EAO "))
+				return (i);
+		}
 		if (!is_in_set(file[i][0], VALID_FIRST_CHARS) && file[i][0] != '\n')
 			return (i);
 	}
@@ -105,8 +108,8 @@ __int8_t	check_empty_space(char **file)
  */
 char	**create_file(t_parsing *data, char *path, __int8_t ret)
 {
-	char		**file;
-	int			fd;
+	char	**file;
+	int		fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
