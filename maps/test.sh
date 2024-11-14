@@ -13,5 +13,3 @@ for file in $files; do
 done
 rm tmp.txt
 echo "Done ! Results are available in $OUTPUT_FILE"
-
-
