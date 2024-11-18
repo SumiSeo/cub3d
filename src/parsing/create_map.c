@@ -6,13 +6,13 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:32:42 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/11/14 18:35:59 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:22:25 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#define VALID_FIRST_CHARS "NEWSFC"
+#define VALID_FIRST_CHARS "NEWSFC "
 #define NO_MAP_FOUND -1
 
 /**

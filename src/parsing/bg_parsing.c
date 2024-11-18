@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:51:09 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 14:43:50 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:42:04 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,59 +16,78 @@
 #define MISSING_TEXTURE_OR_COLOR "Colors' informations or texture(s) not found"
 #define EXCESSIVE_INFORMATIONS "Only four textures and two colors are expected."
 
+short int	start_texture(char *str, char side)
+{
+	short int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == side)
+		{
+			i += 2;
+			while (str[i] && str[i] == ' ')
+				i++;
+			return (i);
+		}
+	}
+	return (-1);
+}
+
+void	adjust_texture_ptr(t_screen *screen)
+{
+	screen->north = screen->north + start_texture(screen->north, 'N');
+	screen->east = screen->east + start_texture(screen->east, 'E');
+	screen->west = screen->west + start_texture(screen->west, 'W');
+	screen->south = screen->south + start_texture(screen->south, 'S');
+}
+
 bool	check_if_textures_exist(t_screen *screen)
 {
 	int	fd;
 
-	fd = open(screen->north + 3, O_RDONLY);
+	adjust_texture_ptr(screen);
+	fd = open(screen->north, O_RDONLY);
 	if (fd == -1)
 		print_err_msg(NOT_EXISTING_TEXTURE, -1);
 	close(fd);
-	fd = open(screen->east + 3, O_RDONLY);
+	fd = open(screen->east, O_RDONLY);
 	if (fd == -1)
 		print_err_msg(NOT_EXISTING_TEXTURE, -1);
 	close(fd);
-	fd = open(screen->south + 3, O_RDONLY);
+	fd = open(screen->south, O_RDONLY);
 	if (fd == -1)
 		print_err_msg(NOT_EXISTING_TEXTURE, -1);
 	close(fd);
-	fd = open(screen->west + 3, O_RDONLY);
+	fd = open(screen->west, O_RDONLY);
 	if (fd == -1)
 		print_err_msg(NOT_EXISTING_TEXTURE, -1);
 	close(fd);
 	return (true);
 }
 
-int	find_index(const char *str, char c)
-{
-	char	*ptr;
-
-	ptr = ft_strchr(str, c);
-	if (ptr)
-		return (ptr - str);
-	return (-1);
-}
-
 void	parsing_texture(t_parsing *parsing, t_screen *screen, int i)
 {
-	if (ft_strncmp("NO", parsing->file[i], 2) == 0
-		&& parsing->file[i][2] == ' ')
+	char	**infos;
+	int		len_strs;
+
+	infos = ft_split(parsing->file[i], ' ');
+	if (!infos)
+		print_err_msg(MKO, -1);
+	len_strs = find_len_strs(infos);
+	if (len_strs >= 2 && ft_strncmp("NO", infos[0], 2) == 0 && infos[1])
 		screen->north = parsing->file[i];
-	else if (ft_strncmp(parsing->file[i], "SO", 2) == 0
-		&& parsing->file[i][2] == ' ')
+	else if (len_strs >= 2 && ft_strncmp("SO", infos[0], 2) == 0 && infos[1])
 		screen->south = parsing->file[i];
-	else if (ft_strncmp(parsing->file[i], "WE", 2) == 0
-		&& parsing->file[i][2] == ' ')
+	else if (len_strs >= 2 && ft_strncmp("WE", infos[0], 2) == 0 && infos[1])
 		screen->west = parsing->file[i];
-	else if (ft_strncmp(parsing->file[i], "EA", 2) == 0
-		&& parsing->file[i][2] == ' ')
+	else if (len_strs >= 2 && ft_strncmp("EA", infos[0], 2) == 0 && infos[1])
 		screen->east = parsing->file[i];
-	else if (ft_strncmp(parsing->file[i], "F", 1) == 0
-		&& parsing->file[i][1] == ' ')
-		assign_colors(screen, "F", parsing->file[i]);
-	else if (ft_strncmp(parsing->file[i], "C", 1) == 0
-		&& parsing->file[i][1] == ' ')
-		assign_colors(screen, "C", parsing->file[i]);
+	else if (len_strs >= 2 && ft_strncmp("F", infos[0], 1) == 0 && infos[1])
+		assign_colors(screen, "F", parsing->file[i], infos);
+	else if (len_strs >= 2 && ft_strncmp("C", infos[0], 1) == 0 && infos[1])
+		assign_colors(screen, "C", parsing->file[i], infos);
+	free_arrs((void **)infos);
 }
 
 int	bg_parsing(t_parsing *parsing, t_screen *screen)

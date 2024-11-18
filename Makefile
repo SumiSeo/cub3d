@@ -5,7 +5,7 @@ OBJ_DIR = obj
 OBJ_DIRS = $(OBJ_DIR)/parsing $(OBJ_DIR)/handler $(OBJ_DIR)/utils $(OBJ_DIR)/visualizing
 
 SRC_FILES = cub3d.c parsing/bg_parsing.c handler/error_handler.c parsing/check_map.c \
-			parsing/create_map.c utils/utils.c visualizing/launch_3d.c handler/memory_handler.c \
+			parsing/create_map.c utils/utils.c utils/utils2.c visualizing/launch_3d.c handler/memory_handler.c \
 			parsing/parse_map.c parsing/is_closed_map.c \
 			parsing/color_parsing.c visualizing/key_handling.c \
 			visualizing/drawing_rays.c \

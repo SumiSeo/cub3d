@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:13:42 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 15:35:31 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:22:06 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	load_image(t_mlx *mlx, int *texture, char *path)
 	img.data = (int *)mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel,
 			&img.line_length, &img.endian);
 	if (!img.img_ptr)
-		return (false);
+		return (FAILURE);
 	y = 0;
 	while (y < TEX_HEIGHT)
 	{
@@ -78,29 +78,29 @@ bool	load_image(t_mlx *mlx, int *texture, char *path)
 
 void	load_texture(t_data *info)
 {
-	char		**file;
-	__int8_t	i;
-	bool		ret;
+	t_screen	*tmp;
 
-	file = info->mlx.parsing->file;
-	i = 0;
-	while (i < info->mlx.parsing->map_beginning - 2)
+	tmp = info->mlx.screen;
+	if (load_image(&info->mlx, info->texture[NORTH], tmp->north) == FAILURE)
 	{
-		if (file[i][0] == 'N')
-			ret = load_image(&info->mlx, info->texture[NORTH], &file[i][3]);
-		else if (file[i][0] == 'E')
-			ret = load_image(&info->mlx, info->texture[EAST], &file[i][3]);
-		else if (file[i][0] == 'S')
-			ret = load_image(&info->mlx, info->texture[SOUTH], &file[i][3]);
-		else if (file[i][0] == 'W')
-			ret = load_image(&info->mlx, info->texture[WEST], &file[i][3]);
-		i++;
-		if (ret == FAILURE)
-		{
-			free_mlx(info);
-			print_and_exit("Issue while loading an image");
-		}
+		free_mlx(info);
+		print_and_exit("Issue while loading north's texture image");
 	}
+	if (load_image(&info->mlx, info->texture[EAST], tmp->east) == FAILURE)
+	{
+		free_mlx(info);
+		print_and_exit("Issue while loading east's texture image");
+	}
+	if (load_image(&info->mlx, info->texture[SOUTH], tmp->south) == FAILURE)
+	{
+		free_mlx(info);
+		print_and_exit("Issue while loading south's texture image");
+	}
+	if (load_image(&info->mlx, info->texture[WEST], tmp->west) == FAILURE)
+	{
+		free_mlx(info);
+		print_and_exit("Issue while loading west's texture image");
+	}	
 }
 
 void	launch_game(t_parsing *parsing, t_screen *screen)

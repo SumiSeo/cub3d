@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:41:14 by sumseo            #+#    #+#             */
-/*   Updated: 2024/11/11 15:32:30 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:57:49 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ bool		is_in_set(char c, char *set);
 void		find_player(char **map, double *pos_y, double *pos_x);
 short int	find_maximum_col(t_parsing *data);
 void		free_textures(int *textures[], __int8_t n);
+
+//->utils2.c
+
+short int	start_colors(char *str);
+
 //									-> PARSING
 //-> create_map.c
 
@@ -49,9 +54,10 @@ __int8_t	is_closed_map(t_parsing *data, short int *y, short int *x);
 int			bg_parsing(t_parsing *parsing, t_screen *screen);
 
 // ->color_parsing.c
-void		assign_colors(t_screen *screen, char *place, char *color_arr);
+void		assign_colors(t_screen *screen, char *place, char *color_arr,
+				char **s);
 void		convert_hex(t_screen *screen, int i);
-int			range_check(char **arr, t_screen *screen, int flag);
+int			range_check(char **arr, t_screen *screen, int flag, char **s);
 int			is_valid_split(char *str);
 
 //								-->HANDLER
